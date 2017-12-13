@@ -1,2 +1,7 @@
 teste
+<<<<<<< HEAD
 pinocos
+=======
+
+Alteração Sérgio
+>>>>>>> 085f00d19b4f723b01d3b6a5bb3aee927c4183ab
