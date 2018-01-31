@@ -134,7 +134,7 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
       require_once('resources/classes/utilizadordao.class.php');
       $DAO=new GereUtilizador();
       if($DAO->password_correta($_POST['email'],$_POST['password'])){
-        //echo '<script>document.location.href = "?";</script>';
+        echo '<script>document.location.href = "?";</script>';
       }else{
         echo '<script>alert("O e-mail ou a palavra-passe inseridos não se encontram correctos.");</script>';
       }
