@@ -44,7 +44,7 @@
               <input type="checkbox" name="remember" id="remember" name="remember"> Lembrar-me
             </label>
           </div>
-          <button type="submit" name="login" class="btn btn-success btn-block">Entrar</button>
+          <button type="submit" name="btnLogin" class="btn btn-success btn-block">Entrar</button>
           <a href="/forgot/" class="btn btn-default btn-block">Esqueci-me da password...</a>
         </form>
       </div>
@@ -122,24 +122,24 @@
 
 <!--Validação php-->
 <?php
+//TODO: Meter mensagens de erro em bootstrap
 if($_SERVER['REQUEST_METHOD']==='POST'){
-
-  //print_r($_POST);
+  echo "<pre>";
+  print_r($_POST);
 
   //Login
-  if(isset($_POST['login'])){
-
+  if(isset($_POST['btnLogin'])){
     if(isset($_POST['email'],$_POST['password']) && !empty($_POST['email']) && !empty($_POST['password'])){
 
       require_once('resources/classes/utilizadordao.class.php');
       $DAO=new GereUtilizador();
       if($DAO->password_correta($_POST['email'],$_POST['password'])){
-        echo "tudo ok";
+        echo '<script>document.location.href = "?";</script>';
       }else{
-        echo "email ou password invalidos";
+        echo '<script>alert("O e-mail ou a palavra-passe inseridos não se encontram correctos.");</script>';
       }
     }else{
-      echo "mensagem de erro";
+      echo '<script>alert("Por favor preencha todos os campos.");</script>';
     }
   }
 
