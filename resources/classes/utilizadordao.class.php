@@ -16,11 +16,12 @@ class GereUtilizador {
 		$email = $utilizador->get_email();
 		$password = $utilizador->get_password();
 		$contacto = $utilizador->get_contacto();
-		$tipo = ($utilizador->get_tipo() ? 1 : 0);
+		$tipo = $utilizador->get_tipo();
 		$estado = $utilizador->get_estado();
 
 		$bd = new BaseDados();
-		$STH = $bd->DBH->prepare("INSERT INTO utilizador (nome, email, password, contacto, tipo, estado) values (?, ?, ?, ?, ?, ?)");
+    $bd->ligar_bd();
+		$STH = $bd->dbh->prepare("INSERT INTO utilizador (U_NOME, U_EMAIL, U_PASSWORD, U_CONTACTO, U_TIPO, U_ESTADO) values (?, ?, ?, ?, ?, ?)");
 		$STH->bindParam(1, $nome);
 		$STH->bindParam(2, $email);
 		$STH->bindParam(3, $password);
@@ -44,7 +45,8 @@ class GereUtilizador {
 		$contacto = $utilizador->get_contacto();
 
 		$bd = new BaseDados();
-		$STH = $bd->DBH->prepare("UPDATE utilizador SET U_NOME = ?, U_EMAIL = ?, U_PASSWORD = ?, U_CONTACTO = ? WHERE U_ID = $utilizador->get_id()");
+    $bd->ligar_bd();
+		$STH = $bd->dbh->prepare("UPDATE utilizador SET U_NOME = ?, U_EMAIL = ?, U_PASSWORD = ?, U_CONTACTO = ? WHERE U_ID = $utilizador->get_id()");
 		$STH->bindParam(1, $nome);
 		$STH->bindParam(2, $email);
 		$STH->bindParam(3, $password);
@@ -104,7 +106,8 @@ class GereUtilizador {
   */
   public function obter_detalhes_utilizador_email($email) {
     $bd = new BD ();
-    $STH = $bd->DBH->query ( "SELECT * FROM utilizador WHERE U_EMAIL = '$email'" );
+    $bd->ligar_bd();
+    $STH = $bd->dbh->query ( "SELECT * FROM utilizador WHERE U_EMAIL = '$email'" );
     $STH->setFetchMode ( PDO::FETCH_NUM );
     $row = $STH->fetch ();
     $utilizador = new Utilizador ( $row [0], $row [1], $row [2], $row [3], $row [4], $row [5], $row[6] );
@@ -119,7 +122,8 @@ class GereUtilizador {
   */
   public function obter_detalhes_utilizador_id($id) {
     $bd = new BD ();
-    $STH = $bd->DBH->query ( "SELECT * FROM utilizador WHERE U_ID = $id" );
+    $bd->ligar_bd();
+    $STH = $bd->dbh->query ( "SELECT * FROM utilizador WHERE U_ID = $id" );
     $STH->setFetchMode ( PDO::FETCH_NUM );
     $row = $STH->fetch ();
     $utilizador = new Utilizador ( $row [0], $row [1], $row [2], $row [3], $row [4], $row [5], $row[6] );
@@ -133,7 +137,8 @@ class GereUtilizador {
   */
   public function obter_todos_gestores() {
 		$bd = new BD ();
-		$STH = $bd->DBH->query ( "SELECT * FROM utilizador WHERE U_TIPO = 1" );
+    $bd->ligar_bd();
+		$STH = $bd->dbh->query ( "SELECT * FROM utilizador WHERE U_TIPO = 1" );
 		if ($STH->rowCount () == 0)
 			return null;
 		$STH->setFetchMode ( PDO::FETCH_NUM );
@@ -150,7 +155,8 @@ class GereUtilizador {
   */
   public function obter_todos_senhorios() {
 		$bd = new BD ();
-		$STH = $bd->DBH->query ( "SELECT * FROM utilizador WHERE U_TIPO = 2" );
+    $bd->ligar_bd();
+		$STH = $bd->dbh->query ( "SELECT * FROM utilizador WHERE U_TIPO = 2" );
 		if ($STH->rowCount () == 0)
 			return null;
 		$STH->setFetchMode ( PDO::FETCH_NUM );
@@ -168,7 +174,8 @@ class GereUtilizador {
   */
   public function conta_ativa($email) {
 		$bd = new BD ();
-		$STH = $bd->DBH->query ( "SELECT U_ESTADO FROM utilizador WHERE U_EMAIL = '$email'" );
+    $bd->ligar_bd();
+		$STH = $bd->dbh->query ( "SELECT U_ESTADO FROM utilizador WHERE U_EMAIL = '$email'" );
 		$STH->setFetchMode ( PDO::FETCH_NUM );
 		$row = $STH->fetch ();
 		if ($row [0] == 1)
@@ -182,8 +189,9 @@ class GereUtilizador {
   */
   public function alterar_estado_utilizador($id) {
 		$bd = new BD ();
+    $bd->ligar_bd();
     $utilizador = obter_detalhes_utilizador_id($id);
-		$STH = $bd->DBH->query ( "UPDATE utilizador SET U_ESTADO = ".($utilizador->get_estado() == 0 ? 1 : 0)." WHERE U_ID = ".$utilizador->get_id() );
+		$STH = $bd->dbh->query ( "UPDATE utilizador SET U_ESTADO = ".($utilizador->get_estado() == 0 ? 1 : 0)." WHERE U_ID = ".$utilizador->get_id() );
 		$STH->execute ();
 		$bd->desligar_bd ();
 	}
@@ -200,7 +208,8 @@ class GereUtilizador {
 		$data_hora = $log->get_data_hora();
 
 		$bd = new BaseDados();
-		$STH = $bd->DBH->prepare("INSERT INTO log (U_ID, L_ACAO, L_DATA) values (?, ?, ?)");
+    $bd->ligar_bd();
+		$STH = $bd->dbh->prepare("INSERT INTO log (U_ID, L_ACAO, L_DATA) values (?, ?, ?)");
 		$STH->bindParam(1, $id_utilizador);
 		$STH->bindParam(2, $acao);
 		$STH->bindParam(3, $data_hora);

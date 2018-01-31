@@ -66,26 +66,26 @@
         <form method="POST" action="">
           <div class="form-group">
             <label for="Nome">Nome</label>
-            <input type="text" class="form-control" id="Nome" placeholder="Nome completo" required>
+            <input type="text" class="form-control" id="nome" name="nome" placeholder="Nome completo" required>
           </div>
           <div class="form-group">
             <label >Contacto</label>
-            <input type="tel" class="form-control" id="contacto" maxlength="9" required>
+            <input type="tel" class="form-control" id="contacto" name="contacto" maxlength="9" required>
           </div>
           <div class="form-group">
             <label for="E-mail">E-mail</label>
-            <input type="email" class="form-control" id="E-mail" required>
+            <input type="email" class="form-control" id="email" name="email" required>
           </div>
           <div class="form-group">
             <label >Palavra-passe</label>
-            <input type="password" class="form-control" id="password" required>
+            <input type="password" class="form-control" id="password" name="password" required>
             <small id="passwordHelp" class="form-text text-muted">A password deverá conter uma letra grande, um número e um símbolo</small>
           </div>
           <div class="form-group">
             <label >Confirmar palavra-passe</label>
-            <input type="password" class="form-control" id="Cpassword" required>
+            <input type="password" class="form-control" id="cpassword" name="cpassword" required>
           </div>
-          <button type="submit" class="btn btn-success btn-block">Registar</button>
+          <button type="submit" name="btnRegistar" class="btn btn-success btn-block">Registar</button>
         </form>
       </div>
     </div>
@@ -147,7 +147,23 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
     }
   }
 
-  //...
+  //Registo de senhorios
+  if(isset($_POST['btnRegistar'])){
+    if(isset($_POST['nome'], $_POST['contacto'], $_POST['email'], $_POST['password'], $_POST['cpassword']) && !empty($_POST['nome']) && !empty($_POST['contacto']) && !empty($_POST['email']) && !empty($_POST['password']) && !empty($_POST['cpassword'])){
+      require_once('resources/classes/utilizadordao.class.php');
+      $DAO = new GereUtilizador();
 
+      if($DAO->email_existe($_POST['email'])){
+        echo '<script>alert("O e-mail introduzido já se encontra registado no sistema.");</script>';
+      }elseif($_POST['password'] != $_POST['cpassword']){
+        echo '<script>alert("As passwords introduzidas não são iguais.");</script>';
+      }else{
+        if($DAO->inserir_utilizador(new Utilizador(0, $_POST['nome'], $_POST['email'], password_hash($_POST['password'], PASSWORD_DEFAULT), $_POST['contacto'], 2, true))){
+          echo '<script>alert("O senhorio foi criado com sucesso.");</script>';
+        }
+      }
+    }else
+      echo '<script>alert("Por favor preencha todos os campos.");</script>';
+  }
 }
 ?>
