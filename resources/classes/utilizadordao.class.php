@@ -5,6 +5,12 @@ require_once(__DIR__.'/utilizador.class.php');
 
 class GereUtilizador {
   private $utilizadores = array ();
+
+  /*
+  * Função que permite inserir um utilizador no sistema
+  * @param utilizador Objeto Utilizador com os dados a inserir no sistema.
+  * @return TRUE se a inserção ocorre com sucesso, FALSE se ocorreu um erro
+  */
   public function inserir_utilizador(Utilizador $utilizador) {
 		$nome = $utilizador->get_nome();
 		$email = $utilizador->get_email();
@@ -26,6 +32,11 @@ class GereUtilizador {
 		return $res;
 	}
 
+  /*
+  * Função que permite editar os dados de um utilizador no sistema
+  * @param utilizador Objeto Utilizador com os dados do utilizador a editar no sistema.
+  * @return TRUE se a atualização ocorre com sucesso, FALSE se ocorreu um erro
+  */
   public function editar_utilizador(Utilizador $utilizador) {
 		$nome = $utilizador->get_nome();
     $email = $utilizador->get_email();
@@ -86,6 +97,11 @@ class GereUtilizador {
     return false;
   }
 
+  /*
+  * Função que permite obter os dados de um utilizador existente no sistema, através do seu e-mail
+  * @param email E-mail do utilizador.
+  * @return objeto Utilizador com os dados obtidos na pesquisa
+  */
   public function obter_detalhes_utilizador_email($email) {
     $bd = new BD ();
     $STH = $bd->DBH->query ( "SELECT * FROM utilizadores WHERE U_Email = '$email'" );
@@ -96,6 +112,11 @@ class GereUtilizador {
     return $utilizador;
   }
 
+  /*
+  * Função que permite obter os dados de um utilizador existente no sistema, através do seu ID
+  * @param id ID do utilizador.
+  * @return objeto Utilizador com os dados obtidos na pesquisa
+  */
   public function obter_detalhes_utilizador_id($id) {
     $bd = new BD ();
     $STH = $bd->DBH->query ( "SELECT * FROM utilizadores WHERE U_ID = $id" );
@@ -106,6 +127,10 @@ class GereUtilizador {
     return $utilizador;
   }
 
+  /*
+  * Função que permite obter os dados de todos os gestores existentes no sistema
+  * @return array de objetos Utilizador com os dados de cada gestor
+  */
   public function obter_todos_gestores() {
 		$bd = new BD ();
 		$STH = $bd->DBH->query ( "SELECT * FROM utilizadores WHERE U_Tipo = 1" );
@@ -119,6 +144,10 @@ class GereUtilizador {
 		return $this->utilizadores;
 	}
 
+  /*
+  * Função que permite obter os dados de todos os senhorios existentes no sistema
+  * @return array de objetos Utilizador com os dados de cada senhorio
+  */
   public function obter_todos_senhorios() {
 		$bd = new BD ();
 		$STH = $bd->DBH->query ( "SELECT * FROM utilizadores WHERE U_Tipo = 2" );
