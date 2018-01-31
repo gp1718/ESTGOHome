@@ -1,10 +1,11 @@
-<?php session_start() ?>
+<?php session_start(); ob_start(); ?>
 <!DOCTYPE html>
 <html lang="pt">
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>ESTGOHome</title>
 
 	<!--CSS-->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -39,7 +40,10 @@
 		require_once('resources/templates/menuinicial.html');
 	}
 
-	var_dump($_SESSION);
+	echo "<pre>";
+	//var_dump($_SESSION);
+	print_r($_SESSION);
+	echo "</pre>";
 
 	//Main
 	if(!empty($_GET['action'])){
@@ -61,6 +65,5 @@
 	//Footer
 	require_once('resources/templates/footer.html');
 	?>
-
 </body>
 </html>

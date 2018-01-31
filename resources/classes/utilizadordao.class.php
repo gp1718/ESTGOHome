@@ -89,8 +89,8 @@ class GereUtilizador {
     if($STH->rowCount()>0){
       if(password_verify($password, $row['U_PASSWORD'])){
         //session_start();
-        $_SESSION['U_ID'] = $row['U_ID'];
-        $_SESSION['U_TIPO'] = $row['U_TIPO'];
+        $_SESSION['U_ID'] = (int)$row['U_ID'];
+        $_SESSION['U_TIPO'] = (int)$row['U_TIPO'];
         return true;
       }
     }

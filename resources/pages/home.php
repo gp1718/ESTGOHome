@@ -126,6 +126,7 @@
 if($_SERVER['REQUEST_METHOD']==='POST'){
   echo "<pre>";
   var_dump($_POST);
+  echo "</pre>";
 
   //Login
   if(isset($_POST['btnLogin'])){
@@ -134,6 +135,9 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
       require_once('resources/classes/utilizadordao.class.php');
       $DAO=new GereUtilizador();
       if($DAO->password_correta($_POST['email'],$_POST['password'])){
+        if(isset($_POST['remember'])){
+          setcookie('PHPSESSID', $_COOKIE['PHPSESSID'], time()+(60*60*24*7), "/");
+        }
         echo '<script>document.location.href = "?";</script>';
       }else{
         echo '<script>alert("O e-mail ou a palavra-passe inseridos não se encontram correctos.");</script>';
