@@ -16,8 +16,8 @@ class GereUtilizador {
 		$STH->bindParam(4, $contacto);
 		$STH->bindParam(5, $tipo);
 		$STH->bindParam(6, $estado);
-		$res = $STH->execute ();
-		$bd->desligar_bd ();
+		$res = $STH->execute();
+		$bd->desligar_bd();
 		return $res;
 	}
 

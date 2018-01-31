@@ -8,19 +8,19 @@
       <div class="col">
         <h2>Procura alojamento?</h2>
         <p>Entre já na aplicação com as suas credenciais escolares!</p>
-        <a class="btn btn-success" href="#" data-toggle="modal" data-target="#loginForm" role="button">Entrar »</a>
+        <a class="btn btn-success" href="#" data-toggle="modal" data-target="#loginModal" role="button">Entrar »</a>
       </div>
       <div class="col">
         <h2>Possui um alojamento?</h2>
         <p>Registe-se na plataforma e crie já os seus anúncios.</p>
-        <a class="btn btn-primary" href="#" data-toggle="modal" data-target="#registerForm" role="button">Registar-me »</a>
+        <a class="btn btn-primary" href="#" data-toggle="modal" data-target="#registerModal" role="button">Registar-me »</a>
       </div>
     </div>
   </div>
 </div>
 
 <!--LOGIN-->
-<div class="modal fade blurry" id="loginForm" role="dialog">
+<div class="modal fade blurry" id="loginModal" role="dialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -30,21 +30,21 @@
         </button>
       </div>
       <div class="modal-body">
-        <form method="POST" action="">
+        <form method="POST" id="loginForm" action="">
           <div class="form-group">
             <label for="email" class="control-label">E-mail:</label>
-            <input type="email" class="form-control" id="email" name="email" placeholder="Insira o seu e-mail" required autofocus>
+            <input type="email" class="form-control" id="email" name="email" placeholder="Insira o seu e-mail" autofocus>
           </div>
           <div class="form-group">
-            <label for="password" class="control-label">Password:</label>
-            <input type="password" class="form-control" id="password" name="password" placeholder="Insira a sua password" required>
+            <label for="password" class="control-label">Palavra-passe:</label>
+            <input type="password" class="form-control" id="password" name="password" placeholder="Insira a sua password">
           </div>
           <div class="checkbox">
             <label>
               <input type="checkbox" name="remember" id="remember"> Lembrar-me
             </label>
           </div>
-          <button type="submit" class="btn btn-success btn-block">Entrar</button>
+          <button type="submit" name="login" class="btn btn-success btn-block">Entrar</button>
           <a href="/forgot/" class="btn btn-default btn-block">Esqueci-me da password...</a>
         </form>
       </div>
@@ -53,7 +53,7 @@
 </div>
 
 <!--REGISTO-->
-<div class="modal fade blurry" id="registerForm" role="dialog">
+<div class="modal fade blurry" id="registerModal" role="dialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -118,10 +118,22 @@
 
 <!--Validação javascript-->
 <script>
-
 </script>
 
 <!--Validação php-->
 <?php
+if($_SERVER['REQUEST_METHOD']==='POST'){
 
+  print_r($_POST);
+
+  //Login
+  if(isset($_POST['login'])){
+    //Validação
+    if(isset($_POST['email'],$_POST['password']) && !empty($_POST['email']) && !empty($_POST['password'])){
+      echo "ta";
+    }else{
+      echo "";
+    }
+  }
+}
 ?>
