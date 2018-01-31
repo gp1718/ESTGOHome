@@ -33,7 +33,7 @@
 		//include_once('pages/landing.php');
 	}else{
 		//Por defeito
-		include_once('resources/pages/home.html');
+		include_once('resources/pages/home.php');
 	}
 
 	//Footer

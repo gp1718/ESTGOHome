@@ -14,8 +14,7 @@ class BaseDados {
   * Método que permite fazer a ligação à base de dados
   **/
   function ligar_bd(){
-
-    //Opções
+    global $DB_HOST, $DB_NAME, $DB_USER, $DB_PASS;
     $options = array(
       PDO::ATTR_PERSISTENT => true, //Ver se já existe uma conexão
       PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION //Mostrar os erros
