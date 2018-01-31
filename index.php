@@ -28,23 +28,23 @@
 
 	<?php
 	//Header
-	if(!empty($_SESSION)){
-		echo $_SESSION['U_TIPO'];
+	if(isset($_SESSION) && !empty($_SESSION)){
 		switch($_SESSION['U_TIPO']){
-			case 0: require_once('resources/templates/menuadministrador.html'); break;
-			case 1: require_once('resources/templates/menugestor.html'); break;
-			case 2: require_once('resources/templates/menusenhorio.html'); break;
+			case "0": require_once('resources/templates/menuadministrador.html'); break;
+			case "1": require_once('resources/templates/menugestor.html'); break;
+			case "2": require_once('resources/templates/menusenhorio.html'); break;
 			default: require_once('resources/templates/menuinicial.html'); break;
 		}
 	}else{
 		require_once('resources/templates/menuinicial.html');
 	}
 
+	//var_dump($_SESSION);
+
 	//Main
 	if(!empty($_GET['action'])){
 		$action = basename($_GET['action']);
-		if(!file_exists("resouces/pages/$action.php")) $action = '?';
-		require_once("resources/pages/$action.php");
+		if(file_exists("resouces/pages/$action.php")) require_once("resources/pages/$action.php");
 	//}elseif(isset($_SESSION['f_id'])){
 		//include_once('pages/landing.php');
 	}else{
