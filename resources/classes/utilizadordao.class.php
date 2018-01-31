@@ -9,7 +9,7 @@ class GereUtilizador {
   /*
   * Função que permite inserir um utilizador no sistema
   * @param utilizador Objeto Utilizador com os dados a inserir no sistema.
-  * @return TRUE se a inserção ocorre com sucesso, FALSE se ocorreu um erro
+  * @return TRUE se a inserção ocorreu com sucesso, FALSE se ocorreu um erro
   */
   public function inserir_utilizador(Utilizador $utilizador) {
 		$nome = $utilizador->get_nome();
@@ -20,7 +20,7 @@ class GereUtilizador {
 		$estado = $utilizador->get_estado();
 
 		$bd = new BaseDados();
-		$STH = $bd->DBH->prepare("INSERT INTO utilizadores (nome, email, password, contacto, tipo, estado) values (?, ?, ?, ?, ?, ?)");
+		$STH = $bd->DBH->prepare("INSERT INTO utilizador (nome, email, password, contacto, tipo, estado) values (?, ?, ?, ?, ?, ?)");
 		$STH->bindParam(1, $nome);
 		$STH->bindParam(2, $email);
 		$STH->bindParam(3, $password);
@@ -35,7 +35,7 @@ class GereUtilizador {
   /*
   * Função que permite editar os dados de um utilizador no sistema
   * @param utilizador Objeto Utilizador com os dados do utilizador a editar no sistema.
-  * @return TRUE se a atualização ocorre com sucesso, FALSE se ocorreu um erro
+  * @return TRUE se a atualização ocorreu com sucesso, FALSE se ocorreu um erro
   */
   public function editar_utilizador(Utilizador $utilizador) {
 		$nome = $utilizador->get_nome();
@@ -44,7 +44,7 @@ class GereUtilizador {
 		$contacto = $utilizador->get_contacto();
 
 		$bd = new BaseDados();
-		$STH = $bd->DBH->prepare("UPDATE utilizadores SET U_Nome = ?, U_Email = ?, U_Password = ?, U_Contacto = ? WHERE U_ID = $utilizador->get_id()");
+		$STH = $bd->DBH->prepare("UPDATE utilizador SET U_NOME = ?, U_EMAIL = ?, U_PASSWORD = ?, U_CONTACTO = ? WHERE U_ID = $utilizador->get_id()");
 		$STH->bindParam(1, $nome);
 		$STH->bindParam(2, $email);
 		$STH->bindParam(3, $password);
@@ -81,7 +81,7 @@ class GereUtilizador {
   public function password_correta($email, $password) {
     $bd = new BaseDados();
     $bd->ligar_bd();
-    $STH = $bd->dbh->prepare("SELECT U_ID,U_PASSWORD,U_TIPO FROM utilizador WHERE U_EMAIL=? AND U_ESTADO=1");
+    $STH = $bd->dbh->prepare("SELECT U_ID, U_PASSWORD, U_TIPO FROM utilizador WHERE U_EMAIL=? AND U_ESTADO = 1");
     $STH->bindParam(1, $email);
     $STH->execute();
     $bd->desligar_bd();
@@ -104,7 +104,7 @@ class GereUtilizador {
   */
   public function obter_detalhes_utilizador_email($email) {
     $bd = new BD ();
-    $STH = $bd->DBH->query ( "SELECT * FROM utilizadores WHERE U_Email = '$email'" );
+    $STH = $bd->DBH->query ( "SELECT * FROM utilizador WHERE U_EMAIL = '$email'" );
     $STH->setFetchMode ( PDO::FETCH_NUM );
     $row = $STH->fetch ();
     $utilizador = new Utilizador ( $row [0], $row [1], $row [2], $row [3], $row [4], $row [5], $row[6] );
@@ -119,7 +119,7 @@ class GereUtilizador {
   */
   public function obter_detalhes_utilizador_id($id) {
     $bd = new BD ();
-    $STH = $bd->DBH->query ( "SELECT * FROM utilizadores WHERE U_ID = $id" );
+    $STH = $bd->DBH->query ( "SELECT * FROM utilizador WHERE U_ID = $id" );
     $STH->setFetchMode ( PDO::FETCH_NUM );
     $row = $STH->fetch ();
     $utilizador = new Utilizador ( $row [0], $row [1], $row [2], $row [3], $row [4], $row [5], $row[6] );
@@ -133,7 +133,7 @@ class GereUtilizador {
   */
   public function obter_todos_gestores() {
 		$bd = new BD ();
-		$STH = $bd->DBH->query ( "SELECT * FROM utilizadores WHERE U_Tipo = 1" );
+		$STH = $bd->DBH->query ( "SELECT * FROM utilizador WHERE U_TIPO = 1" );
 		if ($STH->rowCount () == 0)
 			return null;
 		$STH->setFetchMode ( PDO::FETCH_NUM );
@@ -150,7 +150,7 @@ class GereUtilizador {
   */
   public function obter_todos_senhorios() {
 		$bd = new BD ();
-		$STH = $bd->DBH->query ( "SELECT * FROM utilizadores WHERE U_Tipo = 2" );
+		$STH = $bd->DBH->query ( "SELECT * FROM utilizador WHERE U_TIPO = 2" );
 		if ($STH->rowCount () == 0)
 			return null;
 		$STH->setFetchMode ( PDO::FETCH_NUM );
@@ -159,5 +159,53 @@ class GereUtilizador {
 		}
 		$bd->desligar_bd ();
 		return $this->utilizadores;
+	}
+
+  /*
+  * Função que permite verificar se uma conta de utilizador se encontra ativa
+  * @param email E-mail da conta a verificar.
+  * @return TRUE se a conta se encontra ativa, FALSE se a conta se encontra inativa
+  */
+  public function conta_ativa($email) {
+		$bd = new BD ();
+		$STH = $bd->DBH->query ( "SELECT U_ESTADO FROM utilizador WHERE U_EMAIL = '$email'" );
+		$STH->setFetchMode ( PDO::FETCH_NUM );
+		$row = $STH->fetch ();
+		if ($row [0] == 1)
+			return true;
+		return false;
+	}
+
+  /*
+  * Função que permite alterar o estado de uma conta de utilizador
+  * @param id ID do utilizador a alterar o estado.
+  */
+  public function alterar_estado_utilizador($id) {
+		$bd = new BD ();
+    $utilizador = obter_detalhes_utilizador_id($id);
+		$STH = $bd->DBH->query ( "UPDATE utilizador SET U_ESTADO = ".($utilizador->get_estado() == 0 ? 1 : 0)." WHERE U_ID = ".$utilizador->get_id() );
+		$STH->execute ();
+		$bd->desligar_bd ();
+	}
+
+  /*
+  * Função que permite inserir no sistema uma ação realizada pelo utilizador
+  * @param log Objeto Log com os dados da ação a inserir no sistema.
+  * @param utilizador Objeto Utilizador com os dados do utilizador que realizou a ação.
+  * @return TRUE se a inserção ocorreu com sucesso, FALSE se ocorreu um erro
+  */
+  public function inserir_log(Log $log, Utilizador $utilizador) {
+    $id_utilizador = $utilizador->get_id();
+    $acao = $log->get_acao();
+		$data_hora = $log->get_data_hora();
+
+		$bd = new BaseDados();
+		$STH = $bd->DBH->prepare("INSERT INTO log (U_ID, L_ACAO, L_DATA) values (?, ?, ?)");
+		$STH->bindParam(1, $id_utilizador);
+		$STH->bindParam(2, $acao);
+		$STH->bindParam(3, $data_hora);
+		$res = $STH->execute();
+		$bd->desligar_bd();
+		return $res;
 	}
 }
