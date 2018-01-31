@@ -63,7 +63,8 @@
         </button>
       </div>
       <div class="modal-body">
-        <form method="POST" action="">
+        <div id="divAviso"></div><br>
+        <form name="formRegisto" onsubmit="return passwordsIguais()" method="POST" action="">
           <div class="form-group">
             <label for="Nome">Nome</label>
             <input type="text" class="form-control" id="nome" name="nome" placeholder="Nome completo" required>
@@ -118,6 +119,17 @@
 
 <!--Validação javascript-->
 <script>
+function passwordsIguais() {
+    var div = document.getElementById('divAviso');
+    var password = document.forms["formRegisto"]["password"].value;
+    var cPassword = document.forms["formRegisto"]["cpassword"].value;
+    if (password != cPassword) {
+        //return false;
+        div.innerHTML = "<div class='alert alert-danger' role='alert'><strong>Erro!</strong> <a href='#' class='alert-link'>As passwords introduzidas não são iguais! Tente novamente.</div>";
+        return false;
+    }
+    return true;
+}
 </script>
 
 <!--Validação php-->
@@ -155,8 +167,6 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
 
       if($DAO->email_existe($_POST['email'])){
         echo '<script>alert("O e-mail introduzido já se encontra registado no sistema.");</script>';
-      }elseif($_POST['password'] != $_POST['cpassword']){
-        echo '<script>alert("As passwords introduzidas não são iguais.");</script>';
       }else{
         if($DAO->inserir_utilizador(new Utilizador(0, $_POST['nome'], $_POST['email'], password_hash($_POST['password'], PASSWORD_DEFAULT), $_POST['contacto'], 2, true))){
           echo '<script>alert("O senhorio foi criado com sucesso.");</script>';
