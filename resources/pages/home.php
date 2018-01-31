@@ -33,7 +33,7 @@
         <div id="divAviso1"></div><br>
         <form method="POST" onsubmit="return validaLogin()" id="loginForm" action="">
           <div class="form-group">
-            <label for="email" class="control-label">E-mail:</label>
+            <label for="email" class="control-label"><i>E-mail</i>:</label>
             <input type="email" class="form-control" id="email" name="email" placeholder="Insira o seu e-mail" required>
           </div>
           <div class="form-group">
@@ -140,9 +140,11 @@ function validaLogin(){
   var regex = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
   if(!input[0] || !input[1]){
     div.innerHTML = "<div class='alert alert-warning' role='alert'><strong>Erro!</strong> Por favor preencha todos os campos.</div>";
+    input[0].focus();
     return false;
   }else if(!regex.test(String(input[0]).toLowerCase())){
     div.innerHTML = "<div class='alert alert-danger' role='alert'><strong>Erro!</strong> Por favor insira um <i>e-mail</i> válido.</div>";
+    input[0].focus();
     return false;
   }
   return true;
@@ -160,6 +162,7 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
   //Login
   if(isset($_POST['btnLogin'])){
     if(isset($_POST['email'],$_POST['password']) && !empty($_POST['email']) && !empty($_POST['password'])){
+
       require_once('resources/classes/utilizadordao.class.php');
       $DAO=new GereUtilizador();
       if($DAO->password_correta($_POST['email'],$_POST['password'])){
