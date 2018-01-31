@@ -43,7 +43,6 @@ class GereUtilizador {
 		return $res;
 	}
 
-<<<<<<< HEAD
   /*
   * Função que permite verificar se um email existe
   * @param email E-mail a ser verificado.
@@ -87,7 +86,6 @@ class GereUtilizador {
     return false;
   }
 
-=======
   public function obter_detalhes_utilizador_email($email) {
     $bd = new BD ();
     $STH = $bd->DBH->query ( "SELECT * FROM utilizadores WHERE U_Email = '$email'" );
@@ -133,5 +131,4 @@ class GereUtilizador {
 		$bd->desligar_bd ();
 		return $this->utilizadores;
 	}
->>>>>>> 9b18d55affd551200966a2d347c1231846ae1735
 }
