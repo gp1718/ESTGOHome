@@ -1,0 +1,86 @@
+/*Logotipo*/
+.col img{
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.logo{
+  display: block;
+}
+
+.shadow{
+  filter: drop-shadow(0 0 3px #000);
+}
+
+/*Jumbotron*/
+.jumbotron{
+  color: #fff;
+  padding: 2rem 1rem !important;
+  background: linear-gradient(180deg, rgba(0,0,0,0.1), rgba(0,0,0,0.4), rgba(0,0,0,0.7)) , url('../img/background.jpg');
+  background-size: cover;
+  text-shadow: 0 0 5px #000;
+  border-radius: 0px !important;
+}
+
+/*Breadcrumbs*/
+ol.breadcrumb{
+  margin-bottom: 0px;
+}
+
+/*Alinhar ao meio*/
+.align-items-middle{
+  align-items: center;
+}
+.container .col h3 {
+  text-align: center;
+}
+
+/*Imagens anuncio*/
+table img{
+  width: 40px;
+}
+
+/*Anúncio Simples*/
+.relative{
+  position: relative;
+  padding-top: 40px;
+}
+.top-right{
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1;
+}
+.top-left{
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+/*
+ *ESTILOS DO PEDRO
+*/
+footer {
+	color: white;
+	background-color: #343a40;
+	padding: 10px;
+	line-height: 80%;
+}
+@media screen and (min-width: 768px) {
+	#adv-search {
+		width: 500px;
+		margin: 0 auto;
+	}
+	.dropdown.dropdown-lg {
+		position: static !important;
+	}
+	.dropdown.dropdown-lg .dropdown-menu {
+		min-width: 350px;
+	}
+}
+
+/*Mensagens de erro*/
+.alert{
+  margin-bottom: 0 !important;
+}
