@@ -28,22 +28,32 @@
 
 	<?php
 	//Header
-	include_once('resources/templates/menuinicial.html');
+	if(!empty($_SESSION)){
+		echo $_SESSION['U_TIPO'];
+		switch($_SESSION['U_TIPO']){
+			case 0: require_once('resources/templates/menuadministrador.html'); break;
+			case 1: require_once('resources/templates/menugestor.html'); break;
+			case 2: require_once('resources/templates/menusenhorio.html'); break;
+			default: require_once('resources/templates/menuinicial.html'); break;
+		}
+	}else{
+		require_once('resources/templates/menuinicial.html');
+	}
 
 	//Main
 	if(!empty($_GET['action'])){
 		$action = basename($_GET['action']);
-		if(!file_exists("resouces/pages/$action.php")) $action = '../index';
-		include_once("resources/pages/$action.php");
+		if(!file_exists("resouces/pages/$action.php")) $action = '?';
+		require_once("resources/pages/$action.php");
 	//}elseif(isset($_SESSION['f_id'])){
 		//include_once('pages/landing.php');
 	}else{
 		//Por defeito
-		include_once('resources/pages/home.php');
+		require_once('resources/pages/home.php');
 	}
 
 	//Footer
-	include_once('resources/templates/footer.html');
+	require_once('resources/templates/footer.html');
 	?>
 
 </body>

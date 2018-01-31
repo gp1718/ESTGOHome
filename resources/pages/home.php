@@ -44,13 +44,8 @@
               <input type="checkbox" name="remember" id="remember" name="remember"> Lembrar-me
             </label>
           </div>
-<<<<<<< HEAD
-          <button type="submit" name="btnLogin" class="btn btn-success btn-block">Entrar</button>
-          <a href="/forgot/" class="btn btn-default btn-block">Esqueci-me da password...</a>
-=======
           <button type="submit" name="login" class="btn btn-success btn-block">Entrar</button>
           <a href="resources/pages/forgot.php" class="btn btn-default btn-block">Esqueci-me da password...</a>
->>>>>>> 07b23a436402972caa6f6490824ae52ece15d169
         </form>
       </div>
     </div>
