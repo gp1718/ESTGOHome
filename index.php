@@ -43,7 +43,7 @@
 
 	//Main
 	if(!empty($_GET['action'])){
-		echo 'action!';
+		/*echo 'action!';*/
 		$action = basename($_GET['action']);
 		if(!file_exists("resouces/pages/$action.php")) require_once("resources/pages/$action.php");
 	//}elseif(isset($_SESSION['f_id'])){
