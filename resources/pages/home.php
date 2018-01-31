@@ -45,7 +45,7 @@
             </label>
           </div>
           <button type="submit" name="login" class="btn btn-success btn-block">Entrar</button>
-          <a href="resources/pages/forgot.php" class="btn btn-default btn-block">Esqueci-me da password...</a>
+          <a href="?action=forgot" class="btn btn-default btn-block">Esqueci-me da password...</a>
         </form>
       </div>
     </div>

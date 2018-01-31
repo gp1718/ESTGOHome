@@ -1,143 +1,32 @@
-<!--JUMBOTRON-->
-<div class="jumbotron blurry">
-  <div class="container-fluid">
-    <div class="row align-items-middle">
-      <div class="col">
-        <img class="logo shadow" src="img/logo.png" width="200">
-      </div>
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-      
-    </div>
-  </div>
-</div>
+	<!--CSS-->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+	<link rel="stylesheet" href="css/style.css">
 
-<!--LOGIN-->
-<div class="modal fade blurry" id="loginModal" role="dialog">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Autenticação</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form method="POST" id="loginForm" action="">
-          <div class="form-group">
-            <label for="email" class="control-label">E-mail:</label>
-            <input type="email" class="form-control" id="email" name="email" placeholder="Insira o seu e-mail" autofocus required>
-          </div>
-          <div class="form-group">
-            <label for="password" class="control-label">Palavra-passe:</label>
-            <input type="password" class="form-control" id="password" name="password" placeholder="Insira a sua password" required>
-          </div>
-          <div class="checkbox">
-            <label>
-              <input type="checkbox" name="remember" id="remember" name="remember"> Lembrar-me
-            </label>
-          </div>
-          <button type="submit" name="login" class="btn btn-success btn-block">Entrar</button>
-          <a href="/forgot/" class="btn btn-default btn-block">Esqueci-me da password...</a>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
+	<!--Javascript-->
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
-<!--REGISTO-->
-<div class="modal fade blurry" id="registerModal" role="dialog">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Registo de senhorio</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form method="POST" action="">
-          <div class="form-group">
-            <label for="Nome">Nome</label>
-            <input type="text" class="form-control" id="Nome" placeholder="Nome completo" required>
-          </div>
-          <div class="form-group">
-            <label >Contacto</label>
-            <input type="tel" class="form-control" id="contacto" maxlength="9" required>
-          </div>
-          <div class="form-group">
-            <label for="E-mail">E-mail</label>
-            <input type="email" class="form-control" id="E-mail" required>
-          </div>
-          <div class="form-group">
-            <label >Palavra-passe</label>
-            <input type="password" class="form-control" id="password" required>
-            <small id="passwordHelp" class="form-text text-muted">A password deverá conter uma letra grande, um número e um símbolo</small>
-          </div>
-          <div class="form-group">
-            <label >Confirmar palavra-passe</label>
-            <input type="password" class="form-control" id="Cpassword" required>
-          </div>
-          <button type="submit" class="btn btn-success btn-block">Registar</button>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
+</head>
+<body>
 
-<!--COLUNAS-->
-<div class="container blurry">
-  <div class="row">
-    <div class="col">
-      <h3>Rápido</h3>
-      <img class="logo" src="img/rapido.svg" width="80">
-      <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa.</p>
-      <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-    </div>
-    <div class="col">
-      <h3>Fácil</h3>
-      <img class="logo" src="img/facil.svg" width="80">
-      <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa.</p>
-      <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-    </div>
-    <div class="col">
-      <h3>Seguro</h3>
-      <img class="logo" src="img/seguro.svg" width="80">
-      <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus.,</p>
-      <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-    </div>
-  </div>
-</div>
+	<?php
+	//Header
+	include_once('localhost/estgohome/resources/templates/menuinicial.html');
 
-<!--Validação javascript-->
-<script>
-</script>
+	//Main
 
-<!--Validação php-->
-<?php
+	//Footer
+	include_once('resources/templates/footer.html');
+	?>
 
-/*
-if($_SERVER['REQUEST_METHOD']==='POST'){
-
-  //print_r($_POST);
-
-  //Login
-  if(isset($_POST['login'])){
-
-    if(isset($_POST['email'],$_POST['password']) && !empty($_POST['email']) && !empty($_POST['password'])){
-
-      require_once('resources/classes/utilizadordao.class.php');
-      $DAO=new GereUtilizador();
-      if($DAO->password_correta($_POST['email'],$_POST['password'])){
-        echo "tudo ok";
-      }else{
-        echo "email ou password invalidos";
-      }
-    }else{
-      echo "mensagem de erro";
-    }
-  }
-
-  //...
-
-}*/
-?>
+</body>
+</html>
