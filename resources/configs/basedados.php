@@ -1,6 +1,8 @@
 <?php
+	//TODO: Por em constantes
+
 	//Dados de acesso
-	define("DB_HOST","localhost");
-	define("DB_USER", "root");
-	define("DB_PASS", "");
-	define("DB_NAME", "estgohome");
+	$DB_HOST = "localhost";
+	$DB_USER = "root";
+	$DB_PASS = "";
+	$DB_NAME = "estgohome";

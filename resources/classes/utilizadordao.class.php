@@ -1,4 +1,8 @@
 <?php
+//Obter classes necessárias
+require_once(__DIR__.'/basedados.class.php');
+require_once(__DIR__.'/utilizador.class.php');
+
 class GereUtilizador {
   public function inserir_utilizador(Utilizador $utilizador) {
 		$nome = $utilizador->get_nome();
@@ -8,7 +12,7 @@ class GereUtilizador {
 		$tipo = ($utilizador->get_tipo() ? 1 : 0);
 		$estado = $utilizador->get_estado();
 
-		$bd = new BD ();
+		$bd = new BaseDados();
 		$STH = $bd->DBH->prepare("INSERT INTO utilizadores (nome, email, password, contacto, tipo, estado) values (?, ?, ?, ?, ?, ?)");
 		$STH->bindParam(1, $nome);
 		$STH->bindParam(2, $email);
@@ -27,7 +31,7 @@ class GereUtilizador {
 		$password = $utilizador->get_password();
 		$contacto = $utilizador->get_contacto();
 
-		$bd = new BD ();
+		$bd = new BaseDados();
 		$STH = $bd->DBH->prepare("UPDATE utilizadores SET U_Nome = ?, U_Email = ?, U_Password = ?, U_Contacto = ? WHERE U_ID = $utilizador->get_id()");
 		$STH->bindParam(1, $nome);
 		$STH->bindParam(2, $email);
@@ -37,4 +41,48 @@ class GereUtilizador {
 		$bd->desligar_bd();
 		return $res;
 	}
+
+  /*
+  * Função que permite verificar se um email existe
+  * @param email E-mail a ser verificado.
+  * @return TRUE se existe, FALSE se não existe
+  */
+  public function email_existe($email) {
+    $bd = new BaseDados();
+    $bd->ligar_bd();
+    $STH = $bd->dbh->prepare("SELECT 1 FROM utilizador WHERE U_EMAIL LIKE ?");
+    $STH->bindParam(1, $email);
+    $STH->execute();
+    $bd->desligar_bd();
+    if($STH->fetch(PDO::FETCH_ASSOC)){
+      return true;
+    }
+    return false;
+	}
+
+  /*
+  * Função que permite verificar se a password introduzida é a correta e está associada ao email introduzido
+  * @param email E-mail a ser verificado
+  * @param $password Password a ser verificada
+  * @return TRUE se a password inserida está correta e encontra-se associada ao email introduzido, FALSE caso contrário
+  */
+  public function password_correta($email, $password) {
+    $bd = new BaseDados();
+    $bd->ligar_bd();
+    $STH = $bd->dbh->prepare("SELECT U_ID,U_PASSWORD,U_TIPO FROM utilizador WHERE U_EMAIL=? AND U_ESTADO=1");
+    $STH->bindParam(1, $email);
+    $STH->execute();
+    $bd->desligar_bd();
+    $row = $STH->fetch(PDO::FETCH_ASSOC);
+    if($STH->rowCount()>0){
+      if(password_verify($password, $row['U_PASSWORD'])){
+        session_start();
+        $_SESSION['U_ID'] = $row['U_ID'];
+        $_SESSION['U_TIPO'] = $row['U_TIPO'];
+        return true;
+      }
+    }
+    return false;
+  }
+
 }

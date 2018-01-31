@@ -3,7 +3,7 @@
 require_once('resources/configs/basedados.php');
 
 class BaseDados {
-  private $dbh;
+  public $dbh;
 
   /**
   * Construtor da classe
@@ -21,9 +21,9 @@ class BaseDados {
     );
 
     try{
-      $this->dbh = new PDO("mysql:host=$DB_HOST;dbname=$DB_NAME;charset=utf8", $DB_USER, $DB_PASS, $options);
+      $this->dbh = new PDO("mysql:host=$DB_HOST;dbname=$DB_NAME;charset=utf8",$DB_USER,$DB_PASS,$options);
     }catch(PDOException $e){
-      echo '<div class="alert alert-danger text-center"><strong>Erro! </strong>Não foi possivel estabelecer ligação à base de dados.</div>';
+      //echo '<div class="alert alert-danger text-center"><strong>Erro! </strong>Não foi possivel estabelecer ligação à base de dados.</div>';
       die();
     }
   }

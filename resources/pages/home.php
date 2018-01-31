@@ -33,15 +33,15 @@
         <form method="POST" id="loginForm" action="">
           <div class="form-group">
             <label for="email" class="control-label">E-mail:</label>
-            <input type="email" class="form-control" id="email" name="email" placeholder="Insira o seu e-mail" autofocus>
+            <input type="email" class="form-control" id="email" name="email" placeholder="Insira o seu e-mail" autofocus required>
           </div>
           <div class="form-group">
             <label for="password" class="control-label">Palavra-passe:</label>
-            <input type="password" class="form-control" id="password" name="password" placeholder="Insira a sua password">
+            <input type="password" class="form-control" id="password" name="password" placeholder="Insira a sua password" required>
           </div>
           <div class="checkbox">
             <label>
-              <input type="checkbox" name="remember" id="remember"> Lembrar-me
+              <input type="checkbox" name="remember" id="remember" name="remember"> Lembrar-me
             </label>
           </div>
           <button type="submit" name="login" class="btn btn-success btn-block">Entrar</button>
@@ -124,16 +124,26 @@
 <?php
 if($_SERVER['REQUEST_METHOD']==='POST'){
 
-  print_r($_POST);
+  //print_r($_POST);
 
   //Login
   if(isset($_POST['login'])){
-    //Validação
+
     if(isset($_POST['email'],$_POST['password']) && !empty($_POST['email']) && !empty($_POST['password'])){
-      echo "ta";
+
+      require_once('resources/classes/utilizadordao.class.php');
+      $DAO=new GereUtilizador();
+      if($DAO->password_correta($_POST['email'],$_POST['password'])){
+        echo "tudo ok";
+      }else{
+        echo "email ou password invalidos";
+      }
     }else{
-      echo "";
+      echo "mensagem de erro";
     }
   }
+
+  //...
+
 }
 ?>
