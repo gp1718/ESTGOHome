@@ -39,15 +39,20 @@
 		require_once('resources/templates/menuinicial.html');
 	}
 
-	//var_dump($_SESSION);
+	var_dump($_SESSION);
 
 	//Main
 	if(!empty($_GET['action'])){
-		/*echo 'action!';*/
 		$action = basename($_GET['action']);
-		if(!file_exists("resouces/pages/$action.php")) require_once("resources/pages/$action.php");
-	//}elseif(isset($_SESSION['f_id'])){
-		//include_once('pages/landing.php');
+		if(!file_exists("resources/pages/$action.php")) $action="../../index";
+		require_once("resources/pages/$action.php");
+	}elseif(isset($_SESSION['U_TIPO'])){
+		switch($_SESSION['U_TIPO']){
+			case "0": require_once('resources/pages/listargestores.php'); break;
+			case "1": require_once('resources/pages/listaranunciosgestor.php'); break;
+			case "2": require_once('resources/pages/listaranunciossenhorio.php'); break;
+			default: require_once('resources/templates/home.php'); break;
+		}
 	}else{
 		//Por defeito
 		require_once('resources/pages/home.php');
