@@ -6,6 +6,11 @@ class BaseDados {
   private $dbh;
 
   /**
+  * Construtor da classe
+  */
+  function __construct(){}
+
+  /**
   * Método que permite fazer a ligação à base de dados
   **/
   function ligar_bd(){
