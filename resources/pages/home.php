@@ -30,10 +30,11 @@
         </button>
       </div>
       <div class="modal-body">
-        <form method="POST" id="loginForm" action="">
+        <div id="divAviso1"></div><br>
+        <form method="POST" onsubmit="return validaLogin()" id="loginForm" action="">
           <div class="form-group">
             <label for="email" class="control-label">E-mail:</label>
-            <input type="email" class="form-control" id="email" name="email" placeholder="Insira o seu e-mail" autofocus required>
+            <input type="email" class="form-control" id="email" name="email" placeholder="Insira o seu e-mail" required>
           </div>
           <div class="form-group">
             <label for="password" class="control-label">Palavra-passe:</label>
@@ -63,7 +64,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <div id="divAviso"></div><br>
+        <div id="divAviso2"></div><br>
         <form name="formRegisto" onsubmit="return passwordsIguais()" method="POST" action="">
           <div class="form-group">
             <label for="Nome">Nome</label>
@@ -120,15 +121,31 @@
 <!--Validação javascript-->
 <script>
 function passwordsIguais() {
-    var div = document.getElementById('divAviso');
-    var password = document.forms["formRegisto"]["password"].value;
-    var cPassword = document.forms["formRegisto"]["cpassword"].value;
-    if (password != cPassword) {
-        //return false;
-        div.innerHTML = "<div class='alert alert-danger' role='alert'><strong>Erro!</strong> <a href='#' class='alert-link'>As passwords introduzidas não são iguais! Tente novamente.</div>";
-        return false;
-    }
-    return true;
+  var div = document.getElementById('divAviso2');
+  var password = document.forms["formRegisto"]["password"].value;
+  var cPassword = document.forms["formRegisto"]["cpassword"].value;
+  if (password != cPassword) {
+    //return false;
+    div.innerHTML = "<div class='alert alert-danger' role='alert'><strong>Erro!</strong> <a href='#' class='alert-link'>As passwords introduzidas não são iguais! Tente novamente.</div>";
+    return false;
+  }
+  return true;
+}
+/*
+* Função que valida os campos do fomulário de login
+*/
+function validaLogin(){
+  var div = document.getElementById('divAviso1');
+  var input = [document.forms["loginForm"]["email"].value, document.forms["loginForm"]["password"].value];
+  var regex = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+  if(!input[0] || !input[1]){
+    div.innerHTML = "<div class='alert alert-warning' role='alert'><strong>Erro!</strong> Por favor preencha todos os campos.</div>";
+    return false;
+  }else if(!regex.test(String(input[0]).toLowerCase())){
+    div.innerHTML = "<div class='alert alert-danger' role='alert'><strong>Erro!</strong> Por favor insira um <i>e-mail</i> válido.</div>";
+    return false;
+  }
+  return true;
 }
 </script>
 
@@ -143,11 +160,10 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
   //Login
   if(isset($_POST['btnLogin'])){
     if(isset($_POST['email'],$_POST['password']) && !empty($_POST['email']) && !empty($_POST['password'])){
-
       require_once('resources/classes/utilizadordao.class.php');
       $DAO=new GereUtilizador();
       if($DAO->password_correta($_POST['email'],$_POST['password'])){
-        if(isset($_POST['remember'])){
+        if(isset($_POST['remember']) && !empty($_POST['remember'])){
           setcookie('PHPSESSID', $_COOKIE['PHPSESSID'], time()+(60*60*24*7), "/");
         }
         echo '<script>document.location.href = "?";</script>';
@@ -173,7 +189,7 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
         }
       }
     }else
-      echo '<script>alert("Por favor preencha todos os campos.");</script>';
+    echo '<script>alert("Por favor preencha todos os campos.");</script>';
   }
 }
 ?>
