@@ -46,14 +46,16 @@ class GereUtilizador {
     $email = $utilizador->get_email();
 		$password = $utilizador->get_password();
 		$contacto = $utilizador->get_contacto();
+    $idedita = $utilizador->get_id();
 
 		$bd = new BaseDados();
     $bd->ligar_bd();
-		$STH = $bd->dbh->prepare("UPDATE utilizador SET U_NOME = ?, U_EMAIL = ?, U_PASSWORD = ?, U_CONTACTO = ? WHERE U_ID = $utilizador->get_id()");
+		$STH = $bd->dbh->prepare("UPDATE utilizador SET U_NOME = ?, U_EMAIL = ?, U_PASSWORD = ?, U_CONTACTO = ? WHERE U_ID = ?");
 		$STH->bindParam(1, $nome);
 		$STH->bindParam(2, $email);
 		$STH->bindParam(3, $password);
 		$STH->bindParam(4, $contacto);
+    $STH->bindParam(5, $idedita);
 		$res = $STH->execute();
 		$bd->desligar_bd();
 		return $res;
