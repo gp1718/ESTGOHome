@@ -1,6 +1,13 @@
 <?php
+//Proteção da página
+if(!isset($_SESSION['U_ID'],$_SESSION['U_TIPO'])){
+	$url = $_SERVER['REQUEST_SCHEME'].'://'.$_SERVER['HTTP_HOST'].'/'.explode('/',$_SERVER['REQUEST_URI'])[1];
+	header("Location: $url");
+  die();
+}
+
 require_once('resources/classes/utilizadordao.class.php');
-require_once('resources/classes/utilizador.class.php');
+//require_once('resources/classes/utilizador.class.php');
 $DAO=new GereUtilizador();
 
 if($DAO->obter_detalhes_utilizador_id($_SESSION['U_ID'])){
@@ -90,9 +97,9 @@ if($DAO->obter_detalhes_utilizador_id($_SESSION['U_ID'])){
 <?php
 
 if($_SERVER['REQUEST_METHOD']==='POST'){
-  echo "<pre>";
+  /*echo "<pre>";
   var_dump($_POST);
-  echo "</pre>";
+  echo "</pre>";*/
 
   //Ediçao da informaçao
   if(isset($_POST['btnGuardar'])){
@@ -104,20 +111,12 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
         echo '<script>alert("As passwords introduzidas não são iguais.");</script>';
       }else{
         if($DAO->editar_utilizador(new Utilizador($idutl, $_POST['nome'], $_POST['email'], password_hash($_POST['password'], PASSWORD_DEFAULT), $_POST['contacto'],$tipoutl, true))){
-          /*echo '<script>alert("A ediçao foi feita com sucesso.");</script>';*/
+          echo '<script>alert("A ediçao foi feita com sucesso.");</script>';
           header("Refresh:0");
         }
       }
     }else
       echo '<script>alert("Por favor preencha todos os campos.");</script>';
   }
-}
-
-
-//Proteção da página
-if(!isset($_SESSION['U_ID'],$_SESSION['U_TIPO'])){
-	$url = $_SERVER['REQUEST_SCHEME'].'://'.$_SERVER['HTTP_HOST'].'/'.explode('/',$_SERVER['REQUEST_URI'])[1];
-	header("Location: $url");
-  die();
 }
 ?>
