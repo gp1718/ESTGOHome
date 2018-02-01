@@ -90,7 +90,6 @@ class GereUtilizador {
     $row = $STH->fetch(PDO::FETCH_ASSOC);
     if($STH->rowCount()>0){
       if(password_verify($password, $row['U_PASSWORD'])){
-        //session_start();
         $_SESSION['U_ID'] = (int)$row['U_ID'];
         $_SESSION['U_TIPO'] = (int)$row['U_TIPO'];
         return true;
@@ -190,8 +189,8 @@ class GereUtilizador {
   public function alterar_estado_utilizador($id) {
 		$bd = new BaseDados ();
     $bd->ligar_bd();
-    $utilizador = obter_detalhes_utilizador_id($id);
-		$STH = $bd->dbh->query ( "UPDATE utilizador SET U_ESTADO = ".($utilizador->get_estado() == 0 ? 1 : 0)." WHERE U_ID = ".$utilizador->get_id() );
+		$STH = $bd->dbh->prepare("UPDATE utilizador SET U_ESTADO = NOT U_ESTADO WHERE U_ID = ? ");
+    $STH->bindParam(1,$id);
 		$STH->execute ();
 		$bd->desligar_bd ();
 	}
