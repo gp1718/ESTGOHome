@@ -104,7 +104,8 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
         echo '<script>alert("As passwords introduzidas não são iguais.");</script>';
       }else{
         if($DAO->editar_utilizador(new Utilizador($idutl, $_POST['nome'], $_POST['email'], password_hash($_POST['password'], PASSWORD_DEFAULT), $_POST['contacto'],$tipoutl, true))){
-          echo '<script>alert("A ediçao foi feita com sucesso.");</script>';
+          /*echo '<script>alert("A ediçao foi feita com sucesso.");</script>';*/
+          header("Refresh:0");
         }
       }
     }else
