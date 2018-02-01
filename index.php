@@ -40,10 +40,10 @@
 		require_once('resources/templates/menuinicial.html');
 	}
 
-	echo "<pre>";
+	/*echo "<pre>";
 	//var_dump($_SESSION);
 	print_r($_SESSION);
-	echo "</pre>";
+	echo "</pre>";*/
 
 	//Main
 	if(!empty($_GET['action'])){
