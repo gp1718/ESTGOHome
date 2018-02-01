@@ -49,7 +49,7 @@ if(!isset($_SESSION['U_ID'],$_SESSION['U_TIPO']) || $_SESSION['U_TIPO']!=1){
       </li>
     </ul>
     <ul class="nav navbar-nav ml-auto">
-      <li class="nav-item"><a href="#" class="nav-link"><i class="fa fa-user"></i> Conta</a>
+      <li class="nav-item"><a href="?action=editarinfo" class="nav-link"><i class="fa fa-user"></i> Conta</a>
       </li>
       <li class="nav-item"><a href="?action=logout" class="nav-link"><i class="fa fa-sign-out"></i> Terminar sessão</a>
       </li>
