@@ -64,7 +64,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <div id="divAviso2"></div><br>
+        <div id="divAviso2"></div>
         <form name="formRegisto" onsubmit="return validaRegisto()" method="POST" action="">
           <div class="form-group">
             <label for="Nome">Nome</label>
@@ -127,23 +127,28 @@ function validaRegisto() {
   var res = true;
   var div = document.getElementById('divAviso2');
   var input = [document.forms["formRegisto"]["contacto"].value, document.forms["formRegisto"]["email"].value, document.forms["formRegisto"]["password"].value, document.forms["formRegisto"]["cpassword"].value];
+
+  //Expressões regulares para validar contacto, e-mail e password
   var regexContacto = /[0-9]{9}/;
   var regexEmail = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
   var regexPassword = /^(?=.*\d)(?=.*[A-Z])(?=.*[!#$%&()*+,-.:;<=>?@_{|}~])/;
 
+  //Limpar div que mostra os avisos
+  div.innerHTML = "";
+
   if(!regexContacto.test(String(input[0]))){
-    div.innerHTML += "<div class='alert alert-danger' role='alert'><strong>Erro!</strong> Por favor insira um contacto válido.</div>";
+    div.innerHTML += "<div class='alert alert-danger' role='alert'><strong>Erro!</strong> Por favor insira um contacto válido.</div><br>";
     res = false;
   }
   if(!regexEmail.test(String(input[1]).toLowerCase())){
-    div.innerHTML += "<div class='alert alert-danger' role='alert'><strong>Erro!</strong> Por favor insira um <i>e-mail</i> válido.</div>";
+    div.innerHTML += "<div class='alert alert-danger' role='alert'><strong>Erro!</strong> Por favor insira um <i>e-mail</i> válido.</div><br>";
     res = false;
   }
   if(!regexPassword.test(String(input[2]))){
-    div.innerHTML += "<div class='alert alert-danger' role='alert'><strong>Erro!</strong> A palavra-passe deverá conter uma letra maiúscula, um número e um caractere especial.</div>";
+    div.innerHTML += "<div class='alert alert-danger' role='alert'><strong>Erro!</strong> A palavra-passe deverá conter uma letra maiúscula, um número e um caractere especial.</div><br>";
     res = false;
   }else if (input[2] != input[3]) {
-    div.innerHTML += "<div class='alert alert-danger' role='alert'><strong>Erro!</strong> As palavras-passe introduzidas não são iguais.</div>";
+    div.innerHTML += "<div class='alert alert-danger' role='alert'><strong>Erro!</strong> As palavras-passe introduzidas não são iguais.</div><br>";
     res = false;
   }
   return res;

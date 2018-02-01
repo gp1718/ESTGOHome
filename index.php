@@ -58,8 +58,18 @@
 			default: require_once('resources/templates/home.php'); break;
 		}
 	}else{
+		require_once('resources/classes/utilizadordao.class.php');
+		$DAO = new GereUtilizador();
+
+		//Verificar se não existe Administrador (primeira execução do sistema)
+		if(empty($DAO->obter_detalhes_utilizador_id(1)->get_id())){
+			require_once('resources/pages/criaradministrador.php');
+		}
+
 		//Por defeito
-		require_once('resources/pages/home.php');
+		else{
+			require_once('resources/pages/home.php');
+		}
 	}
 
 	//Footer

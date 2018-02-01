@@ -2,8 +2,8 @@
 <div class="container">
   <h2> Registar Administrador</h2>
   <br>
-  <div id="divAviso"></div><br>
-	<form name="formRegisto" onsubmit="return validaRegisto()" method="POST" action="">
+  <div id="divAviso"></div>
+	<form name="formRegisto" onsubmit="return validaRegisto()" method="POST" action="index.php">
     <div class="form-group">
 			<label for="Nome">Nome</label>
 			<input type="text" class="form-control col-md-8" id="nome" name="nome" placeholder="Nome completo" required>
@@ -38,41 +38,57 @@ function validaRegisto() {
   var res = true;
   var div = document.getElementById('divAviso');
   var input = [document.forms["formRegisto"]["contacto"].value, document.forms["formRegisto"]["email"].value, document.forms["formRegisto"]["password"].value, document.forms["formRegisto"]["cpassword"].value];
+
+  //Expressões regulares para validar contacto, e-mail e password
   var regexContacto = /[0-9]{9}/;
   var regexEmail = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
   var regexPassword = /^(?=.*\d)(?=.*[A-Z])(?=.*[!#$%&()*+,-.:;<=>?@_{|}~])/;
 
+  //Limpar div que mostra os avisos
+  div.innerHTML = "";
+
   if(!regexContacto.test(String(input[0]))){
-    div.innerHTML += "<div class='alert alert-danger' role='alert'><strong>Erro!</strong> Por favor insira um contacto válido.</div>";
+    div.innerHTML += "<div class='alert alert-danger' role='alert'><strong>Erro!</strong> Por favor insira um contacto válido.</div><br>";
     res = false;
   }
   if(!regexEmail.test(String(input[1]).toLowerCase())){
-    div.innerHTML += "<div class='alert alert-danger' role='alert'><strong>Erro!</strong> Por favor insira um <i>e-mail</i> válido.</div>";
+    div.innerHTML += "<div class='alert alert-danger' role='alert'><strong>Erro!</strong> Por favor insira um <i>e-mail</i> válido.</div><br>";
     res = false;
   }
   if(!regexPassword.test(String(input[2]))){
-    div.innerHTML += "<div class='alert alert-danger' role='alert'><strong>Erro!</strong> A palavra-passe deverá conter uma letra maiúscula, um número e um caractere especial.</div>";
+    div.innerHTML += "<div class='alert alert-danger' role='alert'><strong>Erro!</strong> A palavra-passe deverá conter uma letra maiúscula, um número e um caractere especial.</div><br>";
     res = false;
   }else if (input[2] != input[3]) {
-    div.innerHTML += "<div class='alert alert-danger' role='alert'><strong>Erro!</strong> As palavras-passe introduzidas não são iguais.</div>";
+    div.innerHTML += "<div class='alert alert-danger' role='alert'><strong>Erro!</strong> As palavras-passe introduzidas não são iguais.</div><br>";
     res = false;
   }
   return res;
 }
+</script>
 
 <!--Validação php-->
 <?php
-//Registo do administrador
-if(isset($_POST['btnRegistar'])){
-  if(isset($_POST['nome'], $_POST['contacto'], $_POST['email'], $_POST['password'], $_POST['cpassword']) && !empty($_POST['nome']) && !empty($_POST['contacto']) && !empty($_POST['email']) && !empty($_POST['password']) && !empty($_POST['cpassword'])){
-    require_once('resources/classes/utilizadordao.class.php');
-    $DAO = new GereUtilizador();
+if($_SERVER['REQUEST_METHOD']==='POST'){
+  echo "<pre>";
+  var_dump($_POST);
+  echo "</pre>";
 
-    if($DAO->inserir_utilizador(new Utilizador(0, $_POST['nome'], $_POST['email'], password_hash($_POST['password'], PASSWORD_DEFAULT), $_POST['contacto'], 0, true))){
-      echo '<script>alert("O senhorio foi criado com sucesso.");</script>';
-    }
-  }else
-    echo '<script>alert("Por favor preencha todos os campos.");</script>';
+  //Registo do administrador
+  if(isset($_POST['btnRegistar'])){
+    if(isset($_POST['nome'], $_POST['contacto'], $_POST['email'], $_POST['password'], $_POST['cpassword']) && !empty($_POST['nome']) && !empty($_POST['contacto']) && !empty($_POST['email']) && !empty($_POST['password']) && !empty($_POST['cpassword'])){
+      require_once('resources/classes/utilizadordao.class.php');
+      $DAO = new GereUtilizador();
+
+      if($_POST['password'] != $_POST['cpassword']){
+        echo '<script>alert("As passwords introduzidas não são iguais.");</script>';
+      }else{
+        if($DAO->inserir_utilizador(new Utilizador(0, $_POST['nome'], $_POST['email'], password_hash($_POST['password'], PASSWORD_DEFAULT), $_POST['contacto'], 0, true))){
+          echo '<script>alert("O Administrador foi criado com sucesso.");</script>';
+          header('Location: index.php');
+        }
+      }
+    }else
+      echo '<script>alert("Por favor preencha todos os campos.");</script>';
+  }
 }
-
  ?>
