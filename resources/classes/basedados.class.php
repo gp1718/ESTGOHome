@@ -2,17 +2,18 @@
 //Buscar configurações
 require_once('resources/configs/basedados.php');
 
+/**
+* Método responsável pela ligação à base de dados
+*/
 class BaseDados {
   public $dbh;
-
   /**
   * Construtor da classe
   */
   function __construct(){}
-
   /**
   * Método que permite fazer a ligação à base de dados
-  **/
+  */
   function ligar_bd(){
     global $DB_HOST, $DB_NAME, $DB_USER, $DB_PASS;
     $options = array(
@@ -27,8 +28,7 @@ class BaseDados {
       die();
     }
   }
-
-  /*
+  /**
   * Método que permite desligar a ligação à base de dados
   */
   function desligar_bd(){
