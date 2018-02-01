@@ -1,10 +1,10 @@
 <!--REGISTO-->
 <div class="container">
-  <h2> Registar Administrador</h2>
-  <br>
+	<h2> Registar Gestor</h2>
+	<br>
   <div id="divAviso"></div>
 	<form name="formRegisto" onsubmit="return validaRegisto()" method="POST" action="">
-    <div class="form-group">
+		<div class="form-group">
 			<label for="Nome">Nome</label>
 			<input type="text" class="form-control col-md-8" id="nome" name="nome" placeholder="Nome completo" required>
 		</div>
@@ -25,7 +25,7 @@
 			<label >Confirmar palavra-passe</label>
 			<input type="password" class="form-control col-md-4" id="cpassword" name="cpassword" required>
 		</div>
-	  <input type="submit" name="btnRegistar" class="btn btn-primary" value="Registar" /><br><br>
+		<input type="submit" name="btnRegistar" class="btn btn-primary" value="Registar" /><br><br>
 	</form>
 </div>
 
@@ -82,9 +82,9 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
       if($_POST['password'] != $_POST['cpassword']){
         echo '<script>alert("As passwords introduzidas não são iguais.");</script>';
       }else{
-        if($DAO->inserir_utilizador(new Utilizador(0, $_POST['nome'], $_POST['email'], password_hash($_POST['password'], PASSWORD_DEFAULT), $_POST['contacto'], 0, true))){
-          echo '<script>alert("O Administrador foi criado com sucesso.");</script>';
-          header('Location: index.php');
+        if($DAO->inserir_utilizador(new Utilizador(0, $_POST['nome'], $_POST['email'], password_hash($_POST['password'], PASSWORD_DEFAULT), $_POST['contacto'], 1, true))){
+          echo '<script>alert("O Gestor foi criado com sucesso.");</script>';
+          //header('Location: index.php');
         }
       }
     }else
