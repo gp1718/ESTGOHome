@@ -2,6 +2,7 @@
 //Obter classes necessárias
 require_once(__DIR__.'/basedados.class.php');
 require_once(__DIR__.'/quarto.class.php');
+require_once(__DIR__.'/fotografiaquarto.class.php');
 
 /**
  * Classe responsável por manipular objectos do tipo quarto
@@ -25,10 +26,10 @@ class GereQuarto {
   public function alterar_estado_quarto($id, $estado) {
     return false;
   }
-  public function adicionar_foto_quarto(Fotografia $fotografia) {
+  public function adicionar_foto_quarto(FotografiaQuarto $fotografia) {
     return false;
   }
-  public function alterar_foto_quarto(Fotografia $fotografia) {
+  public function alterar_foto_quarto(FotografiaQuarto $fotografia) {
     return false;
   }
   public function obter_fotos_quarto($id) {
