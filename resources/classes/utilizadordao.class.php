@@ -105,7 +105,7 @@ class GereUtilizador {
   * @return objeto Utilizador com os dados obtidos na pesquisa
   */
   public function obter_detalhes_utilizador_email($email) {
-    $bd = new BD ();
+    $bd = new BaseDados ();
     $bd->ligar_bd();
     $STH = $bd->dbh->query ( "SELECT * FROM utilizador WHERE U_EMAIL = '$email'" );
     $STH->setFetchMode ( PDO::FETCH_NUM );
@@ -121,7 +121,7 @@ class GereUtilizador {
   * @return objeto Utilizador com os dados obtidos na pesquisa
   */
   public function obter_detalhes_utilizador_id($id) {
-    $bd = new BD ();
+    $bd = new BaseDados ();
     $bd->ligar_bd();
     $STH = $bd->dbh->query ( "SELECT * FROM utilizador WHERE U_ID = $id" );
     $STH->setFetchMode ( PDO::FETCH_NUM );
@@ -136,7 +136,7 @@ class GereUtilizador {
   * @return array de objetos Utilizador com os dados de cada gestor
   */
   public function obter_todos_gestores() {
-		$bd = new BD ();
+		$bd = new BaseDados ();
     $bd->ligar_bd();
 		$STH = $bd->dbh->query ( "SELECT * FROM utilizador WHERE U_TIPO = 1" );
 		if ($STH->rowCount () == 0)
@@ -154,7 +154,7 @@ class GereUtilizador {
   * @return array de objetos Utilizador com os dados de cada senhorio
   */
   public function obter_todos_senhorios() {
-		$bd = new BD ();
+		$bd = new BaseDados ();
     $bd->ligar_bd();
 		$STH = $bd->dbh->query ( "SELECT * FROM utilizador WHERE U_TIPO = 2" );
 		if ($STH->rowCount () == 0)
@@ -173,7 +173,7 @@ class GereUtilizador {
   * @return TRUE se a conta se encontra ativa, FALSE se a conta se encontra inativa
   */
   public function conta_ativa($email) {
-		$bd = new BD ();
+		$bd = new BaseDados ();
     $bd->ligar_bd();
 		$STH = $bd->dbh->query ( "SELECT U_ESTADO FROM utilizador WHERE U_EMAIL = '$email'" );
 		$STH->setFetchMode ( PDO::FETCH_NUM );
@@ -188,7 +188,7 @@ class GereUtilizador {
   * @param id ID do utilizador a alterar o estado.
   */
   public function alterar_estado_utilizador($id) {
-		$bd = new BD ();
+		$bd = new BaseDados ();
     $bd->ligar_bd();
     $utilizador = obter_detalhes_utilizador_id($id);
 		$STH = $bd->dbh->query ( "UPDATE utilizador SET U_ESTADO = ".($utilizador->get_estado() == 0 ? 1 : 0)." WHERE U_ID = ".$utilizador->get_id() );
