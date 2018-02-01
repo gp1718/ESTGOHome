@@ -221,3 +221,5 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
   }
 }
 ?>
+
+<a href="?action=editarinfo" class="btn btn-default btn-block">Editar Info</a>
