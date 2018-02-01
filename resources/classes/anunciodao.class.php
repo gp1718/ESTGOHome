@@ -2,6 +2,7 @@
 //Obter classes necessárias
 require_once(__DIR__.'/basedados.class.php');
 require_once(__DIR__.'/anuncio.class.php');
+require_once(__DIR__.'/fotografiaanuncio.class.php');
 
 /**
 * Classe responsável por manipular objectos do tipo anúncio
@@ -22,10 +23,10 @@ class GereAnuncio {
   public function alterar_estado_anuncio($id, $estado) {
     return false;
   }
-  public function adicionar_foto_anuncio(Fotografia $fotografia) {
+  public function adicionar_foto_anuncio(FotografiaAnuncio $fotografia) {
     return false;
   }
-  public function alterar_foto_anuncio(Fotografia $fotografia) {
+  public function alterar_foto_anuncio(FotografiaAnuncio $fotografia) {
     return false;
   }
   public function obter_fotos_anuncio($id) {

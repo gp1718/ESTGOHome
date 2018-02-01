@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div style="text-align: center;">
   <div class="container">
   	<h2>Editar Propria Informação</h2>
@@ -66,3 +67,14 @@
 
 
 </div>
+=======
+<?php
+//Proteção da página
+if(!isset($_SESSION['U_ID'],$_SESSION['U_TIPO'])){
+	$url = $_SERVER['REQUEST_SCHEME'].'://'.$_SERVER['HTTP_HOST'].'/'.explode('/',$_SERVER['REQUEST_URI'])[1];
+	header("Location: $url");
+  die();
+}
+?>
+<p> pagina editar info</p>
+>>>>>>> b7af6d90b46d777d0402e2cc1c9ed25c772cc4f2

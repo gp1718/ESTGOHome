@@ -31,19 +31,19 @@
 	//Header
 	if(isset($_SESSION) && !empty($_SESSION)){
 		switch($_SESSION['U_TIPO']){
-			case "0": require_once('resources/templates/menuadministrador.html'); break;
-			case "1": require_once('resources/templates/menugestor.html'); break;
-			case "2": require_once('resources/templates/menusenhorio.html'); break;
+			case "0": require_once('resources/templates/menuadministrador.php'); break;
+			case "1": require_once('resources/templates/menugestor.php'); break;
+			case "2": require_once('resources/templates/menusenhorio.php'); break;
 			default: require_once('resources/templates/menuinicial.html'); break;
 		}
 	}else{
 		require_once('resources/templates/menuinicial.html');
 	}
 
-	/*echo "<pre>";
+	echo "<pre>";
 	//var_dump($_SESSION);
 	print_r($_SESSION);
-	echo "</pre>";*/
+	echo "</pre>";
 
 	//Main
 	if(!empty($_GET['action'])){
