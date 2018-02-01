@@ -65,7 +65,7 @@
       </div>
       <div class="modal-body">
         <div id="divAviso2"></div><br>
-        <form name="formRegisto" onsubmit="return passwordsIguais()" method="POST" action="">
+        <form name="formRegisto" onsubmit="return validaRegisto()" method="POST" action="">
           <div class="form-group">
             <label for="Nome">Nome</label>
             <input type="text" class="form-control" id="nome" name="nome" placeholder="Nome completo" required>
@@ -81,7 +81,7 @@
           <div class="form-group">
             <label >Palavra-passe</label>
             <input type="password" class="form-control" id="password" name="password" required>
-            <small id="passwordHelp" class="form-text text-muted">A password deverá conter uma letra grande, um número e um símbolo</small>
+            <small id="passwordHelp" class="form-text text-muted">A palavra-passe deverá conter uma letra maiúscula, um número e um caractere especial</small>
           </div>
           <div class="form-group">
             <label >Confirmar palavra-passe</label>
@@ -120,17 +120,35 @@
 
 <!--Validação javascript-->
 <script>
-function passwordsIguais() {
+/*
+* Função que valida os campos do fomulário de registo de senhorios
+*/
+function validaRegisto() {
+  var res = true;
   var div = document.getElementById('divAviso2');
-  var password = document.forms["formRegisto"]["password"].value;
-  var cPassword = document.forms["formRegisto"]["cpassword"].value;
-  if (password != cPassword) {
-    //return false;
-    div.innerHTML = "<div class='alert alert-danger' role='alert'><strong>Erro!</strong> <a href='#' class='alert-link'>As passwords introduzidas não são iguais! Tente novamente.</div>";
-    return false;
+  var input = [document.forms["formRegisto"]["contacto"].value, document.forms["formRegisto"]["email"].value, document.forms["formRegisto"]["password"].value, document.forms["formRegisto"]["cpassword"].value];
+  var regexContacto = /[0-9]{9}/;
+  var regexEmail = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+  var regexPassword = /^(?=.*\d)(?=.*[A-Z])(?=.*[!#$%&()*+,-.:;<=>?@_{|}~])/;
+
+  if(!regexContacto.test(String(input[0]))){
+    div.innerHTML += "<div class='alert alert-danger' role='alert'><strong>Erro!</strong> Por favor insira um contacto válido.</div>";
+    res = false;
   }
-  return true;
+  if(!regexEmail.test(String(input[1]).toLowerCase())){
+    div.innerHTML += "<div class='alert alert-danger' role='alert'><strong>Erro!</strong> Por favor insira um <i>e-mail</i> válido.</div>";
+    res = false;
+  }
+  if(!regexPassword.test(String(input[2]))){
+    div.innerHTML += "<div class='alert alert-danger' role='alert'><strong>Erro!</strong> A palavra-passe deverá conter uma letra maiúscula, um número e um caractere especial.</div>";
+    res = false;
+  }else if (input[2] != input[3]) {
+    div.innerHTML += "<div class='alert alert-danger' role='alert'><strong>Erro!</strong> As palavras-passe introduzidas não são iguais.</div>";
+    res = false;
+  }
+  return res;
 }
+
 /*
 * Função que valida os campos do fomulário de login
 */
@@ -186,6 +204,8 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
 
       if($DAO->email_existe($_POST['email'])){
         echo '<script>alert("O e-mail introduzido já se encontra registado no sistema.");</script>';
+      }elseif($_POST['password'] != $_POST['cpassword']){
+        echo '<script>alert("As passwords introduzidas não são iguais.");</script>';
       }else{
         if($DAO->inserir_utilizador(new Utilizador(0, $_POST['nome'], $_POST['email'], password_hash($_POST['password'], PASSWORD_DEFAULT), $_POST['contacto'], 2, true))){
           echo '<script>alert("O senhorio foi criado com sucesso.");</script>';
