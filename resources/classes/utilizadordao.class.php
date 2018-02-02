@@ -15,6 +15,7 @@ class GereUtilizador {
   * @return mixed TRUE se a inserção ocorreu com sucesso, FALSE se ocorreu um erro
   */
   public function inserir_utilizador(Utilizador $utilizador) {
+    error_reporting(0);
 		$bd = new BaseDados();
     $bd->ligar_bd();
 		$STH = $bd->dbh->prepare("INSERT INTO utilizador (U_NOME, U_EMAIL, U_PASSWORD, U_CONTACTO, U_TIPO, U_ESTADO) values (?, ?, ?, ?, ?, ?)");
@@ -26,6 +27,7 @@ class GereUtilizador {
 		$STH->bindParam(6, $utilizador->get_estado());
 		$res = $STH->execute();
 		$bd->desligar_bd();
+    error_reporting(E_ALL);
 		return $res;
 	}
 
@@ -35,6 +37,7 @@ class GereUtilizador {
   * @return mixed TRUE se a atualização ocorreu com sucesso, FALSE se ocorreu um erro
   */
   public function editar_utilizador(Utilizador $utilizador) {
+    error_reporting(0);
 		$bd = new BaseDados();
     $bd->ligar_bd();
 		$STH = $bd->dbh->prepare("UPDATE utilizador SET U_NOME = ?, U_EMAIL = ?, U_PASSWORD = ?, U_CONTACTO = ? WHERE U_ID = ?");
@@ -45,6 +48,7 @@ class GereUtilizador {
     $STH->bindParam(5, $utilizador->get_id());
 		$res = $STH->execute();
 		$bd->desligar_bd();
+    error_reporting(E_ALL);
 		return $res;
 	}
 
