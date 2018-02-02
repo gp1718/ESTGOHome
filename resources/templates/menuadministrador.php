@@ -8,7 +8,7 @@ if(!isset($_SESSION['U_ID'],$_SESSION['U_TIPO']) || $_SESSION['U_TIPO']!=0){
 ?>
 <nav class="navbar navbar-dark bg-dark navbar-expand-sm">
   <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#myNavbar">&#x2630;</button>
-  <a class="navbar-brand" href="#">
+  <a class="navbar-brand" href="index.php">
     <span>
       <img src="img/logo.svg" style="vertical-align:-4px" height="30">
       <span style="color: white"> ESTGOHome</span>
@@ -22,7 +22,7 @@ if(!isset($_SESSION['U_ID'],$_SESSION['U_TIPO']) || $_SESSION['U_TIPO']!=0){
         </a>
         <div class="dropdown-menu">
           <a class="dropdown-item" href="?action=criargestor">Novo gestor</a>
-          <a class="dropdown-item" href="#">Listar gestores</a>
+          <a class="dropdown-item" href="?action=listargestores">Listar gestores</a>
         </div>
       </li>
     </ul>

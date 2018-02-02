@@ -8,7 +8,7 @@ if(!isset($_SESSION['U_ID'],$_SESSION['U_TIPO']) || $_SESSION['U_TIPO']!=2){
 ?>
 <nav class="navbar navbar-dark bg-dark navbar-expand-sm">
   <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#myNavbar">&#x2630;</button>
-  <a class="navbar-brand" href="#">
+  <a class="navbar-brand" href="index.php">
     <span>
       <img src="img/logo.svg" style="vertical-align:-4px" height="30">
       <span style="color: white"> ESTGOHome</span>

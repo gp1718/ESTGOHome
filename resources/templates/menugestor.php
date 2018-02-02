@@ -8,7 +8,7 @@ if(!isset($_SESSION['U_ID'],$_SESSION['U_TIPO']) || $_SESSION['U_TIPO']!=1){
 ?>
 <nav class="navbar navbar-dark bg-dark navbar-expand-sm">
   <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#myNavbar">&#x2630;</button>
-  <a class="navbar-brand" href="#">
+  <a class="navbar-brand" href="index.php">
     <span>
       <img src="img/logo.svg" style="vertical-align:-4px" height="30">
       <span style="color: white"> ESTGOHome</span>
@@ -22,7 +22,7 @@ if(!isset($_SESSION['U_ID'],$_SESSION['U_TIPO']) || $_SESSION['U_TIPO']!=1){
         </a>
         <div class="dropdown-menu">
           <a class="dropdown-item" href="#">Novo anúncio</a>
-          <a class="dropdown-item" href="#">Listar anúncios</a>
+          <a class="dropdown-item" href="?action=listaranunciossenhorio">Listar anúncios</a>
         </div>
       </li>
     </ul>
@@ -32,7 +32,7 @@ if(!isset($_SESSION['U_ID'],$_SESSION['U_TIPO']) || $_SESSION['U_TIPO']!=1){
           Anúncios
         </a>
         <div class="dropdown-menu">
-          <a class="dropdown-item" href="#">Listar todos os anúncios</a>
+          <a class="dropdown-item" href="?action=listaranunciosgestor">Listar todos os anúncios</a>
           <a class="dropdown-item" href="#">Listar anúncios por aprovar</a>
           <a class="dropdown-item" href="#">Listar anúncios com alterações por aprovar</a>
         </div>
