@@ -15,22 +15,15 @@ class GereUtilizador {
   * @return mixed TRUE se a inserção ocorreu com sucesso, FALSE se ocorreu um erro
   */
   public function inserir_utilizador(Utilizador $utilizador) {
-		$nome = $utilizador->get_nome();
-		$email = $utilizador->get_email();
-		$password = $utilizador->get_password();
-		$contacto = $utilizador->get_contacto();
-		$tipo = $utilizador->get_tipo();
-		$estado = $utilizador->get_estado();
-
 		$bd = new BaseDados();
     $bd->ligar_bd();
 		$STH = $bd->dbh->prepare("INSERT INTO utilizador (U_NOME, U_EMAIL, U_PASSWORD, U_CONTACTO, U_TIPO, U_ESTADO) values (?, ?, ?, ?, ?, ?)");
-		$STH->bindParam(1, $nome);
-		$STH->bindParam(2, $email);
-		$STH->bindParam(3, $password);
-		$STH->bindParam(4, $contacto);
-		$STH->bindParam(5, $tipo);
-		$STH->bindParam(6, $estado);
+		$STH->bindParam(1, $utilizador->get_nome());
+		$STH->bindParam(2, $utilizador->get_email());
+		$STH->bindParam(3, $utilizador->get_password());
+		$STH->bindParam(4, $utilizador->get_contacto());
+		$STH->bindParam(5, $utilizador->get_tipo());
+		$STH->bindParam(6, $utilizador->get_estado());
 		$res = $STH->execute();
 		$bd->desligar_bd();
 		return $res;
@@ -42,20 +35,14 @@ class GereUtilizador {
   * @return mixed TRUE se a atualização ocorreu com sucesso, FALSE se ocorreu um erro
   */
   public function editar_utilizador(Utilizador $utilizador) {
-		$nome = $utilizador->get_nome();
-    $email = $utilizador->get_email();
-		$password = $utilizador->get_password();
-		$contacto = $utilizador->get_contacto();
-    $idedita = $utilizador->get_id();
-
 		$bd = new BaseDados();
     $bd->ligar_bd();
 		$STH = $bd->dbh->prepare("UPDATE utilizador SET U_NOME = ?, U_EMAIL = ?, U_PASSWORD = ?, U_CONTACTO = ? WHERE U_ID = ?");
-		$STH->bindParam(1, $nome);
-		$STH->bindParam(2, $email);
-		$STH->bindParam(3, $password);
-		$STH->bindParam(4, $contacto);
-    $STH->bindParam(5, $idedita);
+		$STH->bindParam(1, $utilizador->get_nome());
+		$STH->bindParam(2, $utilizador->get_email());
+		$STH->bindParam(3, $utilizador->get_password());
+		$STH->bindParam(4, $utilizador->get_contacto());
+    $STH->bindParam(5, $utilizador->get_id());
 		$res = $STH->execute();
 		$bd->desligar_bd();
 		return $res;
