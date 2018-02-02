@@ -6,6 +6,15 @@ if(isset($_SESSION['U_ID'],$_SESSION['U_TIPO'])){
   die();
 }
 ?>
+
+<!--Breadcrumbs-->
+<nav aria-label="breadcrumb" role="navigation">
+	<ol class="breadcrumb bg-white">
+		<li class="breadcrumb-item">Início</li>
+		<li class="breadcrumb-item active">Registo do Administrador</li>
+	</ol>
+</nav>
+
 <!--REGISTO-->
 <div class="container">
   <h2> Registar Administrador</h2>

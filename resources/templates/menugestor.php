@@ -56,12 +56,3 @@ if(!isset($_SESSION['U_ID'],$_SESSION['U_TIPO']) || $_SESSION['U_TIPO']!=1){
     </ul>
   </div>
 </nav>
-
-<!--Breadcrumbs-->
-<nav aria-label="breadcrumb" role="navigation">
-  <ol class="breadcrumb bg-white">
-    <li class="breadcrumb-item"><a href="#">Início</a></li>
-    <li class="breadcrumb-item">Senhorios</li>
-    <li class="breadcrumb-item">Listar todos os senhorios</li>
-  </ol>
-</nav>

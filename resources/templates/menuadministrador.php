@@ -39,12 +39,3 @@ if(!isset($_SESSION['U_ID'],$_SESSION['U_TIPO']) || $_SESSION['U_TIPO']!=0){
     </ul>
   </div>
 </nav>
-
-<!--Breadcrumbs-->
-<nav aria-label="breadcrumb" role="navigation">
-  <ol class="breadcrumb bg-white">
-  <li class="breadcrumb-item"><a href="#">Início</a></li>
-  <li class="breadcrumb-item">Gestores</li>
-  <li class="breadcrumb-item active">Listar gestores</li>
-  </ol>
-</nav>

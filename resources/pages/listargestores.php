@@ -6,6 +6,16 @@ if(!isset($_SESSION['U_ID'],$_SESSION['U_TIPO']) || $_SESSION['U_TIPO']!=0){
   die();
 }
 ?>
+
+<!--Breadcrumbs-->
+<nav aria-label="breadcrumb" role="navigation">
+	<ol class="breadcrumb bg-white">
+		<li class="breadcrumb-item"><a href="#">Início</a></li>
+		<li class="breadcrumb-item">Gestores</li>
+		<li class="breadcrumb-item active">Listar gestores</li>
+	</ol>
+</nav>
+
 <!-- titulo -->
 <div class="container">
 <h2>Lista de Gestores</h2><br><br>

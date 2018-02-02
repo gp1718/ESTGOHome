@@ -6,6 +6,16 @@ if(!isset($_SESSION['U_ID'],$_SESSION['U_TIPO']) || $_SESSION['U_TIPO']!=1){
   die();
 }
 ?>
+
+<!--Breadcrumbs-->
+<nav aria-label="breadcrumb" role="navigation">
+  <ol class="breadcrumb bg-white">
+    <li class="breadcrumb-item"><a href="#">Início</a></li>
+    <li class="breadcrumb-item">Anúncios</li>
+    <li class="breadcrumb-item active">Listar todos os anúncios</li>
+  </ol>
+</nav>
+
 <div class="container">
   <h2>Lista de anúncios</h2>
 

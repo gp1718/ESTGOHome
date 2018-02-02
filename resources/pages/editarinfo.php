@@ -21,81 +21,84 @@ if($DAO->obter_detalhes_utilizador_id($_SESSION['U_ID'])){
 
 ?>
 
+<!--Breadcrumbs-->
+<nav aria-label="breadcrumb" role="navigation">
+	<ol class="breadcrumb bg-white">
+		<li class="breadcrumb-item"><a href="#">Início</a></li>
+		<li class="breadcrumb-item active">Conta</li>
+	</ol>
+</nav>
 
-  <div class="container">
-  	<h2>Editar Dados pessoais</h2>
-  	<br>
+<div class="container">
+	<h2>Editar Dados pessoais</h2>
+	<br>
+  <div id="divAviso"></div>
+	<form name="formEdita" onsubmit="return validaInfo()" method="POST" action="">
+		<div class="form-group">
+			<label for="Nome">Nome</label>
+			<input type="text" class="form-control col-md-8" id="nome" name="nome" placeholder="Nome completo" value ='<?php print($nomeutl) ?>' required>
+		</div>
+		<div class="form-group">
+			<label >Contacto</label>
+			<input type="tel" class="form-control col-md-2" id="contacto" name="contacto" maxlength="9"  value ='<?php print($contactoutl) ?>' required>
+		</div>
+		<div class="form-group">
+			<label for="E-mail">E-mail</label>
+			<input type="e-mail" class="form-control col-md-4" id="email" name="email" value ='<?php print($emailutl) ?>' required>
+		</div>
+		<div class="form-group">
+			<label >Palavra-passe</label>
+			<input type="password" class="form-control col-md-4" id="password" name="password">
+			<small id="passwordHelp" class="form-text text-muted">A password deverá conter uma letra grande, um número e um símbolo</small>
+		</div>
+		<div class="form-group">
+			<label >Confirmar palavra-passe</label>
+			<input type="password" class="form-control col-md-4" id="cpassword" name="cpassword">
+		</div>
+		<input type="submit" name="btnGuardar" class="btn btn-primary" value="Guardar" /><br><br>
+	</form>
+</div>
 
 
-    <div id="divAviso"></div>
-  	<form name="formEdita" onsubmit="return validaInfo()" method="POST" action="">
-  		<div class="form-group">
-  			<label for="Nome">Nome</label>
-  			<input type="text" class="form-control col-md-8" id="nome" name="nome" placeholder="Nome completo" value ='<?php print($nomeutl) ?>' required>
-  		</div>
-  		<div class="form-group">
-  			<label >Contacto</label>
-  			<input type="tel" class="form-control col-md-2" id="contacto" name="contacto" maxlength="9"  value ='<?php print($contactoutl) ?>' required>
-  		</div>
-  		<div class="form-group">
-  			<label for="E-mail">E-mail</label>
-  			<input type="e-mail" class="form-control col-md-4" id="email" name="email" value ='<?php print($emailutl) ?>' required>
-  		</div>
-  		<div class="form-group">
-  			<label >Palavra-passe</label>
-  			<input type="password" class="form-control col-md-4" id="password" name="password">
-  			<small id="passwordHelp" class="form-text text-muted">A password deverá conter uma letra grande, um número e um símbolo</small>
-  		</div>
-  		<div class="form-group">
-  			<label >Confirmar palavra-passe</label>
-  			<input type="password" class="form-control col-md-4" id="cpassword" name="cpassword">
-  		</div>
-  		<input type="submit" name="btnGuardar" class="btn btn-primary" value="Guardar" /><br><br>
-  	</form>
-  </div>
+<!--Validação javascript-->
+<script>
+/*
+* Função que valida os campos do fomulário da ediçao de informaçao
+*/
+function validaInfo() {
+  var res = true;
+  var div = document.getElementById('divAviso');
+  var input = [document.forms["formEdita"]["contacto"].value, document.forms["formEdita"]["email"].value, document.forms["formEdita"]["password"].value, document.forms["formEdita"]["cpassword"].value];
 
+  //Expressões regulares para validar contacto, e-mail e password
+  var regexContacto = /[0-9]{9}/;
+  var regexEmail = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+  var regexPassword = /^(?=.*\d)(?=.*[A-Z])(?=.*[!#$%&()*+,-.:;<=>?@_{|}~])/;
 
-  <!--Validação javascript-->
-  <script>
-  /*
-  * Função que valida os campos do fomulário da ediçao de informaçao
-  */
-  function validaInfo() {
-    var res = true;
-    var div = document.getElementById('divAviso');
-    var input = [document.forms["formEdita"]["contacto"].value, document.forms["formEdita"]["email"].value, document.forms["formEdita"]["password"].value, document.forms["formEdita"]["cpassword"].value];
+  //Limpar div que mostra os avisos
+  div.innerHTML = "";
 
-    //Expressões regulares para validar contacto, e-mail e password
-    var regexContacto = /[0-9]{9}/;
-    var regexEmail = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-    var regexPassword = /^(?=.*\d)(?=.*[A-Z])(?=.*[!#$%&()*+,-.:;<=>?@_{|}~])/;
-
-    //Limpar div que mostra os avisos
-    div.innerHTML = "";
-
-    if(!regexContacto.test(String(input[0]))){
-      div.innerHTML += "<div class='alert alert-danger' role='alert'><strong>Erro!</strong> Por favor insira um contacto válido.</div><br>";
-      res = false;
-    }
-    if(!regexEmail.test(String(input[1]).toLowerCase())){
-      div.innerHTML += "<div class='alert alert-danger' role='alert'><strong>Erro!</strong> Por favor insira um <i>e-mail</i> válido.</div><br>";
-      res = false;
-    }
-		if(String(input[2]) != ""){
-	    if(!regexPassword.test(String(input[2]))){
-	      div.innerHTML += "<div class='alert alert-danger' role='alert'><strong>Erro!</strong> A palavra-passe deverá conter uma letra maiúscula, um número e um caractere especial.</div><br>";
-	      res = false;
-			}
-    }
-		if (input[2] != input[3]) {
-      div.innerHTML += "<div class='alert alert-danger' role='alert'><strong>Erro!</strong> As palavras-passe introduzidas não são iguais.</div><br>";
-      res = false;
-    }
-    return res;
+  if(!regexContacto.test(String(input[0]))){
+    div.innerHTML += "<div class='alert alert-danger' role='alert'><strong>Erro!</strong> Por favor insira um contacto válido.</div><br>";
+    res = false;
   }
-  </script>
-
-
+  if(!regexEmail.test(String(input[1]).toLowerCase())){
+    div.innerHTML += "<div class='alert alert-danger' role='alert'><strong>Erro!</strong> Por favor insira um <i>e-mail</i> válido.</div><br>";
+    res = false;
+  }
+	if(String(input[2]) != ""){
+    if(!regexPassword.test(String(input[2]))){
+      div.innerHTML += "<div class='alert alert-danger' role='alert'><strong>Erro!</strong> A palavra-passe deverá conter uma letra maiúscula, um número e um caractere especial.</div><br>";
+      res = false;
+		}
+  }
+	if (input[2] != input[3]) {
+    div.innerHTML += "<div class='alert alert-danger' role='alert'><strong>Erro!</strong> As palavras-passe introduzidas não são iguais.</div><br>";
+    res = false;
+  }
+  return res;
+}
+</script>
 
 <?php
 
