@@ -66,7 +66,8 @@ function validaRegisto() {
   if(!regexPassword.test(String(input[2]))){
     div.innerHTML += "<div class='alert alert-danger' role='alert'><strong>Erro!</strong> A palavra-passe deverá conter uma letra maiúscula, um número e um caractere especial.</div><br>";
     res = false;
-  }else if (input[2] != input[3]) {
+  }
+	if (input[2] != input[3]) {
     div.innerHTML += "<div class='alert alert-danger' role='alert'><strong>Erro!</strong> As palavras-passe introduzidas não são iguais.</div><br>";
     res = false;
   }

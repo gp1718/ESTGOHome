@@ -23,7 +23,7 @@ if($DAO->obter_detalhes_utilizador_id($_SESSION['U_ID'])){
 
 
   <div class="container">
-  	<h2>Editar Propria Informação</h2>
+  	<h2>Editar Dados pessoais</h2>
   	<br>
 
 
@@ -43,12 +43,12 @@ if($DAO->obter_detalhes_utilizador_id($_SESSION['U_ID'])){
   		</div>
   		<div class="form-group">
   			<label >Palavra-passe</label>
-  			<input type="password" class="form-control col-md-4" id="password" name="password" required>
+  			<input type="password" class="form-control col-md-4" id="password" name="password">
   			<small id="passwordHelp" class="form-text text-muted">A password deverá conter uma letra grande, um número e um símbolo</small>
   		</div>
   		<div class="form-group">
   			<label >Confirmar palavra-passe</label>
-  			<input type="password" class="form-control col-md-4" id="cpassword" name="cpassword" required>
+  			<input type="password" class="form-control col-md-4" id="cpassword" name="cpassword">
   		</div>
   		<input type="submit" name="btnGuardar" class="btn btn-primary" value="Guardar" /><br><br>
   	</form>
@@ -81,10 +81,13 @@ if($DAO->obter_detalhes_utilizador_id($_SESSION['U_ID'])){
       div.innerHTML += "<div class='alert alert-danger' role='alert'><strong>Erro!</strong> Por favor insira um <i>e-mail</i> válido.</div><br>";
       res = false;
     }
-    if(!regexPassword.test(String(input[2]))){
-      div.innerHTML += "<div class='alert alert-danger' role='alert'><strong>Erro!</strong> A palavra-passe deverá conter uma letra maiúscula, um número e um caractere especial.</div><br>";
-      res = false;
-    }else if (input[2] != input[3]) {
+		if(String(input[2]) != ""){
+	    if(!regexPassword.test(String(input[2]))){
+	      div.innerHTML += "<div class='alert alert-danger' role='alert'><strong>Erro!</strong> A palavra-passe deverá conter uma letra maiúscula, um número e um caractere especial.</div><br>";
+	      res = false;
+			}
+    }
+		if (input[2] != input[3]) {
       div.innerHTML += "<div class='alert alert-danger' role='alert'><strong>Erro!</strong> As palavras-passe introduzidas não são iguais.</div><br>";
       res = false;
     }
@@ -103,17 +106,23 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
 
   //Ediçao da informaçao
   if(isset($_POST['btnGuardar'])){
-    if(isset($_POST['nome'], $_POST['contacto'], $_POST['email'], $_POST['password'], $_POST['cpassword']) && !empty($_POST['nome']) && !empty($_POST['contacto']) && !empty($_POST['email']) && !empty($_POST['password']) && !empty($_POST['cpassword'])){
+    if(isset($_POST['nome'], $_POST['contacto'], $_POST['email']) && !empty($_POST['nome']) && !empty($_POST['contacto']) && !empty($_POST['email'])){
       require_once('resources/classes/utilizadordao.class.php');
       $DAO = new GereUtilizador();
 
-      if($_POST['password'] != $_POST['cpassword']){
-        echo '<script>alert("As passwords introduzidas não são iguais.");</script>';
-      }else{
-        if($DAO->editar_utilizador(new Utilizador($idutl, $_POST['nome'], $_POST['email'], password_hash($_POST['password'], PASSWORD_DEFAULT), $_POST['contacto'],$tipoutl, true))){
-          echo '<script>alert("A ediçao foi feita com sucesso.");</script>';
-          header("Refresh:0");
-        }
+			//Também pretende alterar a palavra-passe
+			if(isset($_POST['password'], $_POST['cpassword']) && !empty($_POST['password']) && !empty($_POST['cpassword'])){
+				if($_POST['password'] != $_POST['cpassword']){
+					echo '<script>alert("As passwords introduzidas não são iguais.");</script>';
+					return;
+				}else
+					$password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+			}else
+				$password = $utilizador->get_password();
+
+      if($DAO->editar_utilizador(new Utilizador($idutl, $_POST['nome'], $_POST['email'], $password, $_POST['contacto'],$tipoutl, true))){
+        echo '<script>alert("A ediçao foi feita com sucesso.");</script>';
+        header("Refresh:0");
       }
     }else
       echo '<script>alert("Por favor preencha todos os campos.");</script>';
