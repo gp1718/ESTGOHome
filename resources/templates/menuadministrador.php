@@ -28,7 +28,7 @@ if(!isset($_SESSION['U_ID'],$_SESSION['U_TIPO']) || $_SESSION['U_TIPO']!=0){
     </ul>
     <ul class="nav navbar-nav">
       <li class="nav-item">
-        <a href="#" class="nav-link">Gerir aplicação</a>
+        <a href="?action=gestaoaplicacao" class="nav-link">Gerir aplicação</a>
       </li>
     </ul>
     <ul class="nav navbar-nav ml-auto">
