@@ -42,7 +42,7 @@ if(isset($_SESSION['U_ID'],$_SESSION['U_TIPO'])){
         <form method="POST" onsubmit="return validaLogin()" id="loginForm" action="">
           <div class="form-group">
             <label for="email" class="control-label"><i>E-mail</i>:</label>
-            <input type="email" class="form-control" id="email" name="email" placeholder="Insira o seu e-mail" required>
+            <input type="email" class="form-control" id="email" name="email" placeholder="Insira o seu e-mail" maxlength="254" required>
           </div>
           <div class="form-group">
             <label for="password" class="control-label">Palavra-passe:</label>
@@ -76,7 +76,7 @@ if(isset($_SESSION['U_ID'],$_SESSION['U_TIPO'])){
         <form name="formRegisto" onsubmit="return validaRegisto()" method="POST" action="">
           <div class="form-group">
             <label for="Nome">Nome</label>
-            <input type="text" class="form-control" id="nome" name="nome" placeholder="Nome completo" required>
+            <input type="text" class="form-control" id="nome" name="nome" placeholder="Nome completo" maxlength="147" required>
           </div>
           <div class="form-group">
             <label >Contacto</label>
@@ -84,7 +84,7 @@ if(isset($_SESSION['U_ID'],$_SESSION['U_TIPO'])){
           </div>
           <div class="form-group">
             <label for="E-mail">E-mail</label>
-            <input type="email" class="form-control" id="email" name="email" required>
+            <input type="email" class="form-control" id="email" name="email" maxlength="254" required>
           </div>
           <div class="form-group">
             <label >Palavra-passe</label>
@@ -193,14 +193,14 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
   //Login
   if(isset($_POST['btnLogin'])){
     if(isset($_POST['email'],$_POST['password']) && !empty($_POST['email']) && !empty($_POST['password'])){
-
       require_once('resources/classes/utilizadordao.class.php');
       $DAO=new GereUtilizador();
-      if($DAO->password_correta($_POST['email'],$_POST['password'])){
+
+			if($DAO->password_correta($_POST['email'],$_POST['password'])){
         if(isset($_POST['remember']) && !empty($_POST['remember'])){
           setcookie('PHPSESSID', $_COOKIE['PHPSESSID'], time()+(60*60*24*7), "/");
         }
-        echo '<script>document.location.href = "?";</script>';
+        echo '<script>document.location.href = "";</script>';
       }else{
         echo '<script>alert("O e-mail ou a palavra-passe inseridos não se encontram correctos.");</script>';
       }
@@ -229,5 +229,3 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
   }
 }
 ?>
-
-<a href="?action=editarinfo" class="btn btn-default btn-block">Editar Info</a>
