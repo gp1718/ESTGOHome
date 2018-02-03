@@ -102,7 +102,11 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
       }else{
         if($DAO->inserir_utilizador(new Utilizador(0, $_POST['nome'], $_POST['email'], password_hash($_POST['password'], PASSWORD_DEFAULT), $_POST['contacto'], 0, true))){
           echo '<script>alert("O Administrador foi criado com sucesso.");</script>';
-          header('Location: index.php');
+
+					//Criar opções da aplicação
+					require_once('resources/pages/criaradministrador_opcoes.php');
+					header('Location: index.php');
+
         }
       }
     }else

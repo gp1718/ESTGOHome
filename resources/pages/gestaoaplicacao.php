@@ -13,41 +13,17 @@ if(!isset($_SESSION['U_ID'],$_SESSION['U_TIPO']) || $_SESSION['U_TIPO']!=0){
 <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 <style>.toggle {border: 1px solid #aaa}</style>
 
-<?php
-//Ligação à base de dados
-require_once('resources/classes/basedados.class.php');
-$bd = new BaseDados();
-$bd->ligar_bd();
-
-//Opções
-$opcoes = [
-  ['Estado da aplicação',1],
-  ['Filtragem para novos alunos (1ª matrícula)',0]
-];
-$tam = count($opcoes);
-
-//Ver se já existem as opções
-$STH = $bd->dbh->query('SELECT 1 FROM opcao WHERE C_NOME LIKE \''.implode("' OR '",array_column($opcoes,0)).'\'');
-if(!$STH->fetch(PDO::FETCH_ASSOC)){
-
-  //Inserir as opções
-  $bd->dbh->query('TRUNCATE TABLE opcao');
-  $bd->dbh->query('ALTER TABLE opcao AUTO_INCREMENT = 0');
-  $sql = 'INSERT INTO opcao(C_NOME,C_ESTADO) VALUES ';
-  for($i=0; $i<$tam; $i++){
-    $sql .= '(\''.$opcoes[$i][0].'\','.$opcoes[$i][1].'),';
-  }
-  $sql = substr($sql, 0, -1);
-  $bd->dbh->query($sql);
-}
-?>
-
 <div class="container">
 
   <form name="optionsForm" method="post" action="">
     <div class="card card-body">
       <h2>Gestão da Aplicação</h2>
       <?php
+      //Ligação à base de dados
+      require_once('resources/classes/basedados.class.php');
+      $bd = new BaseDados();
+      $bd->ligar_bd();
+
       //Buscar opções
       $STH = $bd->dbh->query('SELECT * FROM opcao');
       $bd->desligar_bd();
