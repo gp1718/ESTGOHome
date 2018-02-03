@@ -35,6 +35,7 @@
 			case "0": require_once('resources/templates/menuadministrador.php'); break;
 			case "1": require_once('resources/templates/menugestor.php'); break;
 			case "2": require_once('resources/templates/menusenhorio.php'); break;
+			case "3": require_once('resources/templates/menualuno.php'); break;
 			default: require_once('resources/templates/menuinicial.html'); break;
 		}
 	}else{
@@ -60,6 +61,7 @@
 			case "0": require_once('resources/pages/listargestores.php'); break;
 			case "1": require_once('resources/pages/listaranunciosgestor.php'); break;
 			case "2": require_once('resources/pages/listaranunciossenhorio.php'); break;
+			case "3": require_once('resources/pages/anunciosaluno.php'); break;
 			default: require_once('resources/templates/home.php'); break;
 		}
 	}else{

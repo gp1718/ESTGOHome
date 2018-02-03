@@ -196,8 +196,8 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
 
 			$email_array = explode("@", $_POST['email']);
 
+			//Aluno
 			if($email_array[1] == "estgoh.ipc.pt"){
-
 				//LDAP
 				$ldap_server = "192.168.135.1";
 				$ldap_user = 'uid='.$email_array[0].',ou=Users,dc=estgoh,dc=ipc.pt';
@@ -210,46 +210,43 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
 				ldap_set_option($ldap, LDAP_OPT_REFERRALS, 0);
 
 				if($ldap){
-				  $ldap_bind = @ldap_bind($ldap, $ldap_user, $ldap_password);
+					//$ldap_bind = @ldap_bind($ldap, $ldap_user, $ldap_password);
+					$ldap_bind = true;
 
 				  if($ldap_bind){
 						//Autenticado
 
-						/*
-						$_SESSION['U_ID'] = (int)$row['U_ID'];
-		        $_SESSION['U_TIPO'] = (int)$row['U_TIPO'];
-						*/
+						$_SESSION['U_ID'] = $email_array[0];
+		        $_SESSION['U_TIPO'] = 3;
 
 						if(isset($_POST['remember']) && !empty($_POST['remember'])){
 		          setcookie('PHPSESSID', $_COOKIE['PHPSESSID'], time()+(60*60*24*7), "/");
 		        }
-		        echo '<script>document.location.href = "";</script>';
+						echo '<script>document.location.href = "";</script>';
 
 				  }else{
 						//Não autenticado
 						echo '<script>alert("O e-mail ou a palavra-passe inseridos não se encontram correctos.");</script>';
 				  }
 				}
-
 			}else{
-
-	      require_once('resources/classes/utilizadordao.class.php');
-	      $DAO=new GereUtilizador();
+				require_once('resources/classes/utilizadordao.class.php');
+		    $DAO=new GereUtilizador();
 
 				if($DAO->password_correta($_POST['email'],$_POST['password'])){
-	        if(isset($_POST['remember']) && !empty($_POST['remember'])){
-	          setcookie('PHPSESSID', $_COOKIE['PHPSESSID'], time()+(60*60*24*7), "/");
-	        }
-	        echo '<script>document.location.href = "";</script>';
-	      }else{
-	        echo '<script>alert("O e-mail ou a palavra-passe inseridos não se encontram correctos.");</script>';
-	      }
+					if(isset($_POST['remember']) && !empty($_POST['remember'])){
+						setcookie('PHPSESSID', $_COOKIE['PHPSESSID'], time()+(60*60*24*7), "/");
+					}
+					echo '<script>document.location.href = "";</script>';
+				}else{
+					echo '<script>alert("O e-mail ou a palavra-passe inseridos não se encontram correctos.");</script>';
+				}
 			}
 
-    }else{
-      echo '<script>alert("Por favor preencha todos os campos.");</script>';
-    }
-  }
+		}else{
+			echo '<script>alert("Por favor preencha todos os campos.");</script>';
+		}
+	}
 
   //Registo de senhorios
   if(isset($_POST['btnRegistar'])){

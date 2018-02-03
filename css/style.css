@@ -87,3 +87,57 @@ footer a {
 .alert{
   margin-bottom: 0 !important;
 }
+
+/*Página de anúncios*/
+
+.favorito_sim {
+	color: rgb(255, 215, 0);
+	float: right;
+	background: none;
+	border: none;
+}
+
+.favorito_nao {
+	color: black;
+	float: right;
+	background: none;
+	border: none;
+}
+
+.imagem {
+	width: 328px;
+	max-height: 175px;
+}
+
+/*https://bootsnipp.com/snippets/featured/advanced-dropdown-search*/
+.dropdown.dropdown-lg .dropdown-menu {
+	margin-top: -1px;
+	padding: 6px 20px;
+}
+
+@media screen and (min-width: 768px) {
+	#adv-search {
+		width: 500px;
+		margin: 0 auto;
+	}
+	.dropdown.dropdown-lg {
+		position: static !important;
+	}
+	.dropdown.dropdown-lg .dropdown-menu {
+		min-width: 350px;
+	}
+}
+
+.carousel-item {
+	height: 65vh;
+	min-height: 300px;
+	background: no-repeat center center scroll;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
+.portfolio-item {
+	margin-bottom: 30px;
+}
