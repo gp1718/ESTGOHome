@@ -193,17 +193,59 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
   //Login
   if(isset($_POST['btnLogin'])){
     if(isset($_POST['email'],$_POST['password']) && !empty($_POST['email']) && !empty($_POST['password'])){
-      require_once('resources/classes/utilizadordao.class.php');
-      $DAO=new GereUtilizador();
 
-			if($DAO->password_correta($_POST['email'],$_POST['password'])){
-        if(isset($_POST['remember']) && !empty($_POST['remember'])){
-          setcookie('PHPSESSID', $_COOKIE['PHPSESSID'], time()+(60*60*24*7), "/");
-        }
-        echo '<script>document.location.href = "";</script>';
-      }else{
-        echo '<script>alert("O e-mail ou a palavra-passe inseridos não se encontram correctos.");</script>';
-      }
+			$email_array = explode("@", $_POST['email']);
+
+			if($email_array[1] == "estgoh.ipc.pt"){
+
+				//LDAP
+				$ldap_server = "192.168.135.1";
+				$ldap_user = 'uid='.$email_array[0].',ou=Users,dc=estgoh,dc=ipc.pt';
+				$ldap_password = $_POST['password'];
+
+				$ldap = ldap_connect($ldap_server) or die("Erro na conexão ao servidor da ESTGOH.");
+
+				ldap_set_option($ldap, LDAP_OPT_NETWORK_TIMEOUT, 2);
+				ldap_set_option($ldap, LDAP_OPT_PROTOCOL_VERSION, 3);
+				ldap_set_option($ldap, LDAP_OPT_REFERRALS, 0);
+
+				if($ldap){
+				  $ldap_bind = @ldap_bind($ldap, $ldap_user, $ldap_password);
+
+				  if($ldap_bind){
+						//Autenticado
+
+						/*
+						$_SESSION['U_ID'] = (int)$row['U_ID'];
+		        $_SESSION['U_TIPO'] = (int)$row['U_TIPO'];
+						*/
+
+						if(isset($_POST['remember']) && !empty($_POST['remember'])){
+		          setcookie('PHPSESSID', $_COOKIE['PHPSESSID'], time()+(60*60*24*7), "/");
+		        }
+		        echo '<script>document.location.href = "";</script>';
+
+				  }else{
+						//Não autenticado
+						echo '<script>alert("O e-mail ou a palavra-passe inseridos não se encontram correctos.");</script>';
+				  }
+				}
+
+			}else{
+
+	      require_once('resources/classes/utilizadordao.class.php');
+	      $DAO=new GereUtilizador();
+
+				if($DAO->password_correta($_POST['email'],$_POST['password'])){
+	        if(isset($_POST['remember']) && !empty($_POST['remember'])){
+	          setcookie('PHPSESSID', $_COOKIE['PHPSESSID'], time()+(60*60*24*7), "/");
+	        }
+	        echo '<script>document.location.href = "";</script>';
+	      }else{
+	        echo '<script>alert("O e-mail ou a palavra-passe inseridos não se encontram correctos.");</script>';
+	      }
+			}
+
     }else{
       echo '<script>alert("Por favor preencha todos os campos.");</script>';
     }
