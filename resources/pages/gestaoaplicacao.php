@@ -1,7 +1,6 @@
 <?php
 //TODO: adicionar opcoes quando uma nao aparece na bd
 
-
 //Proteção da página
 if(!isset($_SESSION['U_ID'],$_SESSION['U_TIPO']) || $_SESSION['U_TIPO']!=0){
   $url = $_SERVER['REQUEST_SCHEME'].'://'.$_SERVER['HTTP_HOST'].'/'.explode('/',$_SERVER['REQUEST_URI'])[1];
@@ -12,7 +11,7 @@ if(!isset($_SESSION['U_ID'],$_SESSION['U_TIPO']) || $_SESSION['U_TIPO']!=0){
 <!--Libraries-->
 <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
 <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
-<style> .toggle {border: 1px solid #aaa}</style>
+<style>.toggle {border: 1px solid #aaa}</style>
 
 <?php
 //Ligação à base de dados
@@ -22,44 +21,24 @@ $bd->ligar_bd();
 
 //Opções
 $opcoes = [
-  ['Estado da aplicação',true],
-  ['Filtragem para novos alunos (1ª matrícula)',false]
+  ['Estado da aplicação',1],
+  ['Filtragem para novos alunos (1ª matrícula)',0]
 ];
 $tam = count($opcoes);
 
-//Gerar query
-$sql = 'SELECT 1 FROM opcao WHERE C_NOME LIKE ';
-for($i=0; $i<$tam; $i++){
-  $sql .= '? OR ';
-}
-$sql = substr($sql, 0, -3);
-
-//Verificar se existem as opções
-$STH = $bd->dbh->prepare($sql);
-for($i=0; $i<$tam; $i++){
-  $STH->bindParam($i+1, $opcoes[$i][0]);
-}
-$STH->execute();
+//Ver se já existem as opções
+$STH = $bd->dbh->query('SELECT 1 FROM opcao WHERE C_NOME LIKE \''.implode("' OR '",array_column($opcoes,0)).'\'');
 if(!$STH->fetch(PDO::FETCH_ASSOC)){
-  //Reset da tabela
+
+  //Inserir as opções
   $bd->dbh->query('TRUNCATE TABLE opcao');
   $bd->dbh->query('ALTER TABLE opcao AUTO_INCREMENT = 0');
-
-  //Gerar query
   $sql = 'INSERT INTO opcao(C_NOME,C_ESTADO) VALUES ';
   for($i=0; $i<$tam; $i++){
-    $sql .= '(?,?),';
+    $sql .= '(\''.$opcoes[$i][0].'\','.$opcoes[$i][1].'),';
   }
   $sql = substr($sql, 0, -1);
-
-  //Adicionar opções à base de dados
-  $STH = $bd->dbh->prepare($sql);
-  for($i=0, $num=1; $i<$tam; $i++){
-    for ($j=0; $j<=1; $j++, $num++){
-      $STH->bindParam($num, $opcoes[$i][$j]);
-    }
-  }
-  $STH->execute();
+  $bd->dbh->query($sql);
 }
 ?>
 
@@ -112,7 +91,7 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
       }
     }
     $bd->desligar_bd();
-    echo "<script>alert('configurações guardadas com sucesso');</script>";
+    //echo "<script>alert('Configurações guardadas com sucesso');</script>";
     header("Location: ");
   }
 }
