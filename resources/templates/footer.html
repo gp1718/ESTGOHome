@@ -15,8 +15,20 @@
     </div>
     <div class="col-3">
       Linguagem do site:<br>
-      <img height="12" src="img/lang_pt.svg"> <a href="#">Português</a><br>
-      <img height="10" src="img/lang_en.svg"> <a href="#">English</a>
+      <form action="?action=mudarlingua" id="formLingua" method="post">
+        <input type="hidden" id="lang" name="lang">
+        <a href="" onclick="return mudaLingua('pt')"><img height="12" src="img/lang_pt.svg"> Português</a><br>
+        <a href="" onclick="return mudaLingua('en')"><img height="10" src="img/lang_en.svg"> English</a>
+      </form>
     </div>
   </div>
 </footer>
+
+<!--Javascript-->
+<script>
+function mudaLingua(lang){
+  document.getElementById('lang').value = lang;
+  document.getElementById('formLingua').submit();
+  return false;
+}
+</script>
