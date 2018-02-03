@@ -1,4 +1,4 @@
-<footer class="container-fluid text-center bg-dark align-middle">
+<footer id="footer" class="container-fluid text-center bg-dark align-middle">
   <div class="row h-100">
     <div class="col-3">
       <p>Visite-nos nas redes sociais:</p>
@@ -31,4 +31,11 @@ function mudaLingua(lang){
   document.getElementById('formLingua').submit();
   return false;
 }
+//Por o footer no fundo da pagina
+$(window).on('load resize',function() {
+  var body = $('body');
+  var footer = $('#footer');
+  body.css('margin-bottom', footer.height());
+  footer.css('bottom','0');
+});
 </script>

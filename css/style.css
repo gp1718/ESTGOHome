@@ -62,10 +62,10 @@ table img{
  *ESTILOS DO PEDRO
 */
 footer {
+  position: fixed;
 	color: white;
-	background-color: #343a40;
+	background-color: #343a40;
 	padding: 10px;
-	/*line-height: 80%;*/
 }
 footer a {
   color: #55acee !important;
