@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?php
 $id = $_GET['id'];
 
@@ -92,3 +93,10 @@ if($DAO->obter_detalhes_utilizador_id($id)){
     }
   }
  ?>
+=======
+<p>pagina recuperar pass</p>
+<?php
+  $id = $_GET['id'];
+  echo 'id a recuperar ='.$id;
+?>
+>>>>>>> 42df71d1cb11b86c894a438c4773844198bd8cf4

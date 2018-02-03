@@ -1,143 +1,138 @@
 /*Logotipo*/
-.col img{
+.col img {
   margin-left: auto;
   margin-right: auto;
-}
-
-.logo{
+}
+.logo {
   display: block;
-}
-
-.shadow{
+}
+.shadow {
   filter: drop-shadow(0 0 3px #000);
 }
 
 /*Jumbotron*/
-.jumbotron{
+.jumbotron {
   color: #fff;
   padding: 2rem 1rem !important;
-  background: linear-gradient(180deg, rgba(0,0,0,0.1), rgba(0,0,0,0.4), rgba(0,0,0,0.7)) , url('../img/background.jpg');
+  background: linear-gradient(180deg, rgba(0,0,0,0.1), rgba(0,0,0,0.4), rgba(0,0,0,0.7)), url('../img/background.jpg');
   background-size: cover;
   text-shadow: 0 0 5px #000;
   border-radius: 0px !important;
 }
 
 /*Breadcrumbs*/
-ol.breadcrumb{
+ol.breadcrumb {
   margin-bottom: 0px;
 }
 
 /*Alinhar ao meio*/
-.align-items-middle{
+.align-items-middle {
   align-items: center;
 }
-.container .col h3 {
+.container .col h3  {
   text-align: center;
 }
 
 /*Imagens anuncio*/
-table img{
+table img {
   width: 40px;
 }
 
 /*Anúncio Simples*/
-.relative{
+.relative {
   position: relative;
   padding-top: 40px;
 }
-.top-right{
+.top-right {
   position: absolute;
   top: 0;
   right: 0;
   z-index: 1;
 }
-.top-left{
+.top-left {
   position: absolute;
   top: 0;
   left: 0;
   z-index: 1;
 }
 
-/*
- *ESTILOS DO PEDRO
-*/
-footer {
+/*Footer*/
+footer {
   position: fixed;
-	color: white;
-	background-color: #343a40;
-	padding: 10px;
+  color: white;
+  background-color: #343a40;
+  padding: 10px;
 }
 footer a {
   color: #55acee !important;
 }
 @media screen and (min-width: 768px) {
-	#adv-search {
-		width: 500px;
-		margin: 0 auto;
-	}
-	.dropdown.dropdown-lg {
-		position: static !important;
-	}
-	.dropdown.dropdown-lg .dropdown-menu {
-		min-width: 350px;
-	}
+  #adv-search {
+    width: 500px;
+    margin: 0 auto;
+  }
+  .dropdown.dropdown-lg  {
+    position: static !important;
+    }
+  .dropdown.dropdown-lg .dropdown-menu  {
+    min-width: 350px;
+  }
 }
 
 /*Mensagens de erro*/
-.alert{
+.alert {
   margin-bottom: 0 !important;
 }
 
 /*Página de anúncios*/
-
 .favorito_sim {
-	color: rgb(255, 215, 0);
-	float: right;
-	background: none;
-	border: none;
+  color: rgb(255, 215, 0);
+  float: right;
+  background: none;
+  border: none;
 }
 
 .favorito_nao {
-	color: black;
-	float: right;
-	background: none;
-	border: none;
+  color: black;
+  float: right;
+  background: none;
+  border: none;
 }
 
 .imagem {
-	width: 328px;
-	max-height: 175px;
+  width: 328px;
+  max-height: 175px;
 }
 
 /*https://bootsnipp.com/snippets/featured/advanced-dropdown-search*/
 .dropdown.dropdown-lg .dropdown-menu {
-	margin-top: -1px;
-	padding: 6px 20px;
+  margin-top: -1px;
+  padding: 6px 20px;
 }
 
 @media screen and (min-width: 768px) {
-	#adv-search {
-		width: 500px;
-		margin: 0 auto;
-	}
-	.dropdown.dropdown-lg {
-		position: static !important;
-	}
-	.dropdown.dropdown-lg .dropdown-menu {
-		min-width: 350px;
-	}
+  #adv-search {
+    width: 500px;
+    margin: 0 auto;
+  }
+  .dropdown.dropdown-lg {
+    position: static !important;
+  }
+  .dropdown.dropdown-lg .dropdown-menu {
+    min-width: 350px;
+  }
 }
 
 .carousel-item {
-	height: 65vh;
-	min-height: 300px;
-	background: no-repeat center center scroll;
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-	background-size: cover;
+  height: 65vh;
+  min-height: 300px;
+  background: no-repeat center center scroll;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
 .portfolio-item {
-	margin-bottom: 30px;
+  margin-bottom: 30px;
 }

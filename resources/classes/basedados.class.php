@@ -3,7 +3,7 @@
 require_once('resources/configs/basedados.php');
 
 /**
-* Método responsável pela ligação à base de dados
+* Classe responsável pela ligação à base de dados
 */
 class BaseDados {
   public $dbh;
@@ -20,11 +20,9 @@ class BaseDados {
       PDO::ATTR_PERSISTENT => true, //Ver se já existe uma conexão
       PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION //Mostrar os erros
     );
-
     try{
       $this->dbh = new PDO("mysql:host=$DB_HOST;dbname=$DB_NAME;charset=utf8",$DB_USER,$DB_PASS,$options);
     }catch(PDOException $e){
-      //echo '<div class="alert alert-danger text-center"><strong>Erro! </strong>Não foi possivel estabelecer ligação à base de dados.</div>';
       die();
     }
   }

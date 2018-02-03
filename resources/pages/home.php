@@ -1,8 +1,8 @@
 <?php
 //Proteção da página
 if(isset($_SESSION['U_ID'],$_SESSION['U_TIPO'])){
-	$url = $_SERVER['REQUEST_SCHEME'].'://'.$_SERVER['HTTP_HOST'].'/'.explode('/',$_SERVER['REQUEST_URI'])[1];
-	header("Location: $url");
+  $url = $_SERVER['REQUEST_SCHEME'].'://'.$_SERVER['HTTP_HOST'].'/'.explode('/',$_SERVER['REQUEST_URI'])[1];
+  header("Location: $url");
   die();
 }
 ?>
@@ -194,59 +194,59 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
   if(isset($_POST['btnLogin'])){
     if(isset($_POST['email'],$_POST['password']) && !empty($_POST['email']) && !empty($_POST['password'])){
 
-			$email_array = explode("@", $_POST['email']);
+      $email_array = explode("@", $_POST['email']);
 
-			//Aluno
-			if($email_array[1] == "estgoh.ipc.pt"){
-				//LDAP
-				$ldap_server = "192.168.135.1";
-				$ldap_user = 'uid='.$email_array[0].',ou=Users,dc=estgoh,dc=ipc.pt';
-				$ldap_password = $_POST['password'];
+      //Aluno
+      if($email_array[1] == "estgoh.ipc.pt"){
+        //LDAP
+        $ldap_server = "192.168.135.1";
+        $ldap_user = 'uid='.$email_array[0].',ou=Users,dc=estgoh,dc=ipc.pt';
+        $ldap_password = $_POST['password'];
 
-				$ldap = ldap_connect($ldap_server) or die("Erro na conexão ao servidor da ESTGOH.");
+        $ldap = ldap_connect($ldap_server) or die("Erro na conexão ao servidor da ESTGOH.");
 
-				ldap_set_option($ldap, LDAP_OPT_NETWORK_TIMEOUT, 2);
-				ldap_set_option($ldap, LDAP_OPT_PROTOCOL_VERSION, 3);
-				ldap_set_option($ldap, LDAP_OPT_REFERRALS, 0);
+        ldap_set_option($ldap, LDAP_OPT_NETWORK_TIMEOUT, 2);
+        ldap_set_option($ldap, LDAP_OPT_PROTOCOL_VERSION, 3);
+        ldap_set_option($ldap, LDAP_OPT_REFERRALS, 0);
 
-				if($ldap){
-					//$ldap_bind = @ldap_bind($ldap, $ldap_user, $ldap_password);
-					$ldap_bind = true;
+        if($ldap){
+          //$ldap_bind = @ldap_bind($ldap, $ldap_user, $ldap_password);
+          $ldap_bind = true;
 
-				  if($ldap_bind){
-						//Autenticado
+          if($ldap_bind){
+            //Autenticado
 
-						$_SESSION['U_ID'] = $email_array[0];
-		        $_SESSION['U_TIPO'] = 3;
+            $_SESSION['U_ID'] = $email_array[0];
+            $_SESSION['U_TIPO'] = 3;
 
-						if(isset($_POST['remember']) && !empty($_POST['remember'])){
-		          setcookie('PHPSESSID', $_COOKIE['PHPSESSID'], time()+(60*60*24*7), "/");
-		        }
-						echo '<script>document.location.href = "";</script>';
+            if(isset($_POST['remember']) && !empty($_POST['remember'])){
+              setcookie('PHPSESSID', $_COOKIE['PHPSESSID'], time()+(60*60*24*7), "/");
+            }
+            echo '<script>document.location.href = "";</script>';
 
-				  }else{
-						//Não autenticado
-						echo '<script>alert("O e-mail ou a palavra-passe inseridos não se encontram correctos.");</script>';
-				  }
-				}
-			}else{
-				require_once('resources/classes/utilizadordao.class.php');
-		    $DAO=new GereUtilizador();
+          }else{
+            //Não autenticado
+            echo '<script>alert("O e-mail ou a palavra-passe inseridos não se encontram correctos.");</script>';
+          }
+        }
+      }else{
+        require_once('resources/classes/utilizadordao.class.php');
+        $DAO=new GereUtilizador();
 
-				if($DAO->password_correta($_POST['email'],$_POST['password'])){
-					if(isset($_POST['remember']) && !empty($_POST['remember'])){
-						setcookie('PHPSESSID', $_COOKIE['PHPSESSID'], time()+(60*60*24*7), "/");
-					}
-					echo '<script>document.location.href = "";</script>';
-				}else{
-					echo '<script>alert("O e-mail ou a palavra-passe inseridos não se encontram correctos.");</script>';
-				}
-			}
+        if($DAO->password_correta($_POST['email'],$_POST['password'])){
+          if(isset($_POST['remember']) && !empty($_POST['remember'])){
+            setcookie('PHPSESSID', $_COOKIE['PHPSESSID'], time()+(60*60*24*7), "/");
+          }
+          echo '<script>document.location.href = "";</script>';
+        }else{
+          echo '<script>alert("O e-mail ou a palavra-passe inseridos não se encontram correctos.");</script>';
+        }
+      }
 
-		}else{
-			echo '<script>alert("Por favor preencha todos os campos.");</script>';
-		}
-	}
+    }else{
+      echo '<script>alert("Por favor preencha todos os campos.");</script>';
+    }
+  }
 
   //Registo de senhorios
   if(isset($_POST['btnRegistar'])){
