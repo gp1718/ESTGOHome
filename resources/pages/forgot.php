@@ -16,24 +16,28 @@ if(isset($_POST['emailrecupera'])){
     require_once('resources/classes/utilizadordao.class.php');
     $DAO=new GereUtilizador();
 
-    if($DAO->obter_detalhes_utilizador_email($email)){
-      $utilizador = $DAO->obter_detalhes_utilizador_email($email);
-      $idutl = $utilizador->get_id();
-      $nomeutl = $utilizador->get_nome();
-    }
+		if(!$DAO->email_existe($email)){
+			  echo '<script>alert("O e-mail introduzido não se encontra registado no sistema.");</script>';
+		}else{
+			if($DAO->obter_detalhes_utilizador_email($email)){
+	      $utilizador = $DAO->obter_detalhes_utilizador_email($email);
+	      $idutl = $utilizador->get_id();
+	      $nomeutl = $utilizador->get_nome();
+	    }
 
-    $corpomensagem ='Olá '.$nomeutl.",<br>"
-    .'Aqui se encontra o link para recuperação de password:<br><br>localhost/estgohome/?id='.$idutl.'&action=recuperarPass <br><br>Cumprimentos,<br>ESTGOHome';
+	    $corpomensagem ='Olá '.$nomeutl.",<br>"
+	    .'Aqui se encontra o link para recuperação de password:<br><br>localhost/estgohome/?id='.$idutl.'&action=recuperarPass <br><br>Cumprimentos,<br>ESTGOHome';
 
-    //Remove all illegal characters from email
-    $email = filter_var($email, FILTER_SANITIZE_EMAIL);
+	    //Remove all illegal characters from email
+	    $email = filter_var($email, FILTER_SANITIZE_EMAIL);
 
-    if(filter_var($email, FILTER_VALIDATE_EMAIL)){
-      enviaMail($email,'Recuperação de Password',$corpomensagem);
-      header("Location: ?action=forgot_thanks");
-    }else{
-      echo 'email invalido';
-    }
+	    if(filter_var($email, FILTER_VALIDATE_EMAIL)){
+	      enviaMail($email,'Recuperação de Password',$corpomensagem);
+	      header("Location: ?action=forgot_thanks");
+	    }else{
+	      echo 'email invalido';
+	    }
+		}
   }else{
     echo 'Não introduziu os campos todos';
   }
