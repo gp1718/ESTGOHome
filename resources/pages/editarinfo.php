@@ -113,20 +113,24 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
       require_once('resources/classes/utilizadordao.class.php');
       $DAO = new GereUtilizador();
 
-			//Também pretende alterar a palavra-passe
-			if(isset($_POST['password'], $_POST['cpassword']) && !empty($_POST['password']) && !empty($_POST['cpassword'])){
-				if($_POST['password'] != $_POST['cpassword']){
-					echo '<script>alert("As passwords introduzidas não são iguais.");</script>';
-					return;
+			if($DAO->email_existe($_POST['email']) && $_POST['email'] != $utilizador->get_email()){
+        echo '<script>alert("O e-mail introduzido já se encontra registado no sistema.");</script>';
+      }else{
+				//Também pretende alterar a palavra-passe
+				if(isset($_POST['password'], $_POST['cpassword']) && !empty($_POST['password']) && !empty($_POST['cpassword'])){
+					if($_POST['password'] != $_POST['cpassword']){
+						echo '<script>alert("As passwords introduzidas não são iguais.");</script>';
+						return;
+					}else
+						$password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 				}else
-					$password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-			}else
-				$password = $utilizador->get_password();
+					$password = $utilizador->get_password();
 
-      if($DAO->editar_utilizador(new Utilizador($idutl, $_POST['nome'], $_POST['email'], $password, $_POST['contacto'],$tipoutl, true))){
-        echo '<script>alert("A ediçao foi feita com sucesso.");</script>';
-        header("Refresh:0");
-      }
+	      if($DAO->editar_utilizador(new Utilizador($idutl, $_POST['nome'], $_POST['email'], $password, $_POST['contacto'],$tipoutl, true))){
+	        echo '<script>alert("A ediçao foi feita com sucesso.");</script>';
+	        header("Refresh:0");
+	      }
+			}
     }else
       echo '<script>alert("Por favor preencha todos os campos.");</script>';
   }

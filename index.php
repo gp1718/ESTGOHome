@@ -41,10 +41,14 @@
 		require_once('resources/templates/menuinicial.html');
 	}
 
-	/*echo "<pre>";
-	//var_dump($_SESSION);
+	echo '<pre><b>$_SESSION</b><br>';
 	print_r($_SESSION);
-	echo "</pre>";*/
+	echo '<hr><b>$_COOKIE</b><br>';
+	print_r($_COOKIE);
+	echo "<hr></pre>";
+
+	//Lingua
+	require_once('resources/configs/lang.php');
 
 	//Main
 	if(!empty($_GET['action'])){
