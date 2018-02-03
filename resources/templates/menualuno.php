@@ -1,16 +1,16 @@
 <?php
 //Proteção da página
 if(!isset($_SESSION['U_ID'],$_SESSION['U_TIPO']) || $_SESSION['U_TIPO']!=3){
-	$url = $_SERVER['REQUEST_SCHEME'].'://'.$_SERVER['HTTP_HOST'].'/'.explode('/',$_SERVER['REQUEST_URI'])[1];
-	header("Location: $url");
+  $url = $_SERVER['REQUEST_SCHEME'].'://'.$_SERVER['HTTP_HOST'].'/'.explode('/',$_SERVER['REQUEST_URI'])[1];
+  header("Location: $url");
   die();
 }
 ?>
 <nav class="navbar navbar-dark bg-dark navbar-expand-sm">
   <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#myNavbar">&#x2630;</button>
   <a class="navbar-brand" href="index.php">
-  	<span>
-  		<img src="img/logo.svg" style="vertical-align:-4px" height="30">
+    <span>
+      <img src="img/logo.svg" style="vertical-align:-4px" height="30">
       <span style="color: white"> ESTGOHome</span>
     </span>
   </a>

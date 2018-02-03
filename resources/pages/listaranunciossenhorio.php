@@ -1,8 +1,8 @@
 <?php
 //Proteção da página
 if(!isset($_SESSION['U_ID'],$_SESSION['U_TIPO']) || ($_SESSION['U_TIPO']!=1 && $_SESSION['U_TIPO']!=2 )){
-	$url = $_SERVER['REQUEST_SCHEME'].'://'.$_SERVER['HTTP_HOST'].'/'.explode('/',$_SERVER['REQUEST_URI'])[1];
-	header("Location: $url");
+  $url = $_SERVER['REQUEST_SCHEME'].'://'.$_SERVER['HTTP_HOST'].'/'.explode('/',$_SERVER['REQUEST_URI'])[1];
+  header("Location: $url");
   die();
 }
 ?>
@@ -10,9 +10,9 @@ if(!isset($_SESSION['U_ID'],$_SESSION['U_TIPO']) || ($_SESSION['U_TIPO']!=1 && $
 <!--Breadcrumbs-->
 <nav aria-label="breadcrumb" role="navigation">
   <ol class="breadcrumb bg-white">
-		<li class="breadcrumb-item"><a href="#">Início</a></li>
-		<li class="breadcrumb-item">Os meus anúncios</li>
-		<li class="breadcrumb-item active">Listar anúncios</li>
+    <li class="breadcrumb-item"><a href="#">Início</a></li>
+    <li class="breadcrumb-item">Os meus anúncios</li>
+    <li class="breadcrumb-item active">Listar anúncios</li>
   </ol>
 </nav>
 

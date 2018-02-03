@@ -10,7 +10,7 @@ else{
 }
 
 //Carregar o ficheiro de linguagem
-if (file_exists(__DIR__."/lang_".$lingua.".php")){
+if(file_exists(__DIR__."/lang_".$lingua.".php")){
 	require_once (__DIR__."/lang_".$lingua.".php");
 }else{
 	include_once (__DIR__."/lang_pt.php"); //por defeito
