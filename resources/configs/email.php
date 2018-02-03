@@ -34,6 +34,7 @@ function enviaMail($destinatario, $assunto, $mensagem) {
     $mail->Password = 'projeto_1718';                     // SMTP password
     $mail->SMTPSecure = 'tls';                            // Ativar encriptação TLS , `ssl` também é aceitável
     $mail->Port = 587;                                    // Porta TCP de conexão
+    $mail->CharSet = 'UTF-8';
 
     //Remetente e destinatário
     $mail->setFrom('gestaoprojeto1718@gmail.com', 'ESTGOHome');
