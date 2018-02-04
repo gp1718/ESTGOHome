@@ -17,7 +17,7 @@ if(isset($_SESSION['U_ID'],$_SESSION['U_TIPO'])){
 
 <!--REGISTO-->
 <div class="container">
-  <h2> Registar Administrador</h2>
+  <h2>Registar Administrador</h2>
   <br>
   <div id="divAviso"></div>
   <form name="formRegisto" onsubmit="return validaRegisto()" method="POST" action="">
@@ -26,7 +26,7 @@ if(isset($_SESSION['U_ID'],$_SESSION['U_TIPO'])){
       <input type="text" class="form-control col-md-8" id="nome" name="nome" placeholder="Nome completo" required>
     </div>
     <div class="form-group">
-      <label >Contacto</label>
+      <label>Contacto</label>
       <input type="tel" class="form-control col-md-2" id="contacto" name="contacto" maxlength="9" required>
     </div>
     <div class="form-group">
@@ -34,15 +34,15 @@ if(isset($_SESSION['U_ID'],$_SESSION['U_TIPO'])){
       <input type="e-mail" class="form-control col-md-4" id="email" name="email" required>
     </div>
     <div class="form-group">
-      <label >Palavra-passe</label>
+      <label>Palavra-passe</label>
       <input type="password" class="form-control col-md-4" id="password" name="password" required>
       <small id="passwordHelp" class="form-text text-muted">A password deverá conter uma letra grande, um número e um símbolo</small>
     </div>
     <div class="form-group">
-      <label >Confirmar palavra-passe</label>
+      <label>Confirmar palavra-passe</label>
       <input type="password" class="form-control col-md-4" id="cpassword" name="cpassword" required>
     </div>
-    <input type="submit" name="btnRegistar" class="btn btn-primary" value="Registar" /><br><br>
+    <input type="submit" name="btnRegistar" class="btn btn-primary" value="Registar"><br><br>
   </form>
 </div>
 
@@ -106,7 +106,6 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
           //Criar opções da aplicação
           require_once('resources/pages/criaradministrador_opcoes.php');
           header('Location: index.php');
-
         }
       }
     }else

@@ -37,7 +37,7 @@ if($DAO->obter_detalhes_utilizador_id($_SESSION['U_ID'])){
       <input type="text" class="form-control col-md-8" id="nome" name="nome" placeholder="Nome completo" value ='<?php print($nomeutl) ?>' required>
     </div>
     <div class="form-group">
-      <label >Contacto</label>
+      <label>Contacto</label>
       <input type="tel" class="form-control col-md-2" id="contacto" name="contacto" maxlength="9"  value ='<?php print($contactoutl) ?>' required>
     </div>
     <div class="form-group">
@@ -45,12 +45,12 @@ if($DAO->obter_detalhes_utilizador_id($_SESSION['U_ID'])){
       <input type="e-mail" class="form-control col-md-4" id="email" name="email" value ='<?php print($emailutl) ?>' required>
     </div>
     <div class="form-group">
-      <label >Palavra-passe</label>
+      <label>Palavra-passe</label>
       <input type="password" class="form-control col-md-4" id="password" name="password">
-      <small id="passwordHelp" class="form-text text-muted">A password deverá conter uma letra grande, um número e um símbolo</small>
+      <small id="passwordHelp" class="form-text text-muted">A palavra-passe deverá conter uma letra maiúscula, um número e um caractere especial.</small>
     </div>
     <div class="form-group">
-      <label >Confirmar palavra-passe</label>
+      <label>Confirmar palavra-passe</label>
       <input type="password" class="form-control col-md-4" id="cpassword" name="cpassword">
     </div>
     <input type="submit" name="btnGuardar" class="btn btn-primary" value="Guardar" /><br><br>

@@ -18,3 +18,4 @@ $sql = substr($sql, 0, -1);
 $bd->dbh->query($sql);
 
 $bd->desligar_bd();
+?>

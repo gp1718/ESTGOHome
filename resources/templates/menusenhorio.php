@@ -11,7 +11,7 @@ if(!isset($_SESSION['U_ID'],$_SESSION['U_TIPO']) || $_SESSION['U_TIPO']!=2){
   <a class="navbar-brand" href="index.php">
     <span>
       <img src="img/logo.svg" style="vertical-align:-4px" height="30">
-      <span style="color: white"> ESTGOHome</span>
+      <span style="color: white">ESTGOHome</span>
     </span>
   </a>
   <div class="collapse navbar-collapse" id="myNavbar">
@@ -29,7 +29,7 @@ if(!isset($_SESSION['U_ID'],$_SESSION['U_TIPO']) || $_SESSION['U_TIPO']!=2){
     <ul class="nav navbar-nav ml-auto">
       <li class="nav-item"><a href="?action=editarinfo" class="nav-link"><i class="fa fa-user"></i> Conta</a>
       </li>
-      <li class="nav-item"><a href="?action=logout" class="nav-link"><i class="fa fa-sign-out"></i> Terminar sessão</a>
+      <li class="nav-item"><a href="?action=logout" class="nav-link"><i class="fa fa-sign-out"></i>Terminar sessão</a>
       </li>
     </ul>
   </div>
