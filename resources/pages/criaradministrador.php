@@ -1,18 +1,18 @@
 <?php
 //Proteção da página
 if(isset($_SESSION['U_ID'],$_SESSION['U_TIPO'])){
-	$url = $_SERVER['REQUEST_SCHEME'].'://'.$_SERVER['HTTP_HOST'].'/'.explode('/',$_SERVER['REQUEST_URI'])[1];
-	header("Location: $url");
+  $url = $_SERVER['REQUEST_SCHEME'].'://'.$_SERVER['HTTP_HOST'].'/'.explode('/',$_SERVER['REQUEST_URI'])[1];
+  header("Location: $url");
   die();
 }
 ?>
 
 <!--Breadcrumbs-->
 <nav aria-label="breadcrumb" role="navigation">
-	<ol class="breadcrumb bg-white">
-		<li class="breadcrumb-item">Início</li>
-		<li class="breadcrumb-item active">Registo do Administrador</li>
-	</ol>
+  <ol class="breadcrumb bg-white">
+    <li class="breadcrumb-item">Início</li>
+    <li class="breadcrumb-item active">Registo do Administrador</li>
+  </ol>
 </nav>
 
 <!--REGISTO-->
@@ -20,30 +20,30 @@ if(isset($_SESSION['U_ID'],$_SESSION['U_TIPO'])){
   <h2> Registar Administrador</h2>
   <br>
   <div id="divAviso"></div>
-	<form name="formRegisto" onsubmit="return validaRegisto()" method="POST" action="">
+  <form name="formRegisto" onsubmit="return validaRegisto()" method="POST" action="">
     <div class="form-group">
-			<label for="Nome">Nome</label>
-			<input type="text" class="form-control col-md-8" id="nome" name="nome" placeholder="Nome completo" required>
-		</div>
-		<div class="form-group">
-			<label >Contacto</label>
-			<input type="tel" class="form-control col-md-2" id="contacto" name="contacto" maxlength="9" required>
-		</div>
-		<div class="form-group">
-			<label for="E-mail">E-mail</label>
-			<input type="e-mail" class="form-control col-md-4" id="email" name="email" required>
-		</div>
-		<div class="form-group">
-			<label >Palavra-passe</label>
-			<input type="password" class="form-control col-md-4" id="password" name="password" required>
-			<small id="passwordHelp" class="form-text text-muted">A password deverá conter uma letra grande, um número e um símbolo</small>
-		</div>
-		<div class="form-group">
-			<label >Confirmar palavra-passe</label>
-			<input type="password" class="form-control col-md-4" id="cpassword" name="cpassword" required>
-		</div>
-	  <input type="submit" name="btnRegistar" class="btn btn-primary" value="Registar" /><br><br>
-	</form>
+      <label for="Nome">Nome</label>
+      <input type="text" class="form-control col-md-8" id="nome" name="nome" placeholder="Nome completo" required>
+    </div>
+    <div class="form-group">
+      <label >Contacto</label>
+      <input type="tel" class="form-control col-md-2" id="contacto" name="contacto" maxlength="9" required>
+    </div>
+    <div class="form-group">
+      <label for="E-mail">E-mail</label>
+      <input type="e-mail" class="form-control col-md-4" id="email" name="email" required>
+    </div>
+    <div class="form-group">
+      <label >Palavra-passe</label>
+      <input type="password" class="form-control col-md-4" id="password" name="password" required>
+      <small id="passwordHelp" class="form-text text-muted">A password deverá conter uma letra grande, um número e um símbolo</small>
+    </div>
+    <div class="form-group">
+      <label >Confirmar palavra-passe</label>
+      <input type="password" class="form-control col-md-4" id="cpassword" name="cpassword" required>
+    </div>
+    <input type="submit" name="btnRegistar" class="btn btn-primary" value="Registar" /><br><br>
+  </form>
 </div>
 
 <!--Validação javascript-->
@@ -76,7 +76,7 @@ function validaRegisto() {
     div.innerHTML += "<div class='alert alert-danger' role='alert'><strong>Erro!</strong> A palavra-passe deverá conter uma letra maiúscula, um número e um caractere especial.</div><br>";
     res = false;
   }
-	if (input[2] != input[3]) {
+  if (input[2] != input[3]) {
     div.innerHTML += "<div class='alert alert-danger' role='alert'><strong>Erro!</strong> As palavras-passe introduzidas não são iguais.</div><br>";
     res = false;
   }
@@ -103,9 +103,9 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
         if($DAO->inserir_utilizador(new Utilizador(0, $_POST['nome'], $_POST['email'], password_hash($_POST['password'], PASSWORD_DEFAULT), $_POST['contacto'], 0, true))){
           echo '<script>alert("O Administrador foi criado com sucesso.");</script>';
 
-					//Criar opções da aplicação
-					require_once('resources/pages/criaradministrador_opcoes.php');
-					header('Location: index.php');
+          //Criar opções da aplicação
+          require_once('resources/pages/criaradministrador_opcoes.php');
+          header('Location: index.php');
 
         }
       }

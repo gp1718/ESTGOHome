@@ -3,9 +3,7 @@
  * Classe responsável por guardar objectos do tipo anúncio
  */
 class Anuncio {
-
   private $id, $nome_responsavel, $contacto, $localizacao, $estado, $genero, $outras_informacoes;
-
   /**
    * Construtor da classe anúncio
    * @param mixed $id ID
@@ -17,14 +15,14 @@ class Anuncio {
    * @param mixed $outras_informacoes Outras informações
    */
   public function __construct($id, $nome_responsavel, $contacto, $localizacao, $estado, $genero, $outras_informacoes) {
-		$this->id = $id;
-		$this->nome_responsavel = $nome_responsavel;
-		$this->contacto = $contacto;
-		$this->localizacao = $localizacao;
+    $this->id = $id;
+    $this->nome_responsavel = $nome_responsavel;
+    $this->contacto = $contacto;
+    $this->localizacao = $localizacao;
     $this->estado = $estado;
-		$this->genero = $genero;
-		$this->outras_informacoes = $outras_informacoes;
-	}
+    $this->genero = $genero;
+    $this->outras_informacoes = $outras_informacoes;
+  }
   /**
    * Método que retorna o ID
    * @return mixed ID

@@ -32,10 +32,12 @@ function mudaLingua(lang){
   return false;
 }
 //Por o footer no fundo da pagina
+var footer = $('#footer');
 $(window).on('load resize',function() {
-  var body = $('body');
-  var footer = $('#footer');
-  body.css('margin-bottom', footer.height());
-  footer.css('bottom','0');
+  if($(window).height() > $('body').height()+footer.height()) {
+    footer.css('position','fixed').css('bottom','0');
+  }else{
+    footer.css('position','').css('bottom','');
+  }
 });
 </script>
