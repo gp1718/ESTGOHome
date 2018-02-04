@@ -44,7 +44,7 @@ if(!isset($_SESSION['U_ID'],$_SESSION['U_TIPO']) || $_SESSION['U_TIPO']!=1){
           Senhorios
         </a>
         <div class="dropdown-menu">
-          <a class="dropdown-item" href="#">Listar todos os senhorios</a>
+          <a class="dropdown-item" href="?action=listarsenhorios">Listar todos os senhorios</a>
         </div>
       </li>
     </ul>

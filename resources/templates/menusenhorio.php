@@ -22,7 +22,7 @@ if(!isset($_SESSION['U_ID'],$_SESSION['U_TIPO']) || $_SESSION['U_TIPO']!=2){
         </a>
         <div class="dropdown-menu">
           <a class="dropdown-item" href="#">Novo anúncio</a>
-          <a class="active dropdown-item" href="#">Listar anúncios</a>
+          <a class="active dropdown-item" href="?action=listarsenhorios">Listar anúncios</a>
         </div>
       </li>
     </ul>
