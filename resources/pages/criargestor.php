@@ -98,13 +98,17 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
       require_once('resources/classes/utilizadordao.class.php');
       $DAO = new GereUtilizador();
 
-      if($_POST['password'] != $_POST['cpassword']){
-        echo '<script>alert("As passwords introduzidas não são iguais.");</script>';
-      }else{
-        if($DAO->inserir_utilizador(new Utilizador(0, $_POST['nome'], $_POST['email'], password_hash($_POST['password'], PASSWORD_DEFAULT), $_POST['contacto'], 1, true))){
-          echo '<script>alert("O Gestor foi criado com sucesso.");</script>';
-          //header('Location: index.php');
+      if(!$DAO->email_existe($_POST['email'])){
+        if($_POST['password'] != $_POST['cpassword']){
+          echo '<script>alert("As passwords introduzidas não são iguais.");</script>';
+        }else{
+          if($DAO->inserir_utilizador(new Utilizador(0, $_POST['nome'], $_POST['email'], password_hash($_POST['password'], PASSWORD_DEFAULT), $_POST['contacto'], 1, true))){
+            echo '<script>alert("O Gestor foi criado com sucesso.");</script>';
+            //header('Location: index.php');
+          }
         }
+      }else{
+        echo '<script>alert("O e-mail inserido já está a ser utilizado.");</script>';
       }
     }else
     echo '<script>alert("Por favor preencha todos os campos.");</script>';
