@@ -26,7 +26,7 @@ if(isset($_POST['emailrecupera'])){
 	    }
 
 	    $corpomensagem ='Olá '.$nomeutl.",<br>"
-	    .'Aqui se encontra o link para recuperação de password:<br><br>localhost/estgohome/?id='.$idutl.'&action=recuperarPass <br><br>Cumprimentos,<br>ESTGOHome';
+	    .'Aqui se encontra o link para recuperação de password:<br><br><a href="http://localhost/estgohome/?id='.$idutl.'&action=recuperarPass">Recuperar palavra-passe</a> <br><br>Cumprimentos,<br>ESTGOHome';
 
 	    //Remove all illegal characters from email
 	    $email = filter_var($email, FILTER_SANITIZE_EMAIL);
