@@ -33,11 +33,11 @@ function mudaLingua(lang){
 }
 //Por o footer no fundo da pagina
 var footer = $('#footer');
-$(window).on('load resize',function() {
+$(window).on('resize',function() {
   if($(window).height() > $('body').height()+footer.height()) {
     footer.css('position','fixed').css('bottom','0');
   }else{
     footer.css('position','').css('bottom','');
   }
-});
+}).resize();
 </script>
