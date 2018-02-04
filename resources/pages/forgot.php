@@ -6,6 +6,28 @@ if(isset($_SESSION['U_ID'],$_SESSION['U_TIPO'])){
   die();
 }
 
+/**
+* Função que gera uma palavra-passe aleatória
+* @return String palavra-passe gerada aleatoriamente
+*/
+function gera_password(){
+  $maiusculas = range('A', 'Z');
+  $minusculas = range('a', 'z');
+  $numeros = range(1, 9);
+  $especiais = str_split("!#$%&()*+,-.:;<=>?@_{|}~");
+
+  $caracteres = array_merge($maiusculas, $minusculas, $numeros, $especiais);
+
+  $password = "";
+  $caracteres_len = count($caracteres);
+
+  for($i = 0; $i < 8; $i++){
+    $password .= $caracteres[mt_rand(0, $caracteres_len)];
+  }
+
+  return $password;
+}
+
 //Envio de email
 require_once('resources/configs/email.php');
 
