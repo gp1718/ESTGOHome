@@ -75,24 +75,24 @@ if(isset($_SESSION['U_ID'],$_SESSION['U_TIPO'])){
         <div id="divAviso2"></div>
         <form name="formRegisto" onsubmit="return validaRegisto()" method="POST" action="">
           <div class="form-group">
-            <label for="Nome">Nome:</label>
+            <label>Nome:</label>
             <input type="text" class="form-control" id="nome" name="nome" placeholder="Nome completo" maxlength="147" required>
           </div>
           <div class="form-group">
-            <label >Contacto:</label>
+            <label>Contacto:</label>
             <input type="tel" class="form-control" id="contacto" name="contacto" maxlength="9" required>
           </div>
           <div class="form-group">
-            <label for="E-mail"><i>E-mail</i>:</label>
+            <label><i>E-mail</i>:</label>
             <input type="email" class="form-control" id="email" name="email" maxlength="254" required>
           </div>
           <div class="form-group">
-            <label >Palavra-passe:</label>
+            <label>Palavra-passe:</label>
             <input type="password" class="form-control" id="password" name="password" required>
-            <small id="passwordHelp" class="form-text text-muted">A palavra-passe deverá conter uma letra maiúscula, um número e um caractere especial</small>
+            <small id="passwordHelp" class="form-text text-muted">A palavra-passe deverá conter uma letra maiúscula, um número e um caractere especial.</small>
           </div>
           <div class="form-group">
-            <label >Confirmar palavra-passe:</label>
+            <label>Confirmar palavra-passe:</label>
             <input type="password" class="form-control" id="cpassword" name="cpassword" required>
           </div>
           <button type="submit" name="btnRegistar" class="btn btn-success btn-block">Registar</button>

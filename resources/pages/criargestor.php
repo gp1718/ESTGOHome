@@ -37,7 +37,7 @@ if(!isset($_SESSION['U_ID'],$_SESSION['U_TIPO']) || $_SESSION['U_TIPO']!=0){
     <div class="form-group">
       <label>Palavra-passe</label>
       <input type="password" class="form-control col-md-4" id="password" name="password" required>
-      <small id="passwordHelp" class="form-text text-muted">A password deverá conter uma letra grande, um número e um símbolo</small>
+      <small id="passwordHelp" class="form-text text-muted">A palavra-passe deverá conter uma letra maiúscula, um número e um caractere especial.</small>
     </div>
     <div class="form-group">
       <label>Confirmar palavra-passe</label>
