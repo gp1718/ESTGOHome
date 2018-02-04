@@ -7,7 +7,7 @@ require_once(__DIR__.'/utilizador.class.php');
  * Classe responsável por manipular objetos do tipo utilizador
  */
 class GereUtilizador {
-  private $utilizadores = array ();
+  private $utilizadores = [];
 
   /**
   * Função que permite inserir um utilizador no sistema
@@ -15,19 +15,17 @@ class GereUtilizador {
   * @return mixed TRUE se a inserção ocorreu com sucesso, FALSE se ocorreu um erro
   */
   public function inserir_utilizador(Utilizador $utilizador) {
-    error_reporting(0);
 		$bd = new BaseDados();
     $bd->ligar_bd();
-		$STH = $bd->dbh->prepare("INSERT INTO utilizador (U_NOME, U_EMAIL, U_PASSWORD, U_CONTACTO, U_TIPO, U_ESTADO) values (?, ?, ?, ?, ?, ?)");
-		$STH->bindParam(1, $utilizador->get_nome());
-		$STH->bindParam(2, $utilizador->get_email());
-		$STH->bindParam(3, $utilizador->get_password());
-		$STH->bindParam(4, $utilizador->get_contacto());
-		$STH->bindParam(5, $utilizador->get_tipo());
-		$STH->bindParam(6, $utilizador->get_estado());
+		$STH = $bd->dbh->prepare("INSERT INTO utilizador(U_NOME, U_EMAIL, U_PASSWORD, U_CONTACTO, U_TIPO, U_ESTADO) values(?, ?, ?, ?, ?, ?)");
+		$STH->bindValue(1, $utilizador->get_nome());
+		$STH->bindValue(2, $utilizador->get_email());
+		$STH->bindValue(3, $utilizador->get_password());
+		$STH->bindValue(4, $utilizador->get_contacto());
+		$STH->bindValue(5, $utilizador->get_tipo());
+		$STH->bindValue(6, $utilizador->get_estado());
 		$res = $STH->execute();
 		$bd->desligar_bd();
-    error_reporting(E_ALL);
 		return $res;
 	}
 
@@ -37,18 +35,16 @@ class GereUtilizador {
   * @return mixed TRUE se a atualização ocorreu com sucesso, FALSE se ocorreu um erro
   */
   public function editar_utilizador(Utilizador $utilizador) {
-    error_reporting(0);
 		$bd = new BaseDados();
     $bd->ligar_bd();
 		$STH = $bd->dbh->prepare("UPDATE utilizador SET U_NOME = ?, U_EMAIL = ?, U_PASSWORD = ?, U_CONTACTO = ? WHERE U_ID = ?");
-		$STH->bindParam(1, $utilizador->get_nome());
-		$STH->bindParam(2, $utilizador->get_email());
-		$STH->bindParam(3, $utilizador->get_password());
-		$STH->bindParam(4, $utilizador->get_contacto());
-    $STH->bindParam(5, $utilizador->get_id());
+		$STH->bindValue(1, $utilizador->get_nome());
+		$STH->bindValue(2, $utilizador->get_email());
+		$STH->bindValue(3, $utilizador->get_password());
+		$STH->bindValue(4, $utilizador->get_contacto());
+    $STH->bindValue(5, $utilizador->get_id());
 		$res = $STH->execute();
 		$bd->desligar_bd();
-    error_reporting(E_ALL);
 		return $res;
 	}
 
@@ -64,10 +60,7 @@ class GereUtilizador {
     $STH->bindParam(1, $email);
     $STH->execute();
     $bd->desligar_bd();
-    if($STH->fetch(PDO::FETCH_ASSOC)){
-      return true;
-    }
-    return false;
+    return $STH->fetch(PDO::FETCH_ASSOC);
 	}
 
   /**
@@ -79,15 +72,15 @@ class GereUtilizador {
   public function password_correta($email, $password) {
     $bd = new BaseDados();
     $bd->ligar_bd();
-    $STH = $bd->dbh->prepare("SELECT U_ID, U_PASSWORD, U_TIPO FROM utilizador WHERE U_EMAIL=? AND U_ESTADO = 1");
+    $STH = $bd->dbh->prepare("SELECT U_ID, U_PASSWORD, U_TIPO FROM utilizador WHERE U_EMAIL = ?");
     $STH->bindParam(1, $email);
     $STH->execute();
     $bd->desligar_bd();
     $row = $STH->fetch(PDO::FETCH_ASSOC);
     if($STH->rowCount()>0){
       if(password_verify($password, $row['U_PASSWORD'])){
-        $_SESSION['U_ID'] = (int)$row['U_ID'];
-        $_SESSION['U_TIPO'] = (int)$row['U_TIPO'];
+        $_SESSION['U_ID'] =(int)$row['U_ID'];
+        $_SESSION['U_TIPO'] =(int)$row['U_TIPO'];
         return true;
       }
     }
@@ -100,14 +93,14 @@ class GereUtilizador {
   * @return Utilizador Utilizador com os dados obtidos na pesquisa
   */
   public function obter_detalhes_utilizador_email($email) {
-    $bd = new BaseDados ();
+    $bd = new BaseDados();
     $bd->ligar_bd();
-    $STH = $bd->dbh->query ( "SELECT * FROM utilizador WHERE U_EMAIL = '$email'" );
-    $STH->setFetchMode ( PDO::FETCH_NUM );
-    $row = $STH->fetch ();
-    $utilizador = new Utilizador ( $row [0], $row [1], $row [2], $row [3], $row [4], $row [5], $row[6] );
-    $bd->desligar_bd ();
-    return $utilizador;
+    $STH = $bd->dbh->prepare("SELECT * FROM utilizador WHERE U_EMAIL = ?");
+    $STH->bindParam(1,$email);
+    $STH->execute();
+    $bd->desligar_bd();
+    $row = $STH->fetch(PDO::FETCH_NUM);
+    return new Utilizador($row[0], $row[1], $row[2], $row[3], $row[4], $row[5], $row[6]);
   }
 
   /**
@@ -116,14 +109,14 @@ class GereUtilizador {
   * @return Utilizador Utilizador com os dados obtidos na pesquisa
   */
   public function obter_detalhes_utilizador_id($id) {
-    $bd = new BaseDados ();
+    $bd = new BaseDados();
     $bd->ligar_bd();
-    $STH = $bd->dbh->query ( "SELECT * FROM utilizador WHERE U_ID = $id" );
-    $STH->setFetchMode ( PDO::FETCH_NUM );
-    $row = $STH->fetch ();
-    $utilizador = new Utilizador ( $row [0], $row [1], $row [2], $row [3], $row [4], $row [5], $row[6] );
-    $bd->desligar_bd ();
-    return $utilizador;
+    $STH = $bd->dbh->prepare("SELECT * FROM utilizador WHERE U_ID = ?");
+    $STH->bindParam(1,$id);
+    $STH->execute();
+    $bd->desligar_bd();
+    $row = $STH->fetch(PDO::FETCH_NUM);
+    return new Utilizador($row[0], $row[1], $row[2], $row[3], $row[4], $row[5], $row[6]);
   }
 
   /**
@@ -131,16 +124,16 @@ class GereUtilizador {
   * @return array de objetos Utilizador com os dados de cada gestor
   */
   public function obter_todos_gestores() {
-		$bd = new BaseDados ();
+		$bd = new BaseDados();
     $bd->ligar_bd();
-		$STH = $bd->dbh->query ( "SELECT * FROM utilizador WHERE U_TIPO = 1" );
-		if ($STH->rowCount () == 0)
-			return null;
-		$STH->setFetchMode ( PDO::FETCH_NUM );
-		while ( $row = $STH->fetch () ) {
-			$this->utilizadores [] = new Utilizador ($row[0], $row[1], $row[2], $row[3], $row[4], $row[5], $row[6]);
+		$STH = $bd->dbh->query("SELECT * FROM utilizador WHERE U_TIPO = 1");
+		if($STH->rowCount() === 0){
+      return null;
+    }
+		while($row = $STH->fetch(PDO::FETCH_NUM)){
+			$this->utilizadores[] = new Utilizador($row[0], $row[1], $row[2], $row[3], $row[4], $row[5], $row[6]);
 		}
-		$bd->desligar_bd ();
+		$bd->desligar_bd();
 		return $this->utilizadores;
 	}
 
@@ -149,16 +142,16 @@ class GereUtilizador {
   * @return array de objetos Utilizador com os dados de cada senhorio
   */
   public function obter_todos_senhorios() {
-		$bd = new BaseDados ();
+		$bd = new BaseDados();
     $bd->ligar_bd();
-		$STH = $bd->dbh->query ( "SELECT * FROM utilizador WHERE U_TIPO = 2" );
-		if ($STH->rowCount () == 0)
-			return null;
-		$STH->setFetchMode ( PDO::FETCH_NUM );
-		while ( $row = $STH->fetch () ) {
-			$this->utilizadores [] = new Utilizador ($row[0], $row[1], $row[2], $row[3], $row[4], $row[5], $row[6]);
+		$STH = $bd->dbh->query("SELECT * FROM utilizador WHERE U_TIPO = 2");
+		if($STH->rowCount() === 0){
+      return null;
+    }
+		while($row = $STH->fetch(PDO::FETCH_NUM)){
+			$this->utilizadores[] = new Utilizador($row[0], $row[1], $row[2], $row[3], $row[4], $row[5], $row[6]);
 		}
-		$bd->desligar_bd ();
+		$bd->desligar_bd();
 		return $this->utilizadores;
 	}
 
@@ -170,25 +163,24 @@ class GereUtilizador {
   public function conta_ativa($email) {
 		$bd = new BaseDados();
     $bd->ligar_bd();
-		$STH = $bd->dbh->query ( "SELECT U_ESTADO FROM utilizador WHERE U_EMAIL = '$email'" );
-		$STH->setFetchMode(PDO::FETCH_NUM );
-		$row = $STH->fetch();
-		if ($row [0] == 1)
-			return true;
-		return false;
+		$STH = $bd->dbh->query("SELECT 1 FROM utilizador WHERE U_EMAIL = '$email' AND U_ESTADO=1");
+		$bd->desligar_bd();
+		return $STH->fetch(PDO::FETCH_NUM);
 	}
 
   /**
   * Função que permite alterar o estado de uma conta de utilizador
   * @param mixed $id ID do utilizador a alterar o estado.
+  * @return mixed TRUE se alterou com sucesso, FALSE se não conseguiu alterar
   */
   public function alterar_estado_utilizador($id) {
-		$bd = new BaseDados ();
+		$bd = new BaseDados();
     $bd->ligar_bd();
-		$STH = $bd->dbh->prepare("UPDATE utilizador SET U_ESTADO = NOT U_ESTADO WHERE U_ID = ? ");
+		$STH = $bd->dbh->prepare("UPDATE utilizador SET U_ESTADO = NOT U_ESTADO WHERE U_ID = ?");
     $STH->bindParam(1,$id);
-		$STH->execute();
+		$res = $STH->execute();
 		$bd->desligar_bd();
+    return $res;
 	}
 
   /**
@@ -198,16 +190,12 @@ class GereUtilizador {
   * @return mixed TRUE se a inserção ocorreu com sucesso, FALSE se ocorreu um erro
   */
   public function inserir_log(Log $log, Utilizador $utilizador) {
-    $id_utilizador = $utilizador->get_id();
-    $acao = $log->get_acao();
-		$data_hora = $log->get_data_hora();
-
 		$bd = new BaseDados();
     $bd->ligar_bd();
-		$STH = $bd->dbh->prepare("INSERT INTO log (U_ID, L_ACAO, L_DATA) values (?, ?, ?)");
-		$STH->bindParam(1, $id_utilizador);
-		$STH->bindParam(2, $acao);
-		$STH->bindParam(3, $data_hora);
+		$STH = $bd->dbh->prepare("INSERT INTO log(U_ID, L_ACAO, L_DATA) values(?, ?, ?)");
+		$STH->bindValue(1, $id_utilizador);
+		$STH->bindValue(2, $acao);
+		$STH->bindValue(3, $data_hora);
 		$res = $STH->execute();
 		$bd->desligar_bd();
 		return $res;

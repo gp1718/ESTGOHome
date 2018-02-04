@@ -215,12 +215,16 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
       }else{
         require_once('resources/classes/utilizadordao.class.php');
         $DAO=new GereUtilizador();
-
         if($DAO->password_correta($_POST['email'],$_POST['password'])){
-          if(isset($_POST['remember']) && !empty($_POST['remember'])){
-            setcookie('PHPSESSID', $_COOKIE['PHPSESSID'], time()+(60*60*24*7), "/");
+          if($DAO->conta_ativa($_POST['email'])){
+            if(isset($_POST['remember']) && !empty($_POST['remember'])){
+              setcookie('PHPSESSID', $_COOKIE['PHPSESSID'], time()+(60*60*24*7), "/");
+            }
+            echo '<script>document.location.href = "";</script>';
+          }else{
+            unset($_SESSION['U_ID'],$_SESSION['U_TIPO']);
+            echo '<script>alert("A sua conta foi desativada. Poderá contactar-nos via e-mail para esclarecimentos.");</script>';
           }
-          echo '<script>document.location.href = "";</script>';
         }else{
           echo '<script>alert("O e-mail ou a palavra-passe inseridos não se encontram correctos.");</script>';
         }
