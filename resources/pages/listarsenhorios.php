@@ -80,5 +80,12 @@ if(!isset($_SESSION['active'],$_SESSION['U_TIPO']) || $_SESSION['U_TIPO']!=1){
     </div>
   </div>
   <?php } ?>
-<br><br><br>
+	<br><br><br>
 </div>
+
+<?php
+  if (isset($_POST['bt_alteraestado'])){
+    $DAO->alterar_estado_utilizador($_POST['id_utilizador']);
+    header("Refresh:0");
+  }
+?>
