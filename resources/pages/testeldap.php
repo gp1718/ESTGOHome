@@ -1,5 +1,4 @@
 <?php
-
 //Ficheiro criado apenas para testar a configuração do LDAP (rede interna da ESTGOH)
 
 $utilizador = 'lei1630xx';

@@ -20,6 +20,18 @@
 
 </head>
 <body>
+  <?php
+  //Ver se a aplicação está desativada
+  require_once('resources/classes/basedados.class.php');
+  require_once('resources/configs/opcoes.php');
+  $bd = new BaseDados();
+  $bd->ligar_bd();
+  $STH = $bd->dbh->query('SELECT 1 FROM opcao WHERE C_NOME=\''.$opcoes[0][0].'\' AND C_ESTADO=1');
+  $bd->desligar_bd();
+  if($STH->fetch(PDO::FETCH_ASSOC)){
+    $_SESSION['active']=true;
+  }
+  ?>
 
   <!--Javascript check-->
   <noscript>
@@ -44,7 +56,7 @@
 
   <?php
   //Header
-  if(isset($_SESSION) && !empty($_SESSION)){
+  if(isset($_SESSION['U_TIPO'])){
     switch($_SESSION['U_TIPO']){
       case "0": require_once('resources/templates/menuadministrador.php'); break;
       case "1": require_once('resources/templates/menugestor.php'); break;
@@ -60,7 +72,9 @@
   require_once('resources/configs/lang.php');
 
   //Main
-  if(!empty($_GET['action'])){
+  if(!isset($_SESSION['active']) && !isset($_SESSION['U_TIPO'])){
+    require_once('resources/pages/aplicacaodesativada.php');
+  }elseif(!empty($_GET['action'])){
     $action = basename($_GET['action']);
     if(!file_exists("resources/pages/$action.php")) $action="../../index";
     require_once("resources/pages/$action.php");
