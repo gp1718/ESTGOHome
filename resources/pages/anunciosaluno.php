@@ -195,7 +195,6 @@ if(!isset($_SESSION['U_ID'],$_SESSION['U_TIPO']) || $_SESSION['U_TIPO']!=3){
                 </div>
               </div>
             </div>
-
             <div class="carousel-item" style="background-image: url('img/kitchen.jpeg')">
               <div class="carousel-caption d-none d-md-block">
                 <div style ="color: white">
@@ -227,7 +226,6 @@ if(!isset($_SESSION['U_ID'],$_SESSION['U_TIPO']) || $_SESSION['U_TIPO']!=3){
     </div>
     <!-- fim do quarto 2-->
 
-
     <!-- inicio do quarto 3-->
     <div class="col-lg-4 col-sm-6 portfolio-item">
       <div class="card h-100">
@@ -252,7 +250,6 @@ if(!isset($_SESSION['U_ID'],$_SESSION['U_TIPO']) || $_SESSION['U_TIPO']!=3){
                 </div>
               </div>
             </div>
-
             <div class="carousel-item" style="background-image: url('img/kitchen.jpeg')">
               <div class="carousel-caption d-none d-md-block">
                 <div style ="color: white">
@@ -308,7 +305,6 @@ if(!isset($_SESSION['U_ID'],$_SESSION['U_TIPO']) || $_SESSION['U_TIPO']!=3){
                 </div>
               </div>
             </div>
-
             <div class="carousel-item" style="background-image: url('img/kitchen.jpeg')">
               <div class="carousel-caption d-none d-md-block">
                 <div style ="color: white">
@@ -336,7 +332,6 @@ if(!isset($_SESSION['U_ID'],$_SESSION['U_TIPO']) || $_SESSION['U_TIPO']!=3){
           <h5>913 456 789</h5>
           <h5>Distância à ESTGOH: 1,1 km</h5>
         </div>
-
       </div>
     </div>
     <!-- fim do quarto 4-->
@@ -365,7 +360,6 @@ if(!isset($_SESSION['U_ID'],$_SESSION['U_TIPO']) || $_SESSION['U_TIPO']!=3){
                 </div>
               </div>
             </div>
-
             <div class="carousel-item" style="background-image: url('img/kitchen.jpeg')">
               <div class="carousel-caption d-none d-md-block">
                 <div style ="color: white">
@@ -421,7 +415,6 @@ if(!isset($_SESSION['U_ID'],$_SESSION['U_TIPO']) || $_SESSION['U_TIPO']!=3){
                 </div>
               </div>
             </div>
-
             <div class="carousel-item" style="background-image: url('img/kitchen.jpeg')">
               <div class="carousel-caption d-none d-md-block">
                 <div style ="color: white">
@@ -449,7 +442,6 @@ if(!isset($_SESSION['U_ID'],$_SESSION['U_TIPO']) || $_SESSION['U_TIPO']!=3){
           <h5>913 456 789</h5>
           <h5>Distância à ESTGOH: 2,0 km</h5>
         </div>
-
       </div>
     </div>
     <!-- fim do quarto 6-->

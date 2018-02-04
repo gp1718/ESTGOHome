@@ -5,12 +5,47 @@ if(isset($_SESSION['U_ID'],$_SESSION['U_TIPO'])){
   header("Location: $url");
   die();
 }
+?>
 
+<div style="text-align: center;">
+
+  <h2>Recuperar Palavra-Passe</h2><br>
+  <!--<h6>Introduza em baixo o email associado à sua conta, e clique em "Recuperar". <br>Receberá posteriormente um email onde poderá facilmente criar uma nova palavra passe.</h6>-->
+  <h6>Introduza o e-mail associado à sua conta e clique em "Recuperar".<br>Receberá posteriormente um e-mail com uma nova palavra-passe gerada pelo nosso sistema.</h6>
+  <div id="divAviso"></div>
+  <form name="formEmail" onsubmit="return validaEmail()" method="POST" action="" >
+    <input type="email" class="form-control col-lg-3" style="margin: auto" id="emailrecupera" name="emailrecupera" placeholder="Insira o seu e-mail" maxlength="254" required>
+    <br>
+    <input class="btn btn-success"  id="recupera" name="recupera" type="submit" value="Recuperar">
+  </form>
+</div>
+
+<script>
+function validaEmail() {
+  var res = true;
+  var div = document.getElementById('divAviso');
+  var input = [document.forms['formEmail']['emailrecupera'].value];
+
+  //Expressões regulares para validar e-mail
+  var regexEmail = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+
+  //Limpar div que mostra os avisos
+  div.innerHTML = "";
+
+  if(!regexEmail.test(String(input[0]).toLowerCase())){
+    div.innerHTML += "<div class='alert alert-danger' role='alert'><strong>Erro!</strong> Por favor insira um <i>e-mail</i> válido.</div><br>";
+    res = false;
+  }
+  return res;
+}
+</script>
+
+<?php
 /**
 * Função que gera uma palavra-passe aleatória
 * @return String palavra-passe gerada aleatoriamente
 */
-function gera_password(){
+function gera_password() {
   $maiusculas = range('A', 'Z');
   $minusculas = range('a', 'z');
   $numeros = range(1, 9);
@@ -64,41 +99,4 @@ if(isset($_POST['emailrecupera'])){
     echo 'Não introduziu os campos todos';
   }
 }
-?>
-
-<div style="text-align: center;">
-
-  <h2>Recuperar Palavra-Passe</h2><br>
-  <h6>Introduza em baixo o email associado à sua conta, e clique em "Recuperar". <br>Receberá posteriormente um email onde poderá facilmente criar uma nova palavra passe.</h6>
-  <!--<form method="post" action="?action=forgot_thanks">-->
-  <div id="divAviso"></div>
-  <form name="formEmail" onsubmit="return validaEmail()" method="POST" action="" >
-    <input type="email" id="emailrecupera" name="emailrecupera" placeholder="Insira o seu e-mail" autofocus="" required size="32" minlength="8" maxlength="254">
-    <br><br>
-    <!--<a class="btn btn-success" href='?action=forgot_thanks' role="button" id="recupera" name="recupera"  >Recuperar</a>-->
-    <input class="btn btn-success"  id="recupera" name="recupera" type="submit" value="Recuperar">
-  </form>
-
-  <br>
-  <br>
-</div>
-
-<script>
-function validaEmail() {
-  var res = true;
-  var div = document.getElementById('divAviso');
-  var input = [document.forms['formEmail']['emailrecupera'].value];
-
-  //Expressões regulares para validar e-mail
-  var regexEmail = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-
-  //Limpar div que mostra os avisos
-  div.innerHTML = "";
-
-  if(!regexEmail.test(String(input[0]).toLowerCase())){
-    div.innerHTML += "<div class='alert alert-danger' role='alert'><strong>Erro!</strong> Por favor insira um <i>e-mail</i> válido.</div><br>";
-    res = false;
-  }
-  return res;
-}
-</script>
+ ?>
