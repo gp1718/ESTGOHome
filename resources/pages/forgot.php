@@ -80,7 +80,7 @@ if(isset($_POST['btnRecupera'])){
 	    //.'Aqui se encontra o link para recuperação de password:<br><br><a href="http://localhost/estgohome/?id='.$idutl.'&action=recuperarPass">Recuperar palavra-passe</a> <br><br>Cumprimentos,<br>ESTGOHome';
 
       $corpomensagem = "Olá <b>".$utilizador->get_nome()."</b>,<br><br>";
-      $corpomensagem .= "Como medida de recuperação da palavra-passe da sua conta ESTGOHome, foi gerada uma nova palavra-passe pelo sistema: <b>$nova_password</b>.<br>";
+      $corpomensagem .= "Como medida de recuperação da palavra-passe da sua conta ESTGOHome, foi gerada uma nova palavra-passe pelo sistema: <b>$nova_password</b><br>";
       $corpomensagem .= "Após a autenticação com as novas credenciais, poderá alterar a sua palavra-passe na página Editar Dados pessoais.<br><br><br>";
       $corpomensagem .= "<center>Escola Superior de Tecnologia e Gestão de Oliveira do Hospital<br></center>";
       $corpomensagem .= "<center>Rua General Santos Costa | 3400-124 Oliveira do Hospital | Portugal<br></center>";

@@ -10,12 +10,12 @@ require_once('resources/classes/utilizadordao.class.php');
 $DAO=new GereUtilizador();
 
 if($DAO->obter_detalhes_utilizador_id($_SESSION['U_ID'])){
-    $utilizador = $DAO->obter_detalhes_utilizador_id($_SESSION['U_ID']);
-    $idutl = $_SESSION['U_ID'];
-    $nomeutl = $utilizador->get_nome();
-    $contactoutl = $utilizador->get_contacto();
-    $emailutl = $utilizador->get_email();
-    $tipoutl =$_SESSION['U_TIPO'];
+  $utilizador = $DAO->obter_detalhes_utilizador_id($_SESSION['U_ID']);
+  $idutl = $_SESSION['U_ID'];
+  $nomeutl = $utilizador->get_nome();
+  $contactoutl = $utilizador->get_contacto();
+  $emailutl = $utilizador->get_email();
+  $tipoutl =$_SESSION['U_TIPO'];
 }
 ?>
 
@@ -45,6 +45,10 @@ if($DAO->obter_detalhes_utilizador_id($_SESSION['U_ID'])){
       <input type="e-mail" class="form-control col-md-4" id="email" name="email" value ='<?php print($emailutl) ?>' required>
     </div>
     <div class="form-group">
+      <label>Palavra-passe antiga</label>
+      <input type="password" class="form-control col-md-4" id="password" name="passwordOld">
+    </div>
+    <div class="form-group">
       <label>Palavra-passe</label>
       <input type="password" class="form-control col-md-4" id="password" name="password">
       <small id="passwordHelp" class="form-text text-muted">A palavra-passe deverá conter uma letra maiúscula, um número e um caractere especial.</small>
@@ -65,7 +69,7 @@ if($DAO->obter_detalhes_utilizador_id($_SESSION['U_ID'])){
 function validaInfo() {
   var res = true;
   var div = document.getElementById('divAviso');
-  var input = [document.forms["formEdita"]["contacto"].value, document.forms["formEdita"]["email"].value, document.forms["formEdita"]["password"].value, document.forms["formEdita"]["cpassword"].value];
+  var input = [document.forms["formEdita"]["contacto"].value, document.forms["formEdita"]["email"].value, document.forms["formEdita"]["password"].value, document.forms["formEdita"]["cpassword"].value, document.forms["formEdita"]["passwordOld"].value];
 
   //Expressões regulares para validar contacto, e-mail e password
   var regexContacto = /[0-9]{9}/;
@@ -75,6 +79,10 @@ function validaInfo() {
   //Limpar div que mostra os avisos
   div.innerHTML = "";
 
+  if(!input[4]){
+    div.innerHTML += "<div class='alert alert-danger' role='alert'><strong>Erro!</strong> Por favor insira a sua password antiga.</div><br>";
+    return false;
+  }
   if(!regexContacto.test(String(input[0]))){
     div.innerHTML += "<div class='alert alert-danger' role='alert'><strong>Erro!</strong> Por favor insira um contacto válido.</div><br>";
     res = false;
@@ -99,9 +107,9 @@ function validaInfo() {
 
 <?php
 if($_SERVER['REQUEST_METHOD']==='POST'){
-  /*echo "<pre>";
+  echo "<pre>";
   var_dump($_POST);
-  echo "</pre>";*/
+  echo "</pre>";
 
   //Ediçao da informaçao
   if(isset($_POST['btnGuardar'])){
@@ -109,26 +117,33 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
       require_once('resources/classes/utilizadordao.class.php');
       $DAO = new GereUtilizador();
 
-      if($DAO->email_existe($_POST['email']) && $_POST['email'] != $utilizador->get_email()){
-        echo '<script>alert("O e-mail introduzido já se encontra registado no sistema.");</script>';
-      }else{
-        //Também pretende alterar a palavra-passe
-        if(isset($_POST['password'], $_POST['cpassword']) && !empty($_POST['password']) && !empty($_POST['cpassword'])){
-          if($_POST['password'] != $_POST['cpassword']){
-            echo '<script>alert("As passwords introduzidas não são iguais.");</script>';
-            return;
-          }else
+      //Ver se a password antiga está correta
+      if($DAO->password_correta($_POST['email'], $_POST['passwordOld'])){
+
+        if($DAO->email_existe($_POST['email']) && $_POST['email'] != $utilizador->get_email()){
+          echo '<script>alert("O e-mail introduzido já se encontra registado no sistema.");</script>';
+        }else{
+
+          //Também pretende alterar a palavra-passe
+          if(isset($_POST['password'], $_POST['cpassword']) && !empty($_POST['password']) && !empty($_POST['cpassword'])){
+            if($_POST['password'] != $_POST['cpassword']){
+              echo '<script>alert("As passwords introduzidas não são iguais.");</script>';
+              return;
+            }else
             $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-        }else
+          }else
           $password = $utilizador->get_password();
 
-        if($DAO->editar_utilizador(new Utilizador($idutl, $_POST['nome'], $_POST['email'], $password, $_POST['contacto'],$tipoutl, true))){
-          echo '<script>alert("A ediçao foi feita com sucesso.");</script>';
-          header("Refresh:0");
+          if($DAO->editar_utilizador(new Utilizador($idutl, $_POST['nome'], $_POST['email'], $password, $_POST['contacto'],$tipoutl, true))){
+            echo '<script>alert("A ediçao foi feita com sucesso.");</script>';
+            header("Refresh:0");
+          }
         }
+      }else{
+        echo '<script>alert("A password antiga não se encontra correta.");<script>';
       }
-    }else
-      echo '<script>alert("Por favor preencha todos os campos.");</script>';
-  }
+    }
+  }else
+  echo '<script>alert("Por favor preencha todos os campos.");</script>';
 }
 ?>

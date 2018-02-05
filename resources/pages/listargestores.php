@@ -80,7 +80,7 @@ if(!isset($_SESSION['U_TIPO']) || $_SESSION['U_TIPO']!=0){
   </div>
   <?php } ?>
   <div>
-    <button type="submit" class="btn btn-primary">Criar gestor</button>
+    <a href="?action=criargestor"><button type="submit" class="btn btn-primary">Criar gestor</button></a>
   </div>
   <br><br><br>
 </div>
