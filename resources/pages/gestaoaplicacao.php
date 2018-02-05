@@ -11,6 +11,14 @@ if(!isset($_SESSION['U_TIPO']) || $_SESSION['U_TIPO']!=0){
 <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 <style>.toggle {border: 1px solid #aaa}</style>
 
+<!--Breadcrumbs-->
+<nav aria-label="breadcrumb" role="navigation">
+  <ol class="breadcrumb bg-white">
+    <li class="breadcrumb-item"><a href="index.php">Início</a></li>
+    <li class="breadcrumb-item active">Gestão da Aplicação</li>
+  </ol>
+</nav>
+
 <div class="container">
   <form name="optionsForm" method="post" action="">
     <div class="card card-body">
