@@ -108,20 +108,17 @@ if(isset($_SESSION['U_TIPO'])){
     <div class="col">
       <h3>Rápido</h3>
       <img class="logo" src="img/rapido.svg" width="80">
-      <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa.</p>
-      <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+      <p>Com esta aplicação vai rapidamente poder procurar alojamentos disponíveis em Oliveira do Hospital.</p>
     </div>
     <div class="col">
       <h3>Fácil</h3>
       <img class="logo" src="img/facil.svg" width="80">
-      <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa.</p>
-      <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+      <p>Esta aplicação é bastante intuitiva, o que possibilita uma navegação otimizada dos conteúdos.</p>
     </div>
     <div class="col">
       <h3>Seguro</h3>
       <img class="logo" src="img/seguro.svg" width="80">
-      <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus.,</p>
-      <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+      <p>Só tem acesso à aplicação alunos da ESTGOH, senhorios e administradores do sistema. Senhorios apenas tem acesso aos seus anúncios.</p>
     </div>
   </div>
 </div>
