@@ -32,6 +32,7 @@ if($DAO->obter_detalhes_utilizador_id($_SESSION['U_ID'])){
   <br>
   <div id="divAviso"></div>
   <form name="formEdita" onsubmit="return validaInfo()" method="POST" action="">
+    <input type="hidden" name="emailOld" value="<?php print($emailutl) ?>">
     <div class="form-group">
       <label for="Nome">Nome</label>
       <input type="text" class="form-control col-md-8" id="nome" name="nome" placeholder="Nome completo" value ='<?php print($nomeutl) ?>' required>
@@ -46,7 +47,7 @@ if($DAO->obter_detalhes_utilizador_id($_SESSION['U_ID'])){
     </div>
     <div class="form-group">
       <label>Palavra-passe antiga</label>
-      <input type="password" class="form-control col-md-4" id="password" name="passwordOld">
+      <input type="password" class="form-control col-md-4" id="passwordOld" name="passwordOld" required>
     </div>
     <div class="form-group">
       <label>Palavra-passe</label>
@@ -97,7 +98,7 @@ function validaInfo() {
       res = false;
     }
   }
-  if (input[2] != input[3]) {
+  if(input[2] != input[3]){
     div.innerHTML += "<div class='alert alert-danger' role='alert'><strong>Erro!</strong> As palavras-passe introduzidas não são iguais.</div><br>";
     res = false;
   }
@@ -107,19 +108,21 @@ function validaInfo() {
 
 <?php
 if($_SERVER['REQUEST_METHOD']==='POST'){
-  echo "<pre>";
+  /*echo "<pre>";
   var_dump($_POST);
-  echo "</pre>";
+  echo "</pre>";*/
 
   //Ediçao da informaçao
   if(isset($_POST['btnGuardar'])){
-    if(isset($_POST['nome'], $_POST['contacto'], $_POST['email']) && !empty($_POST['nome']) && !empty($_POST['contacto']) && !empty($_POST['email'])){
+    if(isset($_POST['nome'], $_POST['contacto'], $_POST['email'], $_POST['passwordOld']) && !empty($_POST['nome']) && !empty($_POST['contacto']) && !empty($_POST['email']) && !empty($_POST['passwordOld'])){
+
       require_once('resources/classes/utilizadordao.class.php');
       $DAO = new GereUtilizador();
 
       //Ver se a password antiga está correta
-      if($DAO->password_correta($_POST['email'], $_POST['passwordOld'])){
+      if($DAO->password_correta($_POST['emailOld'], $_POST['passwordOld'])){
 
+        //Ver se o e-mail existe
         if($DAO->email_existe($_POST['email']) && $_POST['email'] != $utilizador->get_email()){
           echo '<script>alert("O e-mail introduzido já se encontra registado no sistema.");</script>';
         }else{
@@ -140,7 +143,8 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
           }
         }
       }else{
-        echo '<script>alert("A password antiga não se encontra correta.");<script>';
+        //echo "password incorreta<hr>";
+        echo '<script>alert("A password antiga não se encontra correta.");</script>';
       }
     }
   }else
