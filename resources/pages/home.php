@@ -251,7 +251,7 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
         }
       }
     }else
-    echo '<script>alert("Por favor preencha todos os campos.");</script>';
+      echo '<script>alert("Por favor preencha todos os campos.");</script>';
   }
 }
 ?>

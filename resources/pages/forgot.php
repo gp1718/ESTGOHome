@@ -14,19 +14,18 @@ if(isset($_SESSION['U_TIPO'])){
   <h6>Introduza o e-mail associado à sua conta e clique em "Recuperar".<br>Receberá posteriormente um e-mail com uma nova palavra-passe gerada pelo nosso sistema.</h6>
   <div id="divAviso"></div>
   <form name="formEmail" onsubmit="return validaEmail()" method="POST" action="" >
-    <input type="email" class="form-control col-lg-3" style="margin: auto" id="emailrecupera" name="emailrecupera" placeholder="Insira o seu e-mail" maxlength="254" required>
+    <input type="email" class="form-control col-lg-3" style="margin: auto" id="email" name="email" placeholder="Insira o seu e-mail" maxlength="254" required>
     <br>
-    <input class="btn btn-success"  id="recupera" name="recupera" type="submit" value="Recuperar">
+    <input class="btn btn-success" id="btnRecupera" name="btnRecupera" type="submit" value="Recuperar">
   </form>
 </div>
 
 <script>
 function validaEmail() {
-  var res = true;
   var div = document.getElementById('divAviso');
   var input = [document.forms['formEmail']['emailrecupera'].value];
 
-  //Expressões regulares para validar e-mail
+  //Expressão regular para validar e-mail
   var regexEmail = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 
   //Limpar div que mostra os avisos
@@ -34,9 +33,9 @@ function validaEmail() {
 
   if(!regexEmail.test(String(input[0]).toLowerCase())){
     div.innerHTML += "<div class='alert alert-danger' role='alert'><strong>Erro!</strong> Por favor insira um <i>e-mail</i> válido.</div><br>";
-    res = false;
+    return false;
   }
-  return res;
+  return true;
 }
 </script>
 
@@ -66,14 +65,12 @@ function gera_password() {
 //Envio de email
 require_once('resources/configs/email.php');
 
-if(isset($_POST['emailrecupera'])){
-  if(!empty($_POST['emailrecupera'])){
-    $email = $_POST['emailrecupera'];
-
+if(isset($_POST['btnRecupera'])){
+  if(isset($_POST['email']) && !empty($_POST['email'])){
     require_once('resources/classes/utilizadordao.class.php');
-    $DAO=new GereUtilizador();
+    $DAO = new GereUtilizador();
 
-		if(!$DAO->email_existe($email)){
+		if(!$DAO->email_existe($_POST['email'])){
 			  echo '<script>alert("O e-mail introduzido não se encontra registado no sistema.");</script>';
 		}else{
       $utilizador = $DAO->obter_detalhes_utilizador_email($email);
@@ -91,17 +88,20 @@ if(isset($_POST['emailrecupera'])){
       $corpomensagem .= "<center>E-mail: geral@estgoh.ipc.pt<br></center>";
 
 	    //Remove all illegal characters from email
-	    $email = filter_var($email, FILTER_SANITIZE_EMAIL);
+	    $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
 
 	    if(filter_var($email, FILTER_VALIDATE_EMAIL)){
-	      enviaMail($email, 'Recuperação de Password', $corpomensagem);
-	      //header("Location: ?action=forgot_thanks");
+	      if(enviaMail($email, 'Recuperação de Password', $corpomensagem)){
+          $DAO->editar_utilizador(new Utilizador($utilizador->get_id(), $utilizador->get_nome(), $utilizador->get_email(), password_hash($password), $utilizador->get_contacto(), $utilizador->get_tipo(), $utilizador->get_estado()));
+          echo '<script>alert("Foi enviado um e-mail com um nova palavra-passe. Por favor verifique o seu e-mail.");</script>';
+        }
 	    }else{
-	      echo 'email invalido';
+        /*TODO: que mensagem apresento aqui?*/
+	      echo "Erro";
 	    }
 		}
   }else{
-    echo 'Não introduziu os campos todos';
+    echo '<script>alert("Por favor preencha o campo do e-mail.");</script>';
   }
 }
  ?>
