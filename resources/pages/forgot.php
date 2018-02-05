@@ -57,7 +57,7 @@ function gera_password() {
   $caracteres_len = count($caracteres);
 
   for($i = 0; $i < 8; $i++){
-    $password .= $caracteres[mt_rand(0, $caracteres_len)];
+    $password .= $caracteres[mt_rand(0, $caracteres_len-1)];
   }
 
   return $password;
@@ -76,21 +76,26 @@ if(isset($_POST['emailrecupera'])){
 		if(!$DAO->email_existe($email)){
 			  echo '<script>alert("O e-mail introduzido não se encontra registado no sistema.");</script>';
 		}else{
-			if($DAO->obter_detalhes_utilizador_email($email)){
-	      $utilizador = $DAO->obter_detalhes_utilizador_email($email);
-	      $idutl = $utilizador->get_id();
-	      $nomeutl = $utilizador->get_nome();
-	    }
+      $utilizador = $DAO->obter_detalhes_utilizador_email($email);
+      $nova_password = gera_password();
 
-	    $corpomensagem ='Olá '.$nomeutl.",<br>"
-	    .'Aqui se encontra o link para recuperação de password:<br><br><a href="http://localhost/estgohome/?id='.$idutl.'&action=recuperarPass">Recuperar palavra-passe</a> <br><br>Cumprimentos,<br>ESTGOHome';
+	    //$corpomensagem ='Olá '.$nomeutl.",<br>"
+	    //.'Aqui se encontra o link para recuperação de password:<br><br><a href="http://localhost/estgohome/?id='.$idutl.'&action=recuperarPass">Recuperar palavra-passe</a> <br><br>Cumprimentos,<br>ESTGOHome';
+
+      $corpomensagem = "Olá <b>".$utilizador->get_nome()."</b>,<br><br>";
+      $corpomensagem .= "Como medida de recuperação da palavra-passe da sua conta ESTGOHome, foi gerada uma nova palavra-passe pelo sistema: <b>$nova_password</b>.<br>";
+      $corpomensagem .= "Após a autenticação com as novas credenciais, poderá alterar a sua palavra-passe na página Editar Dados pessoais.<br><br><br>";
+      $corpomensagem .= "<center>Escola Superior de Tecnologia e Gestão de Oliveira do Hospital<br></center>";
+      $corpomensagem .= "<center>Rua General Santos Costa | 3400-124 Oliveira do Hospital | Portugal<br></center>";
+      $corpomensagem .= "<center>Tel: 238 605 170 | Fax: 238 605 179<br></center>";
+      $corpomensagem .= "<center>E-mail: geral@estgoh.ipc.pt<br></center>";
 
 	    //Remove all illegal characters from email
 	    $email = filter_var($email, FILTER_SANITIZE_EMAIL);
 
 	    if(filter_var($email, FILTER_VALIDATE_EMAIL)){
-	      enviaMail($email,'Recuperação de Password',$corpomensagem);
-	      header("Location: ?action=forgot_thanks");
+	      enviaMail($email, 'Recuperação de Password', $corpomensagem);
+	      //header("Location: ?action=forgot_thanks");
 	    }else{
 	      echo 'email invalido';
 	    }

@@ -26,7 +26,7 @@ function enviaMail($destinatario, $assunto, $mensagem) {
   $mail = new PHPMailer(true);                            // Passar `true` ativa exceções
   try {
     //Configurações do servidor
-    $mail->SMTPDebug = 0;                                 // [0-2] - Ativa o nivel de mensagens de depuração
+    $mail->SMTPDebug = 2;                                 // [0-2] - Ativa o nivel de mensagens de depuração
     $mail->isSMTP();                                      // Definir para usar SMTP
     $mail->Host = 'smtp.gmail.com';                       // Especificar o servidor SMTP
     $mail->SMTPAuth = true;                               // Ativar autenticação SMTP
@@ -49,7 +49,7 @@ function enviaMail($destinatario, $assunto, $mensagem) {
     $mail->send();
     return true;
   } catch (Exception $e) {
-    //echo 'O e-mail não pode ser enviado. Erro: ', $mail->ErrorInfo;
+    echo 'O e-mail não pode ser enviado. Erro: ', $mail->ErrorInfo;
     return false;
   }
 }
