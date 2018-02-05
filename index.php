@@ -21,16 +21,7 @@
 </head>
 <body>
   <?php
-  //Ver se a aplicação está desativada
-  require_once('resources/classes/basedados.class.php');
-  require_once('resources/configs/opcoes.php');
-  $bd = new BaseDados();
-  $bd->ligar_bd();
-  $STH = $bd->dbh->query('SELECT 1 FROM opcao WHERE C_NOME=\''.$opcoes[0][0].'\' AND C_ESTADO=1');
-  $bd->desligar_bd();
-  if($STH->fetch(PDO::FETCH_ASSOC)){
-    $_SESSION['active']=true;
-  }
+
   ?>
 
   <!--Javascript check-->
@@ -72,9 +63,7 @@
   require_once('resources/configs/lang.php');
 
   //Main
-  if(!isset($_SESSION['active']) && !isset($_SESSION['U_TIPO'])){
-    require_once('resources/pages/aplicacaodesativada.php');
-  }elseif(!empty($_GET['action'])){
+  if(!empty($_GET['action'])){
     $action = basename($_GET['action']);
     if(!file_exists("resources/pages/$action.php")) $action="../../index";
     require_once("resources/pages/$action.php");
@@ -95,6 +84,21 @@
       require_once('resources/pages/criaradministrador.php');
     }
 
+    //Ver se a aplicação está desativada
+    require_once('resources/classes/basedados.class.php');
+    require_once('resources/configs/opcoes.php');
+    $bd = new BaseDados();
+    $bd->ligar_bd();
+    $STH = $bd->dbh->query('SELECT 1 FROM opcao WHERE C_NOME=\''.$opcoes[0][0].'\' AND C_ESTADO=1');
+    $bd->desligar_bd();
+    if($STH->fetch(PDO::FETCH_ASSOC)){
+      $_SESSION['active']=true;
+    }
+
+    if(!isset($_SESSION['active']) && !isset($_SESSION['U_TIPO'])){
+      require_once('resources/pages/aplicacaodesativada.php');
+    }
+    
     //Por defeito
     else{
       require_once('resources/pages/home.php');
