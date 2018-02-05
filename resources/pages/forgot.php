@@ -73,7 +73,7 @@ if(isset($_POST['btnRecupera'])){
 		if(!$DAO->email_existe($_POST['email'])){
 			  echo '<script>alert("O e-mail introduzido não se encontra registado no sistema.");</script>';
 		}else{
-      $utilizador = $DAO->obter_detalhes_utilizador_email($email);
+      $utilizador = $DAO->obter_detalhes_utilizador_email($_POST['email']);
       $nova_password = gera_password();
 
 	    //$corpomensagem ='Olá '.$nomeutl.",<br>"
@@ -92,7 +92,7 @@ if(isset($_POST['btnRecupera'])){
 
 	    if(filter_var($email, FILTER_VALIDATE_EMAIL)){
 	      if(enviaMail($email, 'Recuperação de Password', $corpomensagem)){
-          $DAO->editar_utilizador(new Utilizador($utilizador->get_id(), $utilizador->get_nome(), $utilizador->get_email(), password_hash($password), $utilizador->get_contacto(), $utilizador->get_tipo(), $utilizador->get_estado()));
+          $DAO->editar_utilizador(new Utilizador($utilizador->get_id(), $utilizador->get_nome(), $utilizador->get_email(), password_hash($nova_password,PASSWORD_DEFAULT), $utilizador->get_contacto(), $utilizador->get_tipo(), $utilizador->get_estado()));
           echo '<script>alert("Foi enviado um e-mail com um nova palavra-passe. Por favor verifique o seu e-mail.");</script>';
         }
 	    }else{
