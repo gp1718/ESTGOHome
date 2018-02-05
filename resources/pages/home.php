@@ -105,20 +105,20 @@ if(isset($_SESSION['U_TIPO'])){
 <!--COLUNAS-->
 <div class="container blurry">
   <div class="row">
-    <div class="col">
+    <div class="col txthomepage">
       <h3>Rápido</h3>
       <img class="logo" src="img/rapido.svg" width="80">
-      <p>Com esta aplicação vai rapidamente poder procurar alojamentos disponíveis em Oliveira do Hospital.</p>
+      <p align="justify">Com esta aplicação poderá rapidamente procurar alojamentos disponíveis em Oliveira do Hospital.</p>
     </div>
-    <div class="col">
+    <div class="col txthomepage">
       <h3>Fácil</h3>
       <img class="logo" src="img/facil.svg" width="80">
-      <p>Esta aplicação é bastante intuitiva, o que possibilita uma navegação otimizada dos conteúdos.</p>
+      <p align="justify">Esta aplicação é bastante intuitiva, o que possibilita uma navegação otimizada dos conteúdos.</p>
     </div>
-    <div class="col">
+    <div class="col txthomepage">
       <h3>Seguro</h3>
       <img class="logo" src="img/seguro.svg" width="80">
-      <p>Só tem acesso à aplicação alunos da ESTGOH, senhorios e administradores do sistema. Senhorios apenas tem acesso aos seus anúncios.</p>
+      <p align="justify">Apenas têm acesso à aplicação os Alunos da ESTGOH, Senhorios e Administradores do sistema. Senhorios apenas têm acesso aos seus anúncios.</p>
     </div>
   </div>
 </div>

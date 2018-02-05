@@ -73,63 +73,55 @@ if(!isset($_SESSION['active'],$_SESSION['U_TIPO']) || $_SESSION['U_TIPO']!=3){
           <img src="img/telefone.png" width="30"> <a href="tel:+351966666666">966 666 666</a><br>
           <img src="img/email.png" width="30"> <a href="mailto:email@exemplo.pt">email@exemplo.pt</a>
 
-          <p class="card-text">
-
-            <table class="table">
-              <tbody>
-                <tr>
-                  <td style="width: 1rem;"><img src="img/wifi.png"></td>
-                  <td>
-                    Acesso Wi-Fi Gratuito<br>
-                    <span class="text-muted">NOS 30Mbps</span>
-                  </td>
-                </tr>
-                <tr>
-                  <td style="width: 1rem;"><img src="img/tv.png"></td>
-                  <td>
-                    Televisão<br>
-                    <span class="text-muted">Apenas TDT</span>
-                  </td>
-                </tr>
-                <tr>
-                  <td style="width: 1rem;"><img src="img/cama.png"></td>
-                  <td>
-                    1 Cama<br>
-                    <span class="text-muted">Solteiro</span>
-                  </td>
-                </tr>
-                <tr>
-                  <td style="width: 1rem;"><img src="img/gas.png"></td>
-                  <td>
-                    Gás<br>
-                    <span class="text-muted">Botija (Butano)</span>
-                  </td>
-                </tr>
-                <tr>
-                  <td style="width: 1rem;"><img src="img/luz.png"></td>
-                  <td>
-                    Eletricidade<br>
-                    <span class="text-muted">Incluído na despesa mensal</span>
-                  </td>
-                </tr>
-                <tr>
-                  <td style="width: 1rem;"><img src="img/agua.png"></td>
-                  <td>
-                    Água<br>
-                    <span class="text-muted">Incluído na despesa mensal</span>
-                  </td>
-                </tr>
-                <tr>
-                  <td colspan="2">
-                    <!--Mapa-->
-                    <noscript>Por favor ative a funcionalidade de Javascript para poder visualizar a localização no mapa.</noscript>
-                    <iframe
-                    width="600"
-                    height="450"
-                    frameborder="0" style="border:0"
-                    src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDw_8GQIDFQ_s742JKodecIxUZX_Y3c3pI&q=R.+Gen.+Santos+Costa+11+3400-124+Oliveira+do+Hospital"
-                    allowfullscreen>
-                  </iframe>
+          <table class="table">
+            <tbody>
+              <tr>
+                <td style="width: 1rem;"><img src="img/wifi.png"></td>
+                <td>
+                  Acesso Wi-Fi Gratuito<br>
+                  <span class="text-muted">NOS 30Mbps</span>
+                </td>
+              </tr>
+              <tr>
+                <td style="width: 1rem;"><img src="img/tv.png"></td>
+                <td>
+                  Televisão<br>
+                  <span class="text-muted">Apenas TDT</span>
+                </td>
+              </tr>
+              <tr>
+                <td style="width: 1rem;"><img src="img/cama.png"></td>
+                <td>
+                  1 Cama<br>
+                  <span class="text-muted">Solteiro</span>
+                </td>
+              </tr>
+              <tr>
+                <td style="width: 1rem;"><img src="img/gas.png"></td>
+                <td>
+                  Gás<br>
+                  <span class="text-muted">Botija (Butano)</span>
+                </td>
+              </tr>
+              <tr>
+                <td style="width: 1rem;"><img src="img/luz.png"></td>
+                <td>
+                  Eletricidade<br>
+                  <span class="text-muted">Incluído na despesa mensal</span>
+                </td>
+              </tr>
+              <tr>
+                <td style="width: 1rem;"><img src="img/agua.png"></td>
+                <td>
+                  Água<br>
+                  <span class="text-muted">Incluído na despesa mensal</span>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2">
+                  <!--Mapa-->
+                  <noscript>Por favor ative a funcionalidade de Javascript para poder visualizar a localização no mapa.</noscript>
+                  <iframe width="600" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDw_8GQIDFQ_s742JKodecIxUZX_Y3c3pI&q=R.+Gen.+Santos+Costa+11+3400-124+Oliveira+do+Hospital" allowfullscreen></iframe>
                 </td>
               </tr>
             </tbody>

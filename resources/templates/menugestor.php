@@ -33,8 +33,8 @@ if(!isset($_SESSION['U_ID'],$_SESSION['U_TIPO']) || $_SESSION['U_TIPO']!=1){
         </a>
         <div class="dropdown-menu">
           <a class="dropdown-item" href="?action=listaranunciosgestor">Listar todos os anúncios</a>
-          <a class="dropdown-item" href="#">Listar anúncios por aprovar</a>
-          <a class="dropdown-item" href="#">Listar anúncios com alterações por aprovar</a>
+          <a class="dropdown-item" href="?action=listaranunciosaprovar">Listar anúncios por aprovar</a>
+          <a class="dropdown-item" href="?action=listaralteracoesaprovar">Listar anúncios com alterações por aprovar</a>
         </div>
       </li>
     </ul>
