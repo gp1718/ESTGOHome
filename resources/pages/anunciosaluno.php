@@ -158,7 +158,7 @@ if(!isset($_SESSION['active'],$_SESSION['U_TIPO']) || $_SESSION['U_TIPO']!=3){
         </div>
         <div class="card-body">
           <h4 class="card-title">
-            <a href="#">150€</a>
+            <a href="?action=anunciodetalhado">150€</a>
             <button type="button" class="favorito_sim">
               <i class="fa fa-star"></i>
             </button>
@@ -214,7 +214,7 @@ if(!isset($_SESSION['active'],$_SESSION['U_TIPO']) || $_SESSION['U_TIPO']!=3){
         </div>
         <div class="card-body">
           <h4 class="card-title">
-            <a href="#">120€</a>
+            <a href="?action=anunciodetalhado">120€</a>
             <button type="button" class="favorito_nao">
               <i class="fa fa-star-o"></i>
             </button>
@@ -269,7 +269,7 @@ if(!isset($_SESSION['active'],$_SESSION['U_TIPO']) || $_SESSION['U_TIPO']!=3){
         </div>
         <div class="card-body">
           <h4 class="card-title">
-            <a href="#">140€</a>
+            <a href="?action=anunciodetalhado">140€</a>
             <button type="button" class="favorito_nao">
               <i class="fa fa-star-o"></i>
             </button>
@@ -324,7 +324,7 @@ if(!isset($_SESSION['active'],$_SESSION['U_TIPO']) || $_SESSION['U_TIPO']!=3){
         </div>
         <div class="card-body">
           <h4 class="card-title">
-            <a href="#">150€</a>
+            <a href="?action=anunciodetalhado">150€</a>
             <button type="button" class="favorito_nao">
               <i class="fa fa-star-o"></i>
             </button>
@@ -379,7 +379,7 @@ if(!isset($_SESSION['active'],$_SESSION['U_TIPO']) || $_SESSION['U_TIPO']!=3){
         </div>
         <div class="card-body">
           <h4 class="card-title">
-            <a href="#">160€</a>
+            <a href="?action=anunciodetalhado">160€</a>
             <button type="button" class="favorito_sim">
               <i class="fa fa-star"></i>
             </button>
@@ -434,7 +434,7 @@ if(!isset($_SESSION['active'],$_SESSION['U_TIPO']) || $_SESSION['U_TIPO']!=3){
         </div>
         <div class="card-body">
           <h4 class="card-title">
-            <a href="#">130€</a>
+            <a href="?action=anunciodetalhado">130€</a>
             <button type="button" class="favorito_nao">
               <i class="fa fa-star-o"></i>
             </button>

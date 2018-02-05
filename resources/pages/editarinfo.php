@@ -22,7 +22,7 @@ if($DAO->obter_detalhes_utilizador_id($_SESSION['U_ID'])){
 <!--Breadcrumbs-->
 <nav aria-label="breadcrumb" role="navigation">
   <ol class="breadcrumb bg-white">
-    <li class="breadcrumb-item"><a href="#">Início</a></li>
+    <li class="breadcrumb-item"><a href="index.php">Início</a></li>
     <li class="breadcrumb-item active">Conta</li>
   </ol>
 </nav>

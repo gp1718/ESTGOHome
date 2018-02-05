@@ -18,7 +18,7 @@ if(!isset($_SESSION['U_ID'],$_SESSION['U_TIPO']) || $_SESSION['U_TIPO']!=3){
     <ul class="nav navbar-nav">
       <li class="nav-item"><a href="?action=anunciosaluno" class="nav-link">Todos os anúncios</a>
       </li>
-      <li class="nav-item"><a href="#" class="nav-link">Anúncios favoritos</a>
+      <li class="nav-item"><a href="?action=anunciosfavoritos" class="nav-link">Anúncios favoritos</a>
       </li>
     </ul>
     <ul class="nav navbar-nav ml-auto">

@@ -192,16 +192,16 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
         $ldap_user = 'uid='.$email_array[0].',ou=Users,dc=estgoh,dc=ipc.pt';
         $ldap_password = $_POST['password'];
 
-        $ldap = ldap_connect($ldap_server) or die("Erro na conexão ao servidor da ESTGOH.");
-        //$ldap = true;
+        //$ldap = ldap_connect($ldap_server) or die("Erro na conexão ao servidor da ESTGOH.");
+        $ldap = true;
 
-        ldap_set_option($ldap, LDAP_OPT_NETWORK_TIMEOUT, 2);
+        /*ldap_set_option($ldap, LDAP_OPT_NETWORK_TIMEOUT, 2);
         ldap_set_option($ldap, LDAP_OPT_PROTOCOL_VERSION, 3);
-        ldap_set_option($ldap, LDAP_OPT_REFERRALS, 0);
+        ldap_set_option($ldap, LDAP_OPT_REFERRALS, 0);*/
 
         if($ldap){
-          $ldap_bind = @ldap_bind($ldap, $ldap_user, $ldap_password);
-          //$ldap_bind = true;
+          //$ldap_bind = @ldap_bind($ldap, $ldap_user, $ldap_password);
+          $ldap_bind = true;
 
           if($ldap_bind){
             //Autenticado

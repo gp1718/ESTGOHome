@@ -48,7 +48,7 @@ if(!isset($_SESSION['U_ID'],$_SESSION['U_TIPO']) || ($_SESSION['U_TIPO']!=1 && $
           <button class="btn btn-primary btn-xs" href="#" type="button">Ver <i class="fa fa-eye" aria-hidden="true"></i></button>
         </div>
         <div class="btn-group mr-2">
-          <button class="btn btn-warning btn-xs" href="#" type="button">Editar <i class="fa fa-pencil" aria-hidden="true"></i></button>
+          <a href="?action=editaranuncio"><button class="btn btn-warning btn-xs" type="button">Editar <i class="fa fa-pencil" aria-hidden="true"></i></button></a>
         </div>
         <div class="btn-group mr-2">
           <button class="btn btn-danger btn-xs" href="#" type="button">Inativar <i class="fa fa-times" aria-hidden="true"></i></button>
@@ -66,7 +66,7 @@ if(!isset($_SESSION['U_ID'],$_SESSION['U_TIPO']) || ($_SESSION['U_TIPO']!=1 && $
           <button class="btn btn-primary btn-xs" href="#" type="button">Ver <i class="fa fa-eye" aria-hidden="true"></i></button>
         </div>
         <div class="btn-group mr-2">
-          <button class="btn btn-warning btn-xs" href="#" type="button">Editar <i class="fa fa-pencil" aria-hidden="true"></i></button>
+          <a href="?action=editaranuncio"><button class="btn btn-warning btn-xs" type="button">Editar <i class="fa fa-pencil" aria-hidden="true"></i></button></a>
         </div>
         <div class="btn-group mr-2">
           <button class="btn btn-success btn-xs" href="#" type="button">Ativar <i class="fa fa-check" aria-hidden="true"></i></button>
