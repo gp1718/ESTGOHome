@@ -1,6 +1,10 @@
 <?php
 //Proteção da página
-if(isset($_SESSION['U_TIPO'])){
+
+require_once('resources/classes/utilizadordao.class.php');
+$DAO = new GereUtilizador();
+
+if(isset($_SESSION['U_TIPO']) || !empty($DAO->obter_detalhes_utilizador_id(1)->get_id())){
   $url = $_SERVER['REQUEST_SCHEME'].'://'.$_SERVER['HTTP_HOST'].'/'.explode('/',$_SERVER['REQUEST_URI'])[1];
   header("Location: $url");
   die();
@@ -56,6 +60,8 @@ function validaRegisto() {
   var div = document.getElementById('divAviso');
   var input = [document.forms["formRegisto"]["contacto"].value, document.forms["formRegisto"]["email"].value, document.forms["formRegisto"]["password"].value, document.forms["formRegisto"]["cpassword"].value];
 
+  var emailSplit = String(input[1]).split('@');
+
   //Expressões regulares para validar contacto, e-mail e password
   var regexContacto = /[0-9]{9}/;
   var regexEmail = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
@@ -70,6 +76,10 @@ function validaRegisto() {
   }
   if(!regexEmail.test(String(input[1]).toLowerCase())){
     div.innerHTML += "<div class='alert alert-danger' role='alert'><strong>Erro!</strong> Por favor insira um <i>e-mail</i> válido.</div><br>";
+    res = false;
+  }
+  if(emailSplit[1].toLowerCase() == 'estgoh.ipc.pt'){
+    div.innerHTML += "<div class='alert alert-danger' role='alert'><strong>Erro!</strong> Por favor utilize um <i>e-mail</i> fora do domínio <b>estgoh.ipc.pt</b>.</div><br>";
     res = false;
   }
   if(!regexPassword.test(String(input[2]))){
@@ -97,8 +107,12 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
       require_once('resources/classes/utilizadordao.class.php');
       $DAO = new GereUtilizador();
 
-      if($_POST['password'] != $_POST['cpassword']){
-        echo '<script>alert("As passwords introduzidas não são iguais.");</script>';
+      $email_array = explode("@", $_POST['email']);
+
+      if($email_array[1] == "estgoh.ipc.pt"){
+        echo '<script>alert("Por favor utilize um e-mail fora do domínio estgoh.ipc.pt.");</script>';
+      }elseif($_POST['password'] != $_POST['cpassword']){
+        echo '<script>alert("As palavras-passe introduzidas não são iguais.");</script>';
       }else{
         if($DAO->inserir_utilizador(new Utilizador(0, $_POST['nome'], $_POST['email'], password_hash($_POST['password'], PASSWORD_DEFAULT), $_POST['contacto'], 0, true))){
           echo '<script>alert("O Administrador foi criado com sucesso.");</script>';
