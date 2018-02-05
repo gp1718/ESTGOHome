@@ -193,9 +193,9 @@ class GereUtilizador {
 		$bd = new BaseDados();
     $bd->ligar_bd();
 		$STH = $bd->dbh->prepare("INSERT INTO log(U_ID, L_ACAO, L_DATA) values(?, ?, ?)");
-		$STH->bindValue(1, $id_utilizador);
-		$STH->bindValue(2, $acao);
-		$STH->bindValue(3, $data_hora);
+		$STH->bindValue(1, $utilizador->get_id());
+		$STH->bindValue(2, $log->get_acao());
+		$STH->bindValue(3, $log->get_data_hora());
 		$res = $STH->execute();
 		$bd->desligar_bd();
 		return $res;
