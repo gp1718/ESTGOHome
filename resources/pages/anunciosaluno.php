@@ -9,7 +9,7 @@ if(!isset($_SESSION['active'],$_SESSION['U_TIPO']) || $_SESSION['U_TIPO']!=3){
 
 <nav aria-label="breadcrumb" role="navigation">
   <ol class="breadcrumb bg-white">
-    <li class="breadcrumb-item"><a href="#">Início</a></li>
+    <li class="breadcrumb-item"><a href="index.php">Início</a></li>
     <li class="breadcrumb-item">Todos os anúncios</li>
   </ol>
 </nav>

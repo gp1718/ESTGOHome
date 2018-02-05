@@ -10,7 +10,7 @@ if(!isset($_SESSION['active'],$_SESSION['U_TIPO']) || $_SESSION['U_TIPO']!=0){
 <!--Breadcrumbs-->
 <nav aria-label="breadcrumb" role="navigation">
   <ol class="breadcrumb bg-white">
-    <li class="breadcrumb-item"><a href="#">Início</a></li>
+    <li class="breadcrumb-item"><a href="index.php">Início</a></li>
     <li class="breadcrumb-item">Gestores</li>
     <li class="breadcrumb-item active">Novo gestor</li>
   </ol>
@@ -114,7 +114,7 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
         echo '<script>alert("As palavras-passe introduzidas não são iguais.");</script>';
       }else{
         if($DAO->inserir_utilizador(new Utilizador(0, $_POST['nome'], $_POST['email'], password_hash($_POST['password'], PASSWORD_DEFAULT), $_POST['contacto'], 1, true))){
-          echo '<script>alert("O senhorio foi criado com sucesso.");</script>';
+          echo '<script>alert("O gestor foi criado com sucesso.");</script>';
         }
       }
     }else
