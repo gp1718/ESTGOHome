@@ -212,8 +212,6 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
             //Não autenticado
             echo '<script>alert("O e-mail ou a palavra-passe inseridos não se encontram correctos.");</script>';
           }
-        }else{
-          echo '<script>alert("Teste.");</script>';
         }
       }else{
         require_once('resources/classes/utilizadordao.class.php');
