@@ -42,8 +42,8 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
       require_once('resources/classes/utilizadordao.class.php');
       $DAO=new GereUtilizador();
 
+      //Ver se as credenciais estão bem
       if($DAO->password_correta($_POST['email'],$_POST['password'])){
-
         //Ver se é admin
         if($_SESSION['U_TIPO']!=0){
           echo '<script>alert("A sua conta não é administrativa.");</script>';
@@ -57,7 +57,6 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
         echo '<script>alert("O e-mail ou a palavra-passe inseridos não se encontram correctos.");</script>';
       }
     }
-
   }else{
     echo '<script>alert("Por favor preencha todos os campos.");</script>';
   }

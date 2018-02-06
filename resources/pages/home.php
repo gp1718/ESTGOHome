@@ -172,9 +172,6 @@ function validaRegisto() {
 <?php
 //TODO: Meter mensagens de erro em bootstrap
 if($_SERVER['REQUEST_METHOD']==='POST'){
-  echo "<pre>";
-  var_dump($_POST);
-  echo "</pre>";
 
   //Login
   if(isset($_POST['btnLogin'])){

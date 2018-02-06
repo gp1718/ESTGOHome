@@ -49,7 +49,7 @@ function enviaMail($destinatario, $assunto, $mensagem) {
     $mail->send();
     return true;
   } catch (Exception $e) {
-    //echo 'O e-mail não pode ser enviado. Erro: ', $mail->ErrorInfo;
+    echo 'O e-mail não pode ser enviado. Erro: ', $mail->ErrorInfo;
     return false;
   }
 }

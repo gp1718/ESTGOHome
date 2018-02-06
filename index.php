@@ -31,20 +31,6 @@
     </div>
   </noscript>
 
-  <!--Debug-->
-  <a class="btn btn-warning btn-xs" data-toggle="collapse" href="#linkcollapse" aria-expanded="false" aria-controls="Collapse">Debug</a>
-  <div class="collapse" id="linkcollapse">
-    <div class="card card-block">
-      <?php
-      echo '<pre><b>$_SESSION</b><br>';
-      print_r($_SESSION);
-      echo '<hr><b>$_COOKIE</b><br>';
-      print_r($_COOKIE);
-      echo "<hr></pre>";
-      ?>
-    </div>
-  </div>
-
   <?php
   //Header
   if(isset($_SESSION['U_TIPO'])){

@@ -94,9 +94,6 @@ function validaRegisto() {
 <!--Validação php-->
 <?php
 if($_SERVER['REQUEST_METHOD']==='POST'){
-  echo "<pre>";
-  var_dump($_POST);
-  echo "</pre>";
 
   //Registo do administrador
   if(isset($_POST['btnRegistar'])){

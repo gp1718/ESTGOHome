@@ -75,9 +75,6 @@ if(isset($_POST['btnRecupera'])){
       $utilizador = $DAO->obter_detalhes_utilizador_email($_POST['email']);
       $nova_password = gera_password();
 
-	    //$corpomensagem ='Olá '.$nomeutl.",<br>"
-	    //.'Aqui se encontra o link para recuperação de password:<br><br><a href="http://localhost/estgohome/?id='.$idutl.'&action=recuperarPass">Recuperar palavra-passe</a> <br><br>Cumprimentos,<br>ESTGOHome';
-
       $corpomensagem = "Olá <b>".$utilizador->get_nome()."</b>,<br><br>";
       $corpomensagem .= "Como medida de recuperação da palavra-passe da sua conta ESTGOHome, foi gerada uma nova palavra-passe pelo sistema: <b>$nova_password</b><br>";
       $corpomensagem .= "Após a autenticação com as novas credenciais, poderá alterar a sua palavra-passe na página Editar Dados pessoais.<br><br><br>";

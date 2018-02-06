@@ -50,9 +50,7 @@ if(!isset($_SESSION['U_TIPO']) || $_SESSION['U_TIPO']!=0){
 <!--Validação php-->
 <?php
 if($_SERVER['REQUEST_METHOD']==='POST'){
-  /*echo "<pre>";
-  print_r($_POST);
-  echo "</pre>";*/
+  
   if(isset($_POST['btnSave'])){
     $bd->ligar_bd();
 
