@@ -85,7 +85,6 @@
     }else{
 
       //Ver se a aplicação está desativada
-      require_once('resources/classes/basedados.class.php');
       require_once('resources/configs/opcoes.php');
       $bd = new BaseDados();
       $bd->ligar_bd();
