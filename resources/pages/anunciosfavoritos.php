@@ -15,7 +15,6 @@ if(!isset($_SESSION['active'],$_SESSION['U_TIPO']) || $_SESSION['U_TIPO']!=3){
 </nav>
 
 <!-- PESQUISA -->
-<!-- https://bootsnipp.com/snippets/featured/advanced-dropdown-search -->
 <div class="container">
 	<h2>Favoritos</h2>
 	<br>

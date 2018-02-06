@@ -123,7 +123,6 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
         if($DAO->email_existe($_POST['email']) && $_POST['email'] != $utilizador->get_email()){
           echo '<script>alert("O e-mail introduzido já se encontra registado no sistema.");</script>';
         }else{
-
           //Também pretende alterar a palavra-passe
           if(isset($_POST['password'], $_POST['cpassword']) && !empty($_POST['password']) && !empty($_POST['cpassword'])){
             if($_POST['password'] != $_POST['cpassword']){
@@ -136,11 +135,10 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
 
           if($DAO->editar_utilizador(new Utilizador($idutl, $_POST['nome'], $_POST['email'], $password, $_POST['contacto'],$tipoutl, true))){
             echo '<script>alert("A ediçao foi feita com sucesso.");</script>';
-            header("Refresh:0");
+            echo '<script>document.location.href = "index.php";</script>';
           }
         }
       }else{
-        //echo "password incorreta<hr>";
         echo '<script>alert("A password antiga não se encontra correta.");</script>';
       }
     }
