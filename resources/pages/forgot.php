@@ -10,7 +10,6 @@ if(isset($_SESSION['U_TIPO'])){
 <div style="text-align: center;">
 
   <h2>Recuperar Palavra-Passe</h2><br>
-  <!--<h6>Introduza em baixo o email associado à sua conta, e clique em "Recuperar". <br>Receberá posteriormente um email onde poderá facilmente criar uma nova palavra passe.</h6>-->
   <h6>Introduza o e-mail associado à sua conta e clique em "Recuperar".<br>Receberá posteriormente um e-mail com uma nova palavra-passe gerada pelo nosso sistema.</h6>
   <div id="divAviso"></div>
   <form name="formEmail" onsubmit="return validaEmail()" method="POST" action="" >

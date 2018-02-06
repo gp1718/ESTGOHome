@@ -16,7 +16,7 @@ if(!isset($_SESSION['active'],$_SESSION['U_TIPO']) || $_SESSION['U_TIPO']!=1){
 </nav>
 
 <div class="container">
-  <h2>Anúncios para Aprovar</h2>
+  <h2>Anúncios por aprovar</h2>
   <div class="row">
     <!-- inicio do quarto 1-->
     <div class="col-lg-4 col-sm-6 portfolio-item">
