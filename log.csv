@@ -1,0 +1,131 @@
+3287eaf,Nuno Moura,18 hours ago,Correção de erros
+8db0e64,Pedro Calado,18 hours ago,Correção de erros
+241d160,Nuno Moura,19 hours ago,Remoção do debugging
+435ce06,Nuno Moura,24 hours ago,Remoção de linha desnecessária
+cbc4b1e,Pedro Calado,35 hours ago,Correção de pequenos erros
+837549e,Pedro Calado,2 days ago,Criação das restantes páginas da aplicação
+5a30ce3,Pedro Calado,2 days ago,Merge branch 'master' of https://github.com/gp1718/ESTGOHome
+61775eb,Pedro Calado,2 days ago,Criação das restantes páginas da aplicação
+c8b602a,Nuno Moura,2 days ago,Alteração da homepage
+39388fe,Nuno Moura,2 days ago,Merge branch 'master' of https://github.com/gp1718/ESTGOHome
+fff966d,Nuno Moura,2 days ago,Correção do editarinfo.php
+6bb78ca,Pedro Calado,2 days ago,Correção das breadcrumbs e da mensagem de sucesso do registo do gestor
+1b8714d,Nuno Moura,2 days ago,Correção de erros
+f655f4c,Nuno Moura,2 days ago,Correção de erros
+8f4a02c,Nuno Moura,2 days ago,Testes de autenticação ldap
+7023b6f,Pedro Calado,2 days ago,Alteração da funcionalidade de registo de utilizadores
+409746f,Pedro Calado,2 days ago,Alteração da funcionalidade de recuperação da palavra-passe
+25aa739,Pedro Calado,2 days ago,Alteração do e-mail relativo à recuperação da palavra-passe
+dcbceaa,Nuno Moura,2 days ago,Correção de erros no GereUtilzador
+cce423f,Nuno Moura,2 days ago,Otimização da classe GereUtilizador e mensagem de aviso de conta inativa
+ccc7c84,pedrogpereira,3 days ago,Ativar/inativar utilizadores
+0a31a32,Nuno Moura,3 days ago,Ativação e desativação da aplicação
+8771a83,Nuno Moura,3 days ago,Rodapé arranjado
+b0b3563,Pedro Calado,3 days ago,Correção de erros e reestruturação de ficheiros
+b3ff122,Pedro Calado,3 days ago,Correção de erros encontrados nas revisões
+24b0bea,Pedro Calado,3 days ago,Correção de erros encontrados nas revisões
+230657b,Pedro Calado,3 days ago,Criação da função para gerar palavra-passe aleatória
+f0a2586,Nuno Moura,3 days ago,Verificação do e-mail no registo de gestor.
+a4a1dbe,pedrogpereira,3 days ago,Merge branch 'master' of https://github.com/gp1718/ESTGOHome
+9a733f9,pedrogpereira,3 days ago,Errono no primeiro commit
+95738ed,pedrogpereira,3 days ago,Listagem de utilizadores (gestores e senhorios)
+2f8152c,Nuno Moura,3 days ago,Alteração para link na pagina forgot.php
+69160e9,Nuno Moura,3 days ago,Footer fixo
+2c7829a,ruialmeida96,3 days ago,Correção de erros
+8e4d5d3,ruialmeida96,4 days ago,Ediçao pagina recuperarPass.php
+5b3ef7c,ruialmeida96,4 days ago,Merge branch 'master' of https://github.com/gp1718/ESTGOHome
+f5daf1f,ruialmeida96,4 days ago,Termino da recuperaçao da password
+42df71d,Nuno Moura,4 days ago,Identação
+acb1db1,Nuno Moura,4 days ago,Identação
+88e81a3,Nuno Moura,4 days ago,Compressão das imagens existentes
+be6d7e1,Nuno Moura,4 days ago,Fixação do rodapé no fundo da página
+324e5f3,ruialmeida96,4 days ago,Merge branch 'master' of https://github.com/gp1718/ESTGOHome
+16bb7ae,ruialmeida96,4 days ago,Criação da pagina recuperarPass.php e alterações nas paginas de forgot
+07397c4,Nuno Moura,4 days ago,Spoiler para debugging
+0c0caef,Nuno Moura,4 days ago,Alteração do encoding dos mails
+d9ff4a0,Pedro Calado,4 days ago,Merge branch 'master' of https://github.com/gp1718/ESTGOHome
+c974135,Pedro Calado,4 days ago,Criação da página de anúncios e simulação de autenticação do aluno
+30f68e4,Nuno Moura,4 days ago,Merge branch 'master' of https://github.com/gp1718/ESTGOHome
+bbcd2ba,Nuno Moura,4 days ago,Funcionalidade de envio de mails
+f4da2ba,ruialmeida96,4 days ago,Merge branch 'master' of https://github.com/gp1718/ESTGOHome
+cee6815,ruialmeida96,4 days ago,Criaçao da pagina forgot_thanks.php
+faaa20f,Nuno Moura,4 days ago,Merge branch 'master' of https://github.com/gp1718/ESTGOHome
+1cc0310,Pedro Calado,4 days ago,Correção da funcionalidade Editar dados pessoais
+5ce200b,Nuno Moura,4 days ago,Criação de funcionalidade de mudança de lingua
+f7a4f6f,Nuno Moura,4 days ago,Merge branch 'master' of https://github.com/gp1718/ESTGOHome
+0733339,Nuno Moura,4 days ago,Restruturação das opções da aplicação
+41b1ab3,Pedro Calado,4 days ago,Merge branch 'master' of https://github.com/gp1718/ESTGOHome
+250e461,Pedro Calado,4 days ago,Configuração LDAP
+ae62134,Nuno Moura,4 days ago,Otimização da gestão da aplicação
+3722f5d,Pedro Calado,4 days ago,Pequenas alterações
+a17852f,Nuno Moura,5 days ago,Criação de página de gestão da aplicação
+6685240,Pedro Calado,5 days ago,Pequenas alterações
+4be9346,Pedro Calado,5 days ago,Correção das breadcrumbs
+76e0b2f,Pedro Calado,5 days ago,Alteração da página Editar dados pessoais
+cb6c070,Pedro Calado,5 days ago,Pequenas alterações na classe GereUtilizador
+2d966ee,Pedro Calado,5 days ago,Merge branch 'master' of https://github.com/gp1718/ESTGOHome
+185228b,Pedro Calado,5 days ago,Criação da classe Caracteristica
+c643a02,Nuno Moura,5 days ago,Alteração do footer da página
+5067357,Nuno Moura,6 days ago,Atualização de editarinfo.php
+f31432f,ruialmeida96,6 days ago,Correçao de erros em editarinfo.php
+9d89b7a,ruialmeida96,6 days ago,Conclusao da parte de ediçao de informaçao
+"fc80efd,ruialmeida96,6 days ago,Troca do href de ""Conta"""
+"8588f97,ruialmeida96,6 days ago,Troca do href de ""Conta"""
+c3ec83a,ruialmeida96,6 days ago,Merge branch 'master' of https://github.com/gp1718/ESTGOHome
+d50d7ea,ruialmeida96,6 days ago,Ediçao de editarinfo.php
+b7af6d9,Nuno Moura,6 days ago,Proteção das páginas
+10ce5c5,ruialmeida96,6 days ago,Ediçao para testes na pagina home.php linha 225.
+f84b944,ruialmeida96,6 days ago,Ediçao da pagina forgot.php e criaçao de uma nova pagina editarinfo.php
+ccad035,Nuno Moura,6 days ago,Criação das restantes classes e documentação
+ffbab81,Pedro Calado,6 days ago,Funcionalidade de Registo de gestores
+a2ad9bc,Nuno Moura,6 days ago,Criação de classe GereAnuncio, Despesa e Tipo
+6f00993,Pedro Calado,6 days ago,Merge branch 'master' of https://github.com/gp1718/ESTGOHome
+6c9d5fd,Nuno Moura,6 days ago,Criação de classe Anúncio
+a04b243,Pedro Calado,6 days ago,Funcionalidade de Registo do Administrador
+716561e,Pedro Calado,6 days ago,Correção de erros
+84311f6,Pedro Calado,6 days ago,Alteração da função de validação do formulário de registo de senhorios
+1be1107,Pedro Calado,6 days ago,Criação do ficheiro para criar o Administrador
+97a7809,Nuno Moura,7 days ago,Pequenas alterações
+82a3cf1,Nuno Moura,7 days ago,Validação de formulário de login
+fa7bd84,Pedro Calado,7 days ago,Criação de mensagem de aviso quando ocorre erro durante o registo
+d2f1914,ruialmeida96,7 days ago,Merge branch 'master' of https://github.com/gp1718/ESTGOHome
+6224f48,ruialmeida96,7 days ago,Tentativas de Implementar o envio de Emails
+b72ef80,Pedro Calado,7 days ago,Funcionalidade Registo de senhorios
+20c250f,Nuno Moura,7 days ago,Antevisão de erros
+5a97d16,Nuno Moura,7 days ago,Redirecionamento de páginas iniciais
+cc2fee2,ruialmeida96,7 days ago,Estrutura visual de forgot.php feita
+90ccf0e,Pedro Calado,7 days ago,Criação de métodos na classe UtilizadorDAO
+1db6aa4,ruialmeida96,7 days ago,Correções
+51c6ab6,Nuno Moura,7 days ago,Funcionalidade de login e logout
+d8f0dca,ruialmeida96,7 days ago,Ediçao forgot.php
+1e3b489,Nuno Moura,7 days ago,Alteração do ficheiro de index
+6254c9c,ruialmeida96,7 days ago,Atualizaçao forgot.php
+843199c,Nuno Moura,7 days ago,Merge branch 'master' of https://github.com/gp1718/ESTGOHome
+090ca66,Nuno Moura,7 days ago,Conflitos
+10fd966,ruialmeida96,7 days ago,Atualizaçao forgot.php e home.php
+736c18b,ruialmeida96,7 days ago,Atualização da pagina de home.php
+fee356d,Pedro Calado,7 days ago,Merge branch 'master' of https://github.com/gp1718/ESTGOHome
+0431cc6,Pedro Calado,7 days ago,Documentação de métodos
+6a93c4f,Nuno Moura,7 days ago,Merge branch 'master' of https://github.com/gp1718/ESTGOHome
+3f01eb2,Nuno Moura,7 days ago,Correção de bugs na autenticação
+07b23a4,ruialmeida96,7 days ago,Atualização da pagina home.php (extenção de recuperaçao de pass)
+a6f9fad,ruialmeida96,7 days ago,Edição da pagina forgot.php para recuperaçao de password
+2a66b2b,ruialmeida96,7 days ago,Criação da pagina de recuperaçao de password
+0290d78,Pedro Calado,7 days ago,Não houve criação de novos métodos
+6e651fb,Nuno Moura,7 days ago,Merge branch 'master' of https://github.com/gp1718/ESTGOHome
+037ce56,Nuno Moura,7 days ago,Debugging da autenticação de utilizadores
+9b18d55,Pedro Calado,7 days ago,Criação de métodos de gestão de utilizadores
+783e019,Nuno Moura,7 days ago,Atualização de código HTML e correção de bugs
+47356a4,Nuno Moura,7 days ago,Merge branch 'master' of https://github.com/gp1718/ESTGOHome
+1934df5,Nuno Moura,7 days ago,Correção de bugs no index e na classe BaseDados
+422d41d,Pedro Calado,7 days ago,Criação da classe UtilizadorDAO
+63eb317,Nuno Moura,7 days ago,Adicionado método à classe BaseDados
+5815cf1,Nuno Moura,7 days ago,Criação da classe BaseDados
+da2e05e,Pedro Calado,7 days ago,Criação da classe Utilizador.
+a21a59f,Nuno Moura,7 days ago,Criação da página inicial
+fa91649,Nuno Moura,7 days ago,Estruturação do website
+8afdf62,ruialmeida96,8 days ago,Adicionei uma linha (teste) ao ficheiro teste.txt
+4b57f1c,ruialmeida96,8 days ago,Adicionei uma linha (nova linha) ao ficheiro teste.txt
+f2fd5d2,Pedro Pereira,11 days ago,Alterações ao ficheiro de teste
+7b1757b,Nuno Moura,11 days ago,Adicionado ficheiro base da aplicação
+994be03,Nuno Moura,11 days ago,Initial commit
